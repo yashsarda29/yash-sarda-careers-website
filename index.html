@@ -250,6 +250,63 @@
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   footer a:hover { color: var(--blue); }
 
+  /* ---------- Testimonials ---------- */
+  .voices { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+  .voice { grid-column: span 4; background: var(--white); border-radius: 26px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; position: relative; transition: transform .3s; }
+  .voice:hover { transform: translateY(-4px); }
+  .voice.big { grid-column: span 8; background: var(--blue); color: var(--white); }
+  .voice.dark { background: var(--ink); color: var(--paper); }
+  .voice q { font-family: var(--serif); font-size: 1.55rem; line-height: 1.2; letter-spacing: -0.005em; quotes: "“" "”"; }
+  .voice.big q { font-size: clamp(1.9rem, 3.2vw, 2.7rem); }
+  .voice q::before { content: open-quote; color: var(--blue); }
+  .voice.big q::before, .voice.dark q::before { color: #9CC5F0; }
+  .voice q::after { content: close-quote; }
+  .who { display: flex; align-items: center; gap: 14px; }
+  .who .av { width: 46px; height: 46px; border-radius: 50%; background: var(--blue-wash); color: var(--blue); display: grid; place-items: center; font-weight: 700; flex-shrink: 0; text-transform: uppercase; }
+  .voice.big .av, .voice.dark .av { background: rgba(255,255,255,.14); color: var(--white); }
+  .who b { display: block; font-size: .98rem; }
+  .who span { font-size: .85rem; opacity: .7; }
+  .outcome { display: block; width: fit-content; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1px solid currentColor; opacity: .75; margin-bottom: 14px; }
+  .sample { position: absolute; top: 18px; right: 18px; font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; background: var(--paper); color: var(--ink); padding: 4px 8px; border-radius: 6px; }
+  @media (max-width: 960px) { .voice, .voice.big { grid-column: span 12; } }
+  @media (min-width: 961px) and (max-width: 1100px) { .voice { grid-column: span 6; } .voice.big { grid-column: span 12; } }
+
+  /* ---------- Booking (Calendly) ---------- */
+  .book-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
+  .book-points { list-style: none; display: grid; gap: 0; border-top: 1.5px solid var(--ink); }
+  .book-points li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 20px 0; border-bottom: 1px solid var(--hair); }
+  .book-points .mono { color: var(--blue); padding-top: 3px; }
+  .book-points b { display: block; font-size: 1.1rem; letter-spacing: -0.01em; }
+  .book-points span { color: var(--ink-soft); font-size: .95rem; }
+  .book-alt { margin-top: 26px; color: var(--ink-soft); font-size: .95rem; }
+  .book-alt a { color: var(--blue); font-weight: 600; border-bottom: 1.5px solid currentColor; }
+  .cal { background: var(--white); border-radius: 28px; overflow: hidden; min-height: 680px; position: relative; box-shadow: 0 1px 0 var(--hair), 0 30px 60px -40px rgba(11,27,43,.3); }
+  .cal .calendly-inline-widget { min-width: 280px; height: 700px; }
+  .cal-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; gap: 18px; background: repeating-linear-gradient(135deg, var(--white) 0 14px, var(--paper) 14px 15px); }
+  .cal-empty .serif { font-size: 2rem; line-height: 1.1; }
+  .cal-empty p { color: var(--ink-soft); max-width: 360px; }
+  @media (max-width: 960px) { .book-wrap { grid-template-columns: 1fr; } .cal { min-height: 0; } .cal-empty { position: static; min-height: 360px; } }
+
+  /* ---------- Blog cards ---------- */
+  .notes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .note { display: flex; flex-direction: column; background: var(--white); border-radius: 24px; overflow: hidden; transition: transform .3s; }
+  .note:hover { transform: translateY(-6px); }
+  .note .cover { aspect-ratio: 4/3; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .note .cover .n { font-family: var(--serif); font-style: italic; font-size: 5.5rem; line-height: .8; }
+  .note:nth-child(4n+1) .cover { background: var(--blue); color: var(--white); }
+  .note:nth-child(4n+2) .cover { background: var(--ink); color: var(--paper); }
+  .note:nth-child(4n+3) .cover { background: var(--blue-wash); color: var(--blue); }
+  .note:nth-child(4n+4) .cover { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--hair); }
+  .note .cover::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 150px; height: 150px; border-radius: 50%; border: 1.5px solid currentColor; opacity: .25; }
+  .note .body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .note h3 { font-size: 1.2rem; line-height: 1.2; letter-spacing: -0.02em; transition: color .2s; }
+  .note:hover h3 { color: var(--blue); }
+  .note p { color: var(--ink-soft); font-size: .93rem; flex: 1; }
+  .note .read { font-weight: 600; font-size: .88rem; color: var(--blue); }
+  .notes-foot { margin-top: 36px; display: flex; justify-content: center; }
+  @media (max-width: 1100px) { .notes { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .notes { grid-template-columns: 1fr; } }
+
   /* Floating chat */
   .float { position: fixed; right: 20px; bottom: 20px; z-index: 60; display: flex; align-items: center; gap: 10px; background: var(--ink); color: var(--paper); padding: 10px 18px 10px 10px; border-radius: 999px; font-weight: 600; font-size: .9rem; box-shadow: 0 16px 30px -10px rgba(11,27,43,.5); transform: translateY(120px); transition: transform .4s cubic-bezier(.2,.8,.2,1), background .2s; }
   .float.show { transform: none; }
@@ -285,6 +342,7 @@
 <script>
   const WHATSAPP_NUMBER = "918850628288";               // country code + number, no spaces
   const LINKEDIN_URL    = "https://www.linkedin.com/";  // TODO: replace with Yash's LinkedIn profile URL
+  const CALENDLY_URL    = "";                           // TODO: paste Yash's Calendly link, e.g. "https://calendly.com/yashsarda/15min"
 </script>
 
 <header id="hdr">
@@ -293,10 +351,11 @@
     <nav class="menu" aria-label="Main">
       <a href="#finder">Find your session</a>
       <a href="#route">The route</a>
-      <a href="#about">About</a>
+      <a href="#stories">Stories</a>
+      <a href="#notes">Blog</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">Free 15-min call <span class="arr">↗</span></a>
+    <a class="btn btn-blue" href="#book">Book a free call <span class="arr">↘</span></a>
   </div>
 </header>
 
@@ -314,13 +373,13 @@
         </h1>
         <p class="sub">One-on-one sessions to choose your path, build your profile, get shortlisted and crack the interview. With someone who actually works in the industry.</p>
         <div class="hero-ctas">
-          <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.05.71C5.79.71.7 5.8.7 12.06c0 2 .52 3.950 1.52 5.67L.6 23.65l6.05-1.59a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03"/></svg>
-            Book your free call
+          <a class="btn btn-blue" href="#book">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Pick a free slot
           </a>
           <a class="btn btn-line" href="#finder">Where am I stuck? <span class="arr">↘</span></a>
         </div>
-        <p class="free-note"><b>The first 15 minutes are on me.</b> No forms, just WhatsApp.</p>
+        <p class="free-note"><b>The first 15 minutes are on me.</b> Book a slot, or just message on WhatsApp.</p>
       </div>
 
       <!-- Route map -->
@@ -417,18 +476,76 @@
     </div>
   </section>
 
-  <!-- ================= STEPS ================= -->
-  <section class="block">
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="block" id="stories">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(04) How it works</span>
+        <span class="mono">(04) Stories</span>
+        <div>
+          <h2>Thirty minutes that <span class="serif">changed the plan.</span></h2>
+          <p>What students said after their sessions.</p>
+        </div>
+      </div>
+      <div class="voices" id="voices"></div>
+    </div>
+  </section>
+
+  <!-- ================= STEPS ================= -->
+  <section class="block" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">(05) How it works</span>
         <div><h2>Three steps. <span class="serif">Zero fluff.</span></h2></div>
       </div>
       <div class="steps">
         <div class="step rv"><div class="dot">01</div><h3>Pick a session</h3><p>Choose the one that matches where you are right now, or ask me on the free call.</p></div>
-        <div class="step rv"><div class="dot">02</div><h3>Book on WhatsApp</h3><p>Message, pick a slot, and join a 30-minute online video call.</p></div>
+        <div class="step rv"><div class="dot">02</div><h3>Book a slot</h3><p>Pick a time in the calendar below, or message on WhatsApp. It's a 30-minute online video call.</p></div>
         <div class="step rv"><div class="dot">03</div><h3>Leave with a plan</h3><p>A clear framework to decide and act, not generic advice.</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= BOOK (CALENDLY) ================= -->
+  <section class="block" id="book" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">(06) Book</span>
+        <div>
+          <h2>Pick a time. <span class="serif">The first 15 minutes are free.</span></h2>
+        </div>
+      </div>
+      <div class="book-wrap">
+        <div class="rv">
+          <ul class="book-points">
+            <li><span class="mono">01</span><div><b>Choose a slot</b><span>Pick any open time that suits you.</span></div></li>
+            <li><span class="mono">02</span><div><b>Tell me what's on your mind</b><span>A line or two on where you're stuck helps me prepare.</span></div></li>
+            <li><span class="mono">03</span><div><b>Join the video call</b><span>You'll get the link by email, with a reminder before we start.</span></div></li>
+          </ul>
+          <p class="book-alt">Prefer chat? <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">Message on WhatsApp</a></p>
+        </div>
+        <div class="cal rv" id="cal">
+          <div class="cal-empty" id="calEmpty">
+            <span class="serif">Calendar coming soon.</span>
+            <p>Online booking is being set up. Until then, message on WhatsApp and we'll find a time.</p>
+            <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">Book on WhatsApp <span class="arr">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BLOG ================= -->
+  <section class="block" id="notes" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">(07) Blog</span>
+        <div>
+          <h2>Notes from the <span class="serif">other side of the table.</span></h2>
+          <p>Short, practical reads on the decisions students get stuck on most.</p>
+        </div>
+      </div>
+      <div class="notes" id="notesGrid"></div>
+      <div class="notes-foot rv"><a class="btn btn-line" href="blog/">All posts <span class="arr">↗</span></a></div>
     </div>
   </section>
 
@@ -436,7 +553,7 @@
   <section class="block" id="faq" style="padding-top:40px">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(05) Questions</span>
+        <span class="mono">(08) Questions</span>
         <div><h2>Before you <span class="serif">message.</span></h2></div>
       </div>
       <div class="faq rv">
@@ -533,6 +650,31 @@ const PAINS = [
   { q: "I'm still in school", a: "Pick a stream or course with confidence.", recs: ["__school"] }
 ];
 
+/* ============================================================
+   EDIT HERE: testimonials
+   These are SAMPLES. Replace each with a real student's words
+   (with their permission) and set sample: false.
+   The first one is shown large.
+   ============================================================ */
+const TESTIMONIALS = [
+  { quote: "I walked in torn between a job and an MBA. Twenty minutes later I had a timeline, a target score and a reason for both.", name: "Student name", detail: "B.Com, final year", outcome: "Session: Job or MBA?", sample: true },
+  { quote: "My CV went from three pages of everything to one page that actually says something.", name: "Student name", detail: "B.Tech, 3rd year", outcome: "Session: CV review", sample: true },
+  { quote: "The GD practice made me realise I was talking a lot and saying very little. That's fixed now.", name: "Student name", detail: "MBA, 1st year", outcome: "Session: Group discussion", sample: true },
+  { quote: "Honest feedback in the mock interview. Uncomfortable, but exactly what I needed.", name: "Student name", detail: "BBA, final year", outcome: "Session: Mock interview", sample: true },
+  { quote: "I finally understand what each role in my branch looks like five years in. Choosing got easy.", name: "Student name", detail: "B.Tech, 2nd year", outcome: "Session: Career path mapping", sample: true }
+];
+
+/* ============================================================
+   Blog posts shown on the home page (newest first).
+   Each one has its own page in the /blog folder.
+   ============================================================ */
+const POSTS = [
+  { slug: "cv-not-getting-shortlisted", tag: "Getting shortlisted", title: "Why your CV isn't getting shortlisted (and six fixes)", blurb: "Recruiters spend seconds, not minutes. Here's what they look for first.", mins: 6 },
+  { slug: "job-or-mba", tag: "Career clarity", title: "Job now or MBA later? A decision you can actually make", blurb: "Three questions that settle it, and what an MBA does and doesn't fix.", mins: 7 },
+  { slug: "choose-your-branch", tag: "Career clarity", title: "CS or ECE? How to choose a specialisation you won't regret", blurb: "Stop comparing subjects. Compare Tuesdays, three years from now.", mins: 6 },
+  { slug: "crack-group-discussion", tag: "Placements", title: "How to crack a group discussion: enter, structure, close", blurb: "Speaking first isn't the goal. Being the one people build on is.", mins: 6 }
+];
+
 const MARQUEE = ["CS or ECE?", "Job now or MBA later?", "Why am I not getting callbacks?", "Which certifications actually matter?", "How do I crack a GD?", "CAT, GMAT or GRE?", "Is my CV good enough?", "What does this JD really want?", "How do I start a case?", "Tell me about yourself…"];
 
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
@@ -579,6 +721,32 @@ function pick(i) {
 }
 painsEl.addEventListener("click", e => { const b = e.target.closest(".pain"); if (b) pick(b.dataset.i); });
 pick(0);
+
+/* Testimonials */
+document.getElementById("voices").innerHTML = TESTIMONIALS.map((t, i) => `
+  <figure class="voice rv ${i === 0 ? "big" : i === 3 ? "dark" : ""}">
+    ${t.sample ? '<span class="sample">Sample</span>' : ""}
+    <div>${t.outcome ? `<span class="outcome">${esc(t.outcome)}</span>` : ""}<q>${esc(t.quote)}</q></div>
+    <figcaption class="who"><span class="av">${esc(t.name.split(" ").map(w => w[0]).join("").slice(0, 2))}</span><span><b>${esc(t.name)}</b><span>${esc(t.detail)}</span></span></figcaption>
+  </figure>`).join("");
+
+/* Blog cards */
+document.getElementById("notesGrid").innerHTML = POSTS.map((p, i) => `
+  <a class="note rv" href="blog/${p.slug}.html">
+    <div class="cover"><span class="mono">${esc(p.tag)}</span><span class="n">${String(i + 1).padStart(2, "0")}</span></div>
+    <div class="body"><h3>${esc(p.title)}</h3><p>${esc(p.blurb)}</p><span class="read">${p.mins} min read →</span></div>
+  </a>`).join("");
+
+/* Calendly: loads only when CALENDLY_URL is set */
+if (CALENDLY_URL) {
+  const cal = document.getElementById("cal");
+  document.getElementById("calEmpty").remove();
+  const sep = CALENDLY_URL.includes("?") ? "&" : "?";
+  cal.insertAdjacentHTML("beforeend", `<div class="calendly-inline-widget" data-url="${esc(CALENDLY_URL + sep + "primary_color=0a66c2&text_color=0b1b2b&hide_gdpr_banner=1")}"></div>`);
+  const s = document.createElement("script");
+  s.src = "https://assets.calendly.com/assets/external/widget.js"; s.async = true;
+  document.body.appendChild(s);
+}
 
 /* Route map stops scroll to their stage */
 document.querySelectorAll(".route .st").forEach(g => g.addEventListener("click", () => document.getElementById(g.dataset.go)?.scrollIntoView({ behavior: "smooth", block: "start" })));
