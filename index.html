@@ -483,6 +483,95 @@
     .swipe-hint { display: flex; }
   }
 
+  /* =====================================================================
+     DESIGN ROUND 2
+     ===================================================================== */
+  /* 1 · Session stages as tabs */
+  .stage-tabs { display: flex; gap: 8px; margin-bottom: clamp(18px, 3vh, 28px); overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .stage-tabs::-webkit-scrollbar { display: none; }
+  .stage-tab { flex-shrink: 0; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; border: 1.5px solid var(--hair); font-weight: 600; font-size: .95rem; transition: all .2s; white-space: nowrap; }
+  .stage-tab .mono { color: var(--blue); }
+  .stage-tab:hover { border-color: var(--ink); }
+  .stage-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .stage-tab[aria-selected="true"] .mono { color: #9CC5F0; }
+  .stage-tab .count { font-family: var(--mono); font-size: .7rem; opacity: .6; }
+  .js .stage { border-bottom: 1.5px solid var(--ink); }
+  .js .stage[hidden] { display: none; }
+  .js .stage:not([hidden]) { animation: fade .4s both; }
+  .stage-next { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-weight: 600; color: var(--blue); }
+  .stage-next:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .stage-side { position: static; }
+  /* Compact panel so a whole stage (incl. tabs and the school note) fits one laptop screen */
+  .stage { padding: clamp(18px, 2.8vh, 26px) 0; }
+  .stage-num { font-size: clamp(3rem, min(5vw, 8vh), 4.4rem); }
+  .stage-side h3 { font-size: 1.5rem; }
+  .stage-side .mono { margin-top: 14px !important; }
+  .stage-side p { margin-top: 8px; font-size: .96rem; }
+  .row { padding: 11px 14px; }
+  .row h4 { font-size: 1.08rem; }
+  .school { margin-top: 18px; padding: 12px 14px 12px 22px; border-radius: 999px; }
+  .school p { font-size: .98rem; }
+  .school p .serif { font-size: 1.2rem; }
+  .school .btn { padding: 10px 18px; font-size: .9rem; }
+  #route .sec-head p { margin-top: 8px; }
+  @media (max-width: 760px) { .school { border-radius: 20px; padding: 18px; } }
+  /* Wide screens: sessions sit in two columns */
+  @media (min-width: 1100px) {
+    .rows { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; align-content: start; }
+    .rows li + li { border-top: 0; }
+    .rows li { border-top: 1px solid var(--hair); }
+    .rows li:nth-child(-n+2) { border-top: 0; }
+    .row { grid-template-columns: 40px 1fr auto; gap: 12px; align-items: start; }
+    .row .idx { padding-top: 4px; }
+    .row .book { align-self: center; }
+  }
+
+  /* 2 · Proof strip in the hero */
+  .proof { display: block; color: var(--ink-soft); margin-top: 2px; }
+  .proof b { color: var(--ink); font-weight: 600; }
+
+  /* 3 · Phone booking bar (replaces the floating bubble on phones) */
+  .mbar { display: none; }
+  @media (max-width: 760px) {
+    .float { display: none; }
+    .mbar { display: flex; gap: 8px; position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 60; padding: 8px; background: rgba(11,27,43,.94); backdrop-filter: blur(10px); border-radius: 999px; box-shadow: 0 16px 30px -10px rgba(11,27,43,.55); transform: translateY(140%); visibility: hidden; transition: transform .35s cubic-bezier(.2,.8,.2,1), visibility 0s .35s; }
+    .mbar.show { transform: none; visibility: visible; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+    .mbar .book { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--blue); color: var(--white); border-radius: 999px; font-weight: 600; padding: 13px 16px; }
+    .mbar .wa { width: 48px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.12); color: var(--white); }
+    .mbar svg { width: 20px; height: 20px; }
+    footer { padding-bottom: 96px; }
+  }
+
+  /* 4 · Final CTA: calendar first, WhatsApp second */
+  .final .hero-ctas { margin-top: 26px; }
+  .final .btn svg { width: 18px; height: 18px; }
+
+  /* 5 · Current section highlighted in the menu */
+  .menu a.on { color: var(--blue); }
+  .menu a.on::after { right: 0; }
+  .sheet a.on { color: var(--blue); }
+
+  /* 6 · Finder starts empty */
+  .answer.idle h3 { opacity: .95; }
+  .recs .ghost { background: transparent; border-style: dashed; }
+
+  /* 7 · Calendar loading state */
+  .cal-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 32px; color: var(--ink-soft); z-index: 0; }
+  .cal-loading .spin { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--blue-wash); border-top-color: var(--blue); animation: spin .9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .cal-loading .slow { display: none; max-width: 340px; }
+  .cal-loading.is-slow .slow { display: block; }
+  .cal-loading .slow a { color: var(--blue); font-weight: 600; border-bottom: 1.5px solid currentColor; }
+  .cal .calendly-inline-widget { position: relative; z-index: 1; }
+  .cal.loaded .cal-loading { display: none; }
+
+  /* 8 · Topic icons on blog covers */
+  .note .cover .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .note .cover .ic { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: rgba(255,255,255,.14); flex-shrink: 0; }
+  .note:nth-child(4n+3) .cover .ic { background: rgba(10,102,194,.12); }
+  .note:nth-child(4n+4) .cover .ic { background: rgba(11,27,43,.07); }
+  .note .cover .ic svg { width: 20px; height: 20px; }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .js .rv { opacity: 1; transform: none; }
@@ -548,7 +637,7 @@
           </a>
           <a class="btn btn-line" href="#finder">Where am I stuck? <span class="arr">↘</span></a>
         </div>
-        <p class="free-note"><img class="mini-av" src="yash.png" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b> Book a slot, or just message on WhatsApp.</span></p>
+        <p class="free-note"><img class="mini-av" src="yash.png" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b><span class="proof">MBA, Great Lakes Chennai · 5+ years in industry · Mentored a <b>top-8 national</b> team</span></span></p>
       </div>
 
       <!-- Route map -->
@@ -606,6 +695,7 @@
           <p>Each session is 30 minutes, one-on-one, online, and ends with a framework you can act on. Tap any session to book it on WhatsApp.</p>
         </div>
       </div>
+      <div class="stage-tabs" role="tablist" aria-label="Career stages" id="stageTabs"></div>
       <div id="stages"></div>
 
       <div class="school rv">
@@ -723,11 +813,14 @@
       <h2>Fifteen minutes. <span class="serif">Free.</span></h2>
       <p>Tell me where you're stuck. Leave knowing what to do next.</p>
       <div class="hero-ctas">
-        <a class="btn btn-white js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">
+        <a class="btn btn-white" href="#book">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Pick a time on the calendar
+        </a>
+        <a class="btn btn-ghostw js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.05.71C5.79.71.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.65l6.05-1.59a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03"/></svg>
           WhatsApp 88506 28288
         </a>
-        <a class="btn btn-ghostw js-li" href="#" target="_blank" rel="noopener">LinkedIn profile <span class="arr">↗</span></a>
       </div>
     </div>
   </section>
@@ -744,6 +837,12 @@
   <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.05.71C5.79.71.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.65l6.05-1.59a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03"/></svg></span>
   <span>Chat on WhatsApp</span>
 </a>
+
+<!-- Phone booking bar -->
+<div class="mbar" id="mbar">
+  <a class="book" href="#book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book a free call</a>
+  <a class="wa js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#" aria-label="Chat with Yash on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.05.71C5.79.71.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.65l6.05-1.59a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03"/></svg></a>
+</div>
 
 <script>
 /* ============================================================
@@ -812,10 +911,10 @@ const TESTIMONIALS = [
    Each one has its own page in the /blog folder.
    ============================================================ */
 const POSTS = [
-  { slug: "cv-not-getting-shortlisted", tag: "Getting shortlisted", title: "Why your CV isn't getting shortlisted (and six fixes)", blurb: "Recruiters spend seconds, not minutes. Here's what they look for first.", mins: 6 },
-  { slug: "job-or-mba", tag: "Career clarity", title: "Job now or MBA later? A decision you can actually make", blurb: "Three questions that settle it, and what an MBA does and doesn't fix.", mins: 7 },
-  { slug: "choose-your-branch", tag: "Career clarity", title: "CS or ECE? How to choose a specialisation you won't regret", blurb: "Stop comparing subjects. Compare Tuesdays, three years from now.", mins: 6 },
-  { slug: "crack-group-discussion", tag: "Placements", title: "How to crack a group discussion: enter, structure, close", blurb: "Speaking first isn't the goal. Being the one people build on is.", mins: 6 }
+  { slug: "cv-not-getting-shortlisted", tag: "Getting shortlisted", icon: "doc", title: "Why your CV isn't getting shortlisted (and six fixes)", blurb: "Recruiters spend seconds, not minutes. Here's what they look for first.", mins: 6 },
+  { slug: "job-or-mba", tag: "Career clarity", icon: "scale", title: "Job now or MBA later? A decision you can actually make", blurb: "Three questions that settle it, and what an MBA does and doesn't fix.", mins: 7 },
+  { slug: "choose-your-branch", tag: "Career clarity", icon: "split", title: "CS or ECE? How to choose a specialisation you won't regret", blurb: "Stop comparing subjects. Compare Tuesdays, three years from now.", mins: 6 },
+  { slug: "crack-group-discussion", tag: "Placements", icon: "users", title: "How to crack a group discussion: enter, structure, close", blurb: "Speaking first isn't the goal. Being the one people build on is.", mins: 6 }
 ];
 
 const MARQUEE = ["CS or ECE?", "Job now or MBA later?", "Why am I not getting callbacks?", "Which certifications actually matter?", "How do I crack a GD?", "CAT, GMAT or GRE?", "Is my CV good enough?", "What does this JD really want?", "How do I start a case?", "Tell me about yourself…"];
@@ -829,18 +928,21 @@ const findSession = (name) => { for (const s of STAGES) { const x = s.sessions.f
 /* Marquee (duplicated for a seamless loop) */
 document.getElementById("marquee").innerHTML = [...MARQUEE, ...MARQUEE].map(t => `<span>${esc(t)}</span>`).join("");
 
-/* Stages */
-document.getElementById("stages").innerHTML = STAGES.map(s => `
-  <div class="stage" id="stage-${s.id}">
-    <div class="stage-side rv">
+/* Stages: one tab per stage, one panel visible at a time */
+const tabsEl = document.getElementById("stageTabs");
+tabsEl.innerHTML = STAGES.map((s, i) => `<button class="stage-tab" role="tab" id="tab-${s.id}" aria-controls="stage-${s.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-stage="${s.id}"><span class="mono">${s.num}</span>${esc(s.name)} <span class="count">${s.sessions.length}</span></button>`).join("");
+document.getElementById("stages").innerHTML = STAGES.map((s, i) => `
+  <div class="stage" id="stage-${s.id}" role="tabpanel" aria-labelledby="tab-${s.id}">
+    <div class="stage-side">
       <div class="stage-num">${s.num}</div>
       <span class="mono" style="display:block;margin-top:22px;color:var(--blue)">Stage ${Number(s.num)} · ${s.name}</span>
       <h3 style="margin-top:10px">${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></h3>
       <p>${esc(s.intro)}</p>
+      ${STAGES[i + 1] ? `<button class="stage-next" data-stage="${STAGES[i + 1].id}">Next: ${esc(STAGES[i + 1].name)} →</button>` : `<a class="stage-next" href="#book">Book a free call →</a>`}
     </div>
     <ol class="rows">
       ${s.sessions.map((r, i) => `
-        <li class="rv"><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
+        <li><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
           <span class="idx">${s.num}.${i + 1}</span>
           <div><h4>${esc(r[0])}</h4><p>${esc(r[1])}</p></div>
           <span class="book"><span>Book</span><span class="go">${ARROW}</span></span>
@@ -848,11 +950,39 @@ document.getElementById("stages").innerHTML = STAGES.map(s => `
     </ol>
   </div>`).join("");
 
+function showStage(id, focusTab) {
+  STAGES.forEach(s => {
+    const on = s.id === id, tab = document.getElementById("tab-" + s.id), panel = document.getElementById("stage-" + s.id);
+    tab.setAttribute("aria-selected", on); tab.tabIndex = on ? 0 : -1;
+    panel.hidden = !on; panel.classList.toggle("active", on);
+    if (on && focusTab) tab.focus();
+  });
+}
+tabsEl.addEventListener("click", e => { const t = e.target.closest(".stage-tab"); if (t) showStage(t.dataset.stage); });
+tabsEl.addEventListener("keydown", e => {
+  const keys = { ArrowRight: 1, ArrowLeft: -1 }; if (!(e.key in keys)) return;
+  const i = STAGES.findIndex(s => s.id === document.activeElement.dataset.stage);
+  showStage(STAGES[(i + keys[e.key] + STAGES.length) % STAGES.length].id, true);
+});
+document.getElementById("stages").addEventListener("click", e => {
+  const n = e.target.closest("button.stage-next"); if (!n) return;
+  showStage(n.dataset.stage); document.getElementById("route").scrollIntoView({ block: "start" });
+});
+showStage(STAGES[0].id);
+
 /* Finder */
 const painsEl = document.getElementById("pains");
-painsEl.innerHTML = PAINS.map((p, i) => `<button class="pain" aria-pressed="${i === 0}" data-i="${i}">${esc(p.q)}</button>`).join("");
+painsEl.innerHTML = PAINS.map((p, i) => `<button class="pain" aria-pressed="false" data-i="${i}">${esc(p.q)}</button>`).join("");
+/* Starts empty: nothing is pre-selected for the visitor */
+function idle() {
+  document.querySelector(".answer").classList.add("idle");
+  document.getElementById("ansLabel").textContent = "Start here";
+  document.getElementById("ansTitle").textContent = "Pick what sounds like you, and I'll suggest where to start.";
+  document.getElementById("ansList").innerHTML = `<li><a class="ghost" href="#book"><span>Not sure yet?<small>Start with the free 15-minute call</small></span><span class="go">${ARROW}</span></a></li>`;
+}
 function pick(i) {
   const p = PAINS[i];
+  document.querySelector(".answer").classList.remove("idle");
   painsEl.querySelectorAll(".pain").forEach(b => b.setAttribute("aria-pressed", b.dataset.i == i));
   document.getElementById("ansLabel").textContent = "Recommended for you";
   document.getElementById("ansTitle").textContent = p.a;
@@ -869,7 +999,7 @@ painsEl.addEventListener("click", e => {
   const ans = document.querySelector(".answer"), r = ans.getBoundingClientRect();
   if (r.top > innerHeight * .6) ans.scrollIntoView({ block: "start" });
 });
-pick(0);
+idle();
 
 /* Testimonials */
 document.getElementById("voices").innerHTML = TESTIMONIALS.map((t, i) => `
@@ -879,10 +1009,17 @@ document.getElementById("voices").innerHTML = TESTIMONIALS.map((t, i) => `
     <figcaption class="who"><span class="av">${esc(t.name.split(" ").map(w => w[0]).join("").slice(0, 2))}</span><span><b>${esc(t.name)}</b><span>${esc(t.detail)}</span></span></figcaption>
   </figure>`).join("");
 
-/* Blog cards */
+/* Blog cards (with a topic icon) */
+const TOPIC_ICONS = {
+  doc: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/>',
+  scale: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
+  split: '<path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"/><path d="m15 9 6-6"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>'
+};
+const topicIcon = (k) => TOPIC_ICONS[k] ? `<span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${TOPIC_ICONS[k]}</svg></span>` : "";
 document.getElementById("notesGrid").innerHTML = POSTS.map((p, i) => `
   <a class="note rv" href="blog/${p.slug}.html">
-    <div class="cover"><span class="mono">${esc(p.tag)}</span><span class="n">${String(i + 1).padStart(2, "0")}</span></div>
+    <div class="cover"><div class="top"><span class="mono">${esc(p.tag)}</span>${topicIcon(p.icon)}</div><span class="n">${String(i + 1).padStart(2, "0")}</span></div>
     <div class="body"><h3>${esc(p.title)}</h3><p>${esc(p.blurb)}</p><span class="read">${p.mins} min read →</span></div>
   </a>`).join("");
 
@@ -891,15 +1028,29 @@ if (CALENDLY_URL) {
   const cal = document.getElementById("cal");
   document.getElementById("calEmpty").remove();
   const sep = CALENDLY_URL.includes("?") ? "&" : "?";
+  /* Loading state sits behind the calendar until Calendly reports it is ready */
+  cal.insertAdjacentHTML("beforeend", `<div class="cal-loading" id="calLoading" role="status"><span class="spin" aria-hidden="true"></span><span>Loading calendar…</span><p class="slow">Taking a while? <a href="${esc(CALENDLY_URL)}" target="_blank" rel="noopener">Open the calendar in a new tab</a> or <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">book on WhatsApp</a>.</p></div>`);
   cal.insertAdjacentHTML("beforeend", `<div class="calendly-inline-widget" data-url="${esc(CALENDLY_URL + sep + "primary_color=0a66c2&text_color=0b1b2b&hide_gdpr_banner=1")}"></div>`);
-  const s = document.createElement("script");
-  s.src = "https://assets.calendly.com/assets/external/widget.js"; s.async = true;
-  document.body.appendChild(s);
+  addEventListener("message", e => {
+    if (e.origin === "https://calendly.com" && e.data && typeof e.data.event === "string" && e.data.event.startsWith("calendly.")) cal.classList.add("loaded");
+  });
+  setTimeout(() => { if (!cal.classList.contains("loaded")) document.getElementById("calLoading").classList.add("is-slow"); }, 8000);
+  /* Load Calendly's script only when the visitor gets near the Book section */
+  const loadCal = () => {
+    if (loadCal.done) return; loadCal.done = true;
+    const s = document.createElement("script");
+    s.src = "https://assets.calendly.com/assets/external/widget.js"; s.async = true;
+    document.body.appendChild(s);
+  };
+  if ("IntersectionObserver" in window) {
+    const co = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { loadCal(); co.disconnect(); } }, { rootMargin: "800px 0px" });
+    co.observe(cal);
+  } else loadCal();
 }
 
 /* Route map stops scroll to their stage (mouse, touch and keyboard) */
 document.querySelectorAll(".route .st").forEach(g => {
-  const go = () => document.getElementById(g.dataset.go)?.scrollIntoView({ block: "start" });
+  const go = () => { showStage(g.dataset.go.replace("stage-", "")); document.getElementById("route").scrollIntoView({ block: "start" }); };
   g.addEventListener("click", go);
   g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
 });
@@ -925,16 +1076,29 @@ document.querySelectorAll(".js-li").forEach(a => { if (hasLinkedIn) a.href = LIN
 document.querySelectorAll(".js-li-wrap").forEach(w => { w.hidden = !hasLinkedIn; });
 document.getElementById("yr").textContent = new Date().getFullYear();
 
-/* Header + floating button */
-const hdr = document.getElementById("hdr"), fl = document.getElementById("float");
-/* The floating button hides near the bottom, where the final section has its own WhatsApp button */
-const finalEl = document.querySelector(".final");
+/* Header, floating button (desktop) and booking bar (phones) */
+const hdr = document.getElementById("hdr"), fl = document.getElementById("float"), mbar = document.getElementById("mbar");
+/* Both hide near the bottom (final section has its own buttons) and inside the Book section */
+const finalEl = document.querySelector(".final"), bookEl = document.getElementById("book");
 const onScroll = () => {
   hdr.classList.toggle("solid", scrollY > 20);
   const nearEnd = finalEl.getBoundingClientRect().top < innerHeight * .85;
-  fl.classList.toggle("show", scrollY > innerHeight * .8 && !nearEnd);
+  const b = bookEl.getBoundingClientRect(), inBook = b.top < innerHeight * .5 && b.bottom > innerHeight * .5;
+  const show = scrollY > innerHeight * .8 && !nearEnd;
+  fl.classList.toggle("show", show);
+  mbar.classList.toggle("show", show && !inBook);
 };
 addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+/* Highlight the menu link for the section on screen */
+if ("IntersectionObserver" in window) {
+  const links = [...document.querySelectorAll('.menu a[href^="#"], .sheet a[href^="#"]')];
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    links.forEach(a => { const on = a.getAttribute("href") === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  ["finder", "route", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+}
 
 /* Reveal + active stage */
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -943,10 +1107,6 @@ if ("IntersectionObserver" in window && !reduce) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12, rootMargin: "0px 0px -40px 0px" });
   document.querySelectorAll(".rv").forEach(el => io.observe(el));
 } else document.querySelectorAll(".rv").forEach(el => el.classList.add("in"));
-if ("IntersectionObserver" in window) {
-  const so = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("active", e.isIntersecting)), { rootMargin: "-45% 0px -45% 0px" });
-  document.querySelectorAll(".stage").forEach(el => so.observe(el));
-}
 </script>
 </body>
 </html>
