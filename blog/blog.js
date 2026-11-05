@@ -9,6 +9,11 @@
     a.rel = "noopener";
   });
 
+  /* Number list items so they animate in one after another */
+  [".filters .chip", ".post-list li"].forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, i) { el.style.setProperty("--i", i); });
+  });
+
   var yr = document.getElementById("yr");
   if (yr) yr.textContent = new Date().getFullYear();
 

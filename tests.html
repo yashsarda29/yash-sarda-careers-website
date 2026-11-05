@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue: #0A66C2; --blue-deep: #004182; --blue-wash: #E8F1FB;
@@ -19,7 +19,7 @@
     --hair: rgba(11,27,43,.12);
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --mono: var(--sans);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { overflow-x: clip; scroll-behavior: smooth; }
@@ -29,7 +29,7 @@
   :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
   ::selection { background: var(--blue); color: var(--white); }
   .wrap { max-width: 1140px; margin: 0 auto; padding: 0 32px; width: 100%; }
-  .mono { font-family: var(--mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; }
+  .mono { font-family: var(--sans); font-weight: 600; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
   .serif { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
   [hidden] { display: none !important; }
 
@@ -159,6 +159,20 @@
     .wrap { padding: 0 20px; }
     .ractions .btn { flex: 1 1 100%; }
   }
+  /* Motion: things arrive in order instead of all at once */
+  @keyframes riseSm { from { opacity: 0; transform: translateY(14px); } }
+  .intro > * { animation: riseSm .6s cubic-bezier(.2,.8,.2,1) backwards; }
+  .intro > :nth-child(2) { animation-delay: .08s; } .intro > :nth-child(3) { animation-delay: .16s; } .intro > :nth-child(4) { animation-delay: .24s; }
+  .tcard { animation: riseSm .6s cubic-bezier(.2,.8,.2,1) backwards; }
+  .tcard:nth-child(1) { animation-delay: .25s; } .tcard:nth-child(2) { animation-delay: .35s; } .tcard:nth-child(3) { animation-delay: .45s; }
+  .opts .opt, .tracks .track { animation: riseSm .4s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i, 0) * 45ms + 80ms); }
+  .opt:active { transform: scale(.98); }
+  .stack > .rcard, .rgrid > .rhead { animation: riseSm .6s cubic-bezier(.2,.8,.2,1) backwards; }
+  .stack > .rcard:nth-child(1) { animation-delay: .12s; } .stack > .rcard:nth-child(2) { animation-delay: .24s; }
+  .btn { transition: background .2s, color .2s, border-color .2s, transform .25s cubic-bezier(.2,.8,.2,1); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: none; }
+
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
 </style>
 </head>
@@ -430,8 +444,8 @@ function render() {
     $("qBody").innerHTML = `<div class="qanim">
       <h2 class="qtitle">Which track are you choosing a stream in?</h2>
       <p class="qhint">You'll then answer 10 quick questions and get a match score for each stream in that track.</p>
-      <div class="tracks">${Object.entries(STREAM.tracks).map(([k, tr]) => `
-        <button class="track" data-track="${k}"><span class="ic">${svg(tr.icon)}</span><b>${esc(tr.name)}</b><span>${esc(tr.sub)}</span></button>`).join("")}</div>
+      <div class="tracks">${Object.entries(STREAM.tracks).map(([k, tr], n) => `
+        <button class="track" style="--i:${n}" data-track="${k}"><span class="ic">${svg(tr.icon)}</span><b>${esc(tr.name)}</b><span>${esc(tr.sub)}</span></button>`).join("")}</div>
     </div>`;
     $("qBack").textContent = "← All tests";
     $("qTip").textContent = "";
@@ -448,13 +462,13 @@ function render() {
     $("qBody").innerHTML = `<div class="qanim">
       <h2 class="qtitle">${esc(q[0])}</h2>
       <p class="qhint">How much does this sound like you?</p>
-      <div class="opts scale" role="group" aria-label="Answer">${SCALE.map((s, k) => `<button class="opt" data-v="${k}" aria-pressed="${picked === k}"><span class="key">${k + 1}</span>${s}</button>`).join("")}</div>
+      <div class="opts scale" role="group" aria-label="Answer">${SCALE.map((s, k) => `<button class="opt" style="--i:${k}" data-v="${k}" aria-pressed="${picked === k}"><span class="key">${k + 1}</span>${s}</button>`).join("")}</div>
     </div>`;
   } else {
     $("qBody").innerHTML = `<div class="qanim">
       <h2 class="qtitle">${esc(q.q)}</h2>
       ${q.hint ? `<p class="qhint">${esc(q.hint)}</p>` : ""}
-      <div class="opts" role="group" aria-label="Answer">${q.o.map((o, k) => `<button class="opt" data-v="${k}" aria-pressed="${picked === k}"><span class="key">${k + 1}</span>${esc(o[0])}</button>`).join("")}</div>
+      <div class="opts" role="group" aria-label="Answer">${q.o.map((o, k) => `<button class="opt" style="--i:${k}" data-v="${k}" aria-pressed="${picked === k}"><span class="key">${k + 1}</span>${esc(o[0])}</button>`).join("")}</div>
     </div>`;
   }
   $("qBody").querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => answer(+b.dataset.v)));

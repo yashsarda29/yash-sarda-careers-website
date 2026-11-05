@@ -13,7 +13,7 @@
 <script>document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   /* Palette: LinkedIn blue + ink + paper. Nothing else. */
   :root {
@@ -27,7 +27,7 @@
     --hair: rgba(11,27,43,.12);
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --mono: var(--sans);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: clip; }
@@ -37,7 +37,8 @@
   ::selection { background: var(--blue); color: var(--white); }
   :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
   .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-  .mono { font-family: var(--mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; }
+  /* Small labels: same sans font, set in caps */
+  .mono { font-family: var(--sans); font-weight: 600; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
   .serif { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
   .blue { color: var(--blue); }
 
@@ -125,12 +126,6 @@
   .draw { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 2.2s .5s cubic-bezier(.6,0,.2,1) forwards; }
   @keyframes draw { to { stroke-dashoffset: 0; } }
 
-  /* Marquee */
-  .marquee { position: relative; margin-top: 70px; background: var(--ink); color: var(--paper); padding: 22px 0; overflow: hidden; transform: rotate(-1.2deg); width: 104%; margin-left: -2%; }
-  .marquee-track { display: flex; gap: 48px; width: max-content; animation: scroll 40s linear infinite; }
-  .marquee span { font-family: var(--serif); font-style: italic; font-size: clamp(1.4rem, 2.6vw, 2.1rem); white-space: nowrap; display: flex; align-items: center; gap: 48px; }
-  .marquee span::after { content: ""; width: 10px; height: 10px; background: var(--blue); border-radius: 2px; transform: rotate(45deg); }
-  @keyframes scroll { to { transform: translateX(-50%); } }
 
   @media (max-width: 960px) {
     .hero { padding-top: 120px; min-height: auto; }
@@ -199,10 +194,6 @@
     .row .book span { display: none; }
   }
 
-  /* School strip */
-  .school { margin-top: 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 28px 32px; border-radius: 22px; background: var(--blue-wash); }
-  .school p { font-size: 1.15rem; }
-  .school p .serif { font-size: 1.4rem; color: var(--blue); }
 
   /* ---------- Manifesto / About ---------- */
   .about { background: var(--ink); color: var(--paper); border-radius: 36px; margin: 0 16px; overflow: hidden; position: relative; }
@@ -329,8 +320,11 @@
 
   /* Reveal */
   /* Only hidden when JavaScript is running, so content never disappears if a script fails */
-  .js .rv { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
-  .js .rv.in { opacity: 1; transform: none; }
+  /* Runs once as an animation, so afterwards each element's own hover lift or tilt still works */
+  .js .rv { opacity: 0; }
+  .js .rv.in { opacity: 1; animation: rise .8s cubic-bezier(.2,.8,.2,1) var(--d, 0ms) backwards; }
+  @keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+  @keyframes riseSm { from { opacity: 0; transform: translateY(12px); } }
   [hidden] { display: none !important; }
   .route .st { outline: none; }
   .route .st:focus-visible circle.ring { stroke: var(--blue); stroke-width: 3; r: 15; }
@@ -370,8 +364,6 @@
   .route { padding: 20px 22px 16px; }
   .route svg { height: clamp(220px, 46vh, 400px); }
   .route-foot { padding-top: 10px; }
-  .marquee { margin-top: clamp(24px, 4vh, 44px); padding: clamp(12px, 2vh, 18px) 0; }
-  .marquee span { font-size: clamp(1.25rem, min(2.2vw, 3.6vh), 1.8rem); }
 
   /* Finder */
   .finder-grid { gap: 40px; }
@@ -388,7 +380,6 @@
   .row h4 { font-size: 1.14rem; }
   .row p { font-size: .94rem; margin-top: 2px; }
   .row .book .go { width: 36px; height: 36px; }
-  .school { margin-top: 32px; padding: 20px 26px; }
 
   /* About */
   .about-grid { gap: 48px; align-items: center; }
@@ -459,7 +450,6 @@
     .sec-head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 24px; }
     .sec-head .mono { padding-top: 0; }
     .hero h1 { font-size: clamp(2.6rem, 12.5vw, 3.8rem); }
-    .marquee { margin-top: 36px; }
     .finder-grid { gap: 24px; }
     .stage-num { font-size: 3.6rem; }
     .about-grid { gap: 32px; }
@@ -509,12 +499,7 @@
   .stage-side p { margin-top: 8px; font-size: .96rem; }
   .row { padding: 11px 14px; }
   .row h4 { font-size: 1.08rem; }
-  .school { margin-top: 18px; padding: 12px 14px 12px 22px; border-radius: 999px; }
-  .school p { font-size: .98rem; }
-  .school p .serif { font-size: 1.2rem; }
-  .school .btn { padding: 10px 18px; font-size: .9rem; }
   #route .sec-head p { margin-top: 8px; }
-  @media (max-width: 760px) { .school { border-radius: 20px; padding: 18px; } }
   /* Wide screens: sessions sit in two columns */
   @media (min-width: 1100px) {
     .rows { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; align-content: start; }
@@ -586,6 +571,60 @@
   .note:nth-child(4n+4) .cover .ic { background: rgba(11,27,43,.07); }
   .note .cover .ic svg { width: 20px; height: 20px; }
 
+  /* =====================================================================
+     DESIGN ROUND 3 · calmer spacing, clickable route, more motion
+     ===================================================================== */
+  /* Spacing: the hero breathes at the bottom now the ticker is gone */
+  .hero { padding-bottom: clamp(40px, 7vh, 80px); }
+  .sheet a > span[aria-hidden] { color: var(--ink-soft); }
+  .sheet a:hover > span[aria-hidden] { color: var(--blue); }
+
+  /* Buttons lift slightly on hover and press in on tap */
+  .btn { transition: background .2s, color .2s, transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -14px rgba(11,27,43,.5); }
+  .btn:active { transform: translateY(0) scale(.98); box-shadow: none; }
+
+  /* Hero copy arrives in sequence after the headline */
+  .kicker, .hero .sub, .hero-ctas, .free-note { animation: riseSm .7s cubic-bezier(.2,.8,.2,1) backwards; }
+  .hero .sub { animation-delay: .3s; }
+  .hero-ctas { animation-delay: .4s; }
+  .free-note { animation-delay: .5s; }
+
+  /* Route stops: big tap areas, hover highlight and a gentle pulse so they read as buttons */
+  .route .st .hit { fill: transparent; transition: fill .2s; }
+  .route .st:hover .hit, .route .st:focus-visible .hit { fill: var(--blue-wash); }
+  .route .st .st-label { transition: fill .2s; }
+  .route .st:hover .st-label, .route .st:focus-visible .st-label { fill: var(--blue); }
+  .route .st circle.ring { transform-box: fill-box; transform-origin: center; animation: stopPulse 2.6s ease-in-out 2.8s infinite; }
+  .route g.st:nth-of-type(2) circle.ring { animation-delay: 3.1s; }
+  .route g.st:nth-of-type(3) circle.ring { animation-delay: 3.4s; }
+  .route g.st:nth-of-type(4) circle.ring { animation-delay: 3.7s; }
+  @keyframes stopPulse { 0%, 70%, 100% { transform: none; } 35% { transform: scale(1.22); } }
+  .route-foot .tap { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: var(--blue-wash); color: var(--blue); font-weight: 600; font-size: .9rem; transition: background .2s, color .2s, transform .2s; }
+  .route-foot .tap:hover { background: var(--blue); color: var(--white); transform: translateY(-1px); }
+  .route-foot .tap .arr { display: inline-block; animation: nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: none; } 50% { transform: translateY(3px); } }
+
+  /* Lists fill in one item at a time when they scroll into view */
+  .js [data-stagger].in > * { animation: riseSm .55s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i, 0) * 70ms + 120ms); }
+
+  /* Switching stage: the big number slides in and the sessions follow */
+  .js .stage.active .stage-num { animation: numIn .6s cubic-bezier(.2,.8,.2,1) backwards; }
+  @keyframes numIn { from { opacity: 0; transform: translateX(-16px); } }
+  .js .stage:not([hidden]) .rows li { animation: riseSm .45s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i, 0) * 55ms + 100ms); }
+
+  /* FAQ answers ease open */
+  .faq summary { transition: color .2s; }
+  .faq summary:hover { color: var(--blue); }
+  .faq details[open] p { animation: riseSm .35s cubic-bezier(.2,.8,.2,1); }
+
+  /* Final call to action: the rings breathe */
+  .final .rings i { animation: breathe 7s ease-in-out infinite; }
+  .final .rings i:nth-child(2) { animation-delay: .8s; }
+  .final .rings i:nth-child(3) { animation-delay: 1.6s; }
+  .final .rings i:nth-child(4) { animation-delay: 2.4s; }
+  @keyframes breathe { 0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 1; } 50% { transform: translate(-50%,-50%) scale(1.05); opacity: .55; } }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .js .rv { opacity: 1; transform: none; }
@@ -624,13 +663,13 @@
     </div>
   </div>
   <nav class="sheet" id="sheet" aria-label="Mobile">
-    <a href="#finder">Find your session <span class="mono">01</span></a>
-    <a href="#route">The route <span class="mono">02</span></a>
-    <a href="#stories">Stories <span class="mono">04</span></a>
-    <a href="#book">Book a call <span class="mono">05</span></a>
+    <a href="#finder">Find your session <span aria-hidden="true">→</span></a>
+    <a href="#route">The route <span aria-hidden="true">→</span></a>
+    <a href="#stories">Stories <span aria-hidden="true">→</span></a>
     <a href="tests.html">Free tests <span class="mono">New</span></a>
-    <a href="#notes">Blog <span class="mono">06</span></a>
-    <a href="#faq">FAQ <span class="mono">07</span></a>
+    <a href="#notes">Blog <span aria-hidden="true">→</span></a>
+    <a href="#faq">FAQ <span aria-hidden="true">→</span></a>
+    <a href="#book">Book a free call <span aria-hidden="true">→</span></a>
   </nav>
 </header>
 
@@ -667,17 +706,13 @@
           <circle r="6" fill="#0A66C2" id="traveller">
             <animateMotion dur="7s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#routePath"/></animateMotion>
           </circle>
-          <g class="st" data-go="stage-clarity" tabindex="0" role="link" aria-label="Jump to stage 1, Career clarity"><circle class="ring" cx="50" cy="380" r="12" fill="#fff" stroke="#0B1B2B" stroke-width="2"/><circle cx="50" cy="380" r="4" fill="#0B1B2B"/><text class="st-num" x="74" y="372">01</text><text class="st-label" x="74" y="391">Career clarity</text></g>
-          <g class="st" data-go="stage-profile" tabindex="0" role="link" aria-label="Jump to stage 2, Profile building"><circle class="ring" cx="150" cy="265" r="12" fill="#fff" stroke="#0B1B2B" stroke-width="2"/><circle cx="150" cy="265" r="4" fill="#0B1B2B"/><text class="st-num" x="174" y="257">02</text><text class="st-label" x="174" y="276">Profile building</text></g>
-          <g class="st" data-go="stage-shortlist" tabindex="0" role="link" aria-label="Jump to stage 3, Getting shortlisted"><circle class="ring" cx="270" cy="165" r="12" fill="#fff" stroke="#0B1B2B" stroke-width="2"/><circle cx="270" cy="165" r="4" fill="#0B1B2B"/><text class="st-num" x="246" y="157" text-anchor="end">03</text><text class="st-label" x="246" y="176" text-anchor="end">Get shortlisted</text></g>
-          <g class="st" data-go="stage-placements" tabindex="0" role="link" aria-label="Jump to stage 4, Placements"><circle class="ring" cx="350" cy="45" r="12" fill="#0A66C2" stroke="#0A66C2" stroke-width="2"/><circle cx="350" cy="45" r="4" fill="#fff"/><text class="st-num" x="326" y="37" text-anchor="end">04</text><text class="st-label" x="326" y="56" text-anchor="end">The offer</text></g>
+          <g class="st" data-go="stage-clarity" tabindex="0" role="link" aria-label="Jump to stage 1, Career clarity"><rect class="hit" x="28" y="352" width="186" height="50" rx="12"/><circle class="ring" cx="50" cy="380" r="12" fill="#fff" stroke="#0B1B2B" stroke-width="2"/><circle cx="50" cy="380" r="4" fill="#0B1B2B"/><text class="st-num" x="74" y="372">01</text><text class="st-label" x="74" y="391">Career clarity</text></g>
+          <g class="st" data-go="stage-profile" tabindex="0" role="link" aria-label="Jump to stage 2, Profile building"><rect class="hit" x="128" y="237" width="196" height="50" rx="12"/><circle class="ring" cx="150" cy="265" r="12" fill="#fff" stroke="#0B1B2B" stroke-width="2"/><circle cx="150" cy="265" r="4" fill="#0B1B2B"/><text class="st-num" x="174" y="257">02</text><text class="st-label" x="174" y="276">Profile building</text></g>
+          <g class="st" data-go="stage-shortlist" tabindex="0" role="link" aria-label="Jump to stage 3, Getting shortlisted"><rect class="hit" x="120" y="137" width="172" height="50" rx="12"/><circle class="ring" cx="270" cy="165" r="12" fill="#fff" stroke="#0B1B2B" stroke-width="2"/><circle cx="270" cy="165" r="4" fill="#0B1B2B"/><text class="st-num" x="246" y="157" text-anchor="end">03</text><text class="st-label" x="246" y="176" text-anchor="end">Get shortlisted</text></g>
+          <g class="st" data-go="stage-placements" tabindex="0" role="link" aria-label="Jump to stage 4, Placements"><rect class="hit" x="240" y="17" width="132" height="50" rx="12"/><circle class="ring" cx="350" cy="45" r="12" fill="#0A66C2" stroke="#0A66C2" stroke-width="2"/><circle cx="350" cy="45" r="4" fill="#fff"/><text class="st-num" x="326" y="37" text-anchor="end">04</text><text class="st-label" x="326" y="56" text-anchor="end">The offer</text></g>
         </svg>
-        <div class="route-foot"><span class="serif">Start anywhere.</span><span class="mono" style="color:var(--ink-soft)">Tap a stop ↓</span></div>
+        <div class="route-foot"><span class="serif">Start anywhere.</span><a class="tap" href="#route" data-go="stage-clarity">Tap a stop <span class="arr" aria-hidden="true">↓</span></a></div>
       </aside>
-    </div>
-
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track" id="marquee"></div>
     </div>
   </section>
 
@@ -685,14 +720,14 @@
   <section class="block finder" id="finder">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(01) Find your session</span>
+        <span class="mono">Find your session</span>
         <div>
           <h2>Where are you <span class="serif">stuck</span> right now?</h2>
           <p>Pick what sounds most like you. I'll point you to the sessions that fix it.</p>
         </div>
       </div>
       <div class="finder-grid">
-        <div class="pains rv" id="pains" role="group" aria-label="Pick what sounds like you"></div>
+        <div class="pains rv" id="pains" data-stagger role="group" aria-label="Pick what sounds like you"></div>
         <div class="answer rv" aria-live="polite">
           <span class="mono" id="ansLabel">Start here</span>
           <h3 id="ansTitle"></h3>
@@ -721,7 +756,7 @@
   <section class="block" id="route">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(02) The route</span>
+        <span class="mono">The route</span>
         <div>
           <h2>Four stages. Eighteen sessions. <span class="serif">One clear plan.</span></h2>
           <p>Each session is 30 minutes, one-on-one, online, and ends with a framework you can act on. Tap any session to book it on WhatsApp.</p>
@@ -729,11 +764,6 @@
       </div>
       <div class="stage-tabs" role="tablist" aria-label="Career stages" id="stageTabs"></div>
       <div id="stages"></div>
-
-      <div class="school rv">
-        <p><span class="serif">Still in school?</span> I also help with stream choice after 10th and course choice after 12th.</p>
-        <a class="btn btn-line js-wa" data-msg="Hi Yash, I'm in school and want help choosing my stream / course." href="#">Talk it through <span class="arr">↗</span></a>
-      </div>
     </div>
   </section>
 
@@ -742,7 +772,7 @@
     <div class="wrap">
       <div class="about-grid">
         <div class="rv">
-          <span class="mono about-label">(03) Who you'll talk to</span>
+          <span class="mono about-label">Who you'll talk to</span>
           <p class="manifesto">Not a coach who read about the industry. <span class="dim">Someone who</span> <em>works in it</em><span class="dim">, and tells you what actually gets people hired.</span></p>
           <p class="about-copy">I'm Yash, a business solutions and career path consultant with an MBA from Great Lakes, Chennai and 5+ years in industry. I've seen what recruiters shortlist and where good students lose out. My sessions are short, practical and honest: you leave with a framework to decide and act, not a pile of generic advice.</p>
         </div>
@@ -767,7 +797,7 @@
   <section class="block" id="stories">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(04) Stories</span>
+        <span class="mono">Stories</span>
         <div>
           <h2>Thirty minutes that <span class="serif">changed the plan.</span></h2>
           <p>In their own words, from students and teams I've worked with.</p>
@@ -783,9 +813,9 @@
     <div class="wrap">
       <div class="book-wrap">
         <div class="rv">
-          <span class="mono book-label">(05) How it works</span>
+          <span class="mono book-label">How it works</span>
           <h2 class="book-h">Pick a time. <span class="serif">The first 15 minutes are free.</span></h2>
-          <ul class="book-points">
+          <ul class="book-points" data-stagger>
             <li><span class="mono">01</span><div><b>Pick a slot</b><span>Choose any open time, or ask me which session fits on the free call.</span></div></li>
             <li><span class="mono">02</span><div><b>Tell me what's on your mind</b><span>A line or two on where you're stuck helps me prepare.</span></div></li>
             <li><span class="mono">03</span><div><b>Leave with a plan</b><span>A free 15-minute intro call on Google Meet. If you need more, full sessions are 30 minutes.</span></div></li>
@@ -807,7 +837,7 @@
   <section class="block" id="notes">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(06) Blog</span>
+        <span class="mono">Blog</span>
         <div>
           <h2>Notes from the <span class="serif">other side of the table.</span></h2>
           <p>Short, practical reads on the decisions students get stuck on most.</p>
@@ -823,16 +853,14 @@
   <section class="block" id="faq">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(07) Questions</span>
+        <span class="mono">Questions</span>
         <div><h2>Before you <span class="serif">message.</span></h2></div>
       </div>
-      <div class="faq rv">
-        <details><summary><span class="mono">Q.01</span>Is the first call really free?<span class="pm"></span></summary><p>Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most.</p></details>
-        <details><summary><span class="mono">Q.02</span>How are sessions held?<span class="pm"></span></summary><p>Every session is a 30-minute one-on-one online video call. A phone or laptop and a stable connection is all you need.</p></details>
-        <details><summary><span class="mono">Q.03</span>Can I mix sessions from different stages?<span class="pm"></span></summary><p>Absolutely. Start anywhere: a CV review today, a mock interview next week. The stages are a guide, not a rule.</p></details>
-        <details><summary><span class="mono">Q.04</span>Can I book several sessions together?<span class="pm"></span></summary><p>Yes. Practice-heavy topics like mock interviews, GDs and cases work best over a few sessions. Ask on WhatsApp and we'll plan it.</p></details>
-        <details><summary><span class="mono">Q.05</span>I'm still in school. Can you help?<span class="pm"></span></summary><p>Yes. I help with stream choice after 10th and course choice after 12th.</p></details>
-        <details><summary><span class="mono">Q.06</span>What will I walk away with?<span class="pm"></span></summary><p>A clear framework for your situation and the next concrete steps, so you know exactly what to do after the call.</p></details>
+      <div class="faq rv" data-stagger>
+        <details><summary><span class="mono">01</span>Is the first call really free?<span class="pm"></span></summary><p>Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most.</p></details>
+        <details><summary><span class="mono">02</span>How are sessions held?<span class="pm"></span></summary><p>Every session is a 30-minute one-on-one video call. A phone or laptop and a stable connection is all you need.</p></details>
+        <details><summary><span class="mono">03</span>Can I mix or book several sessions?<span class="pm"></span></summary><p>Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so ask on WhatsApp and we'll plan it.</p></details>
+        <details><summary><span class="mono">04</span>I'm still in school. Can you help?<span class="pm"></span></summary><p>Yes. I help with stream choice after 10th and course choice after 12th.</p></details>
       </div>
     </div>
   </section>
@@ -949,16 +977,11 @@ const POSTS = [
   { slug: "guesstimates-made-simple", tag: "Placements", icon: "calc", title: "Guesstimates made simple: a 4-step method with a worked example", blurb: "Nobody expects the exact answer. They want to see how you think.", mins: 3 }
 ];
 
-const MARQUEE = ["CS or ECE?", "Job now or MBA later?", "Why am I not getting callbacks?", "Which certifications actually matter?", "How do I crack a GD?", "CAT, GMAT or GRE?", "Is my CV good enough?", "What does this JD really want?", "How do I start a case?", "Tell me about yourself…"];
-
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
 const wa = (msg) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 const bookMsg = (name) => `Hi Yash, I'd like to book a session: ${name}.`;
 const esc = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const findSession = (name) => { for (const s of STAGES) { const x = s.sessions.find(r => r[0] === name); if (x) return { stage: s, row: x }; } };
-
-/* Marquee (duplicated for a seamless loop) */
-document.getElementById("marquee").innerHTML = [...MARQUEE, ...MARQUEE].map(t => `<span>${esc(t)}</span>`).join("");
 
 /* Stages: one tab per stage, one panel visible at a time */
 const tabsEl = document.getElementById("stageTabs");
@@ -974,7 +997,7 @@ document.getElementById("stages").innerHTML = STAGES.map((s, i) => `
     </div>
     <ol class="rows">
       ${s.sessions.map((r, i) => `
-        <li><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
+        <li style="--i:${i}"><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
           <span class="idx">${s.num}.${i + 1}</span>
           <div><h4>${esc(r[0])}</h4><p>${esc(r[1])}</p></div>
           <span class="book"><span>Book</span><span class="go">${ARROW}</span></span>
@@ -1095,6 +1118,10 @@ document.querySelectorAll(".route .st").forEach(g => {
   g.addEventListener("click", go);
   g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
 });
+/* "Tap a stop" opens the route at the first stage */
+document.querySelector(".route-foot .tap").addEventListener("click", e => {
+  e.preventDefault(); showStage("clarity"); document.getElementById("route").scrollIntoView({ block: "start" });
+});
 
 /* Phone menu */
 const menuBtn = document.getElementById("menuBtn"), sheet = document.getElementById("sheet");
@@ -1143,12 +1170,16 @@ if ("IntersectionObserver" in window) {
 }
 
 /* Reveal + active stage */
+/* Lists marked data-stagger: number the items so they arrive one after another */
+document.querySelectorAll("[data-stagger]").forEach(list => [...list.children].forEach((el, i) => el.style.setProperty("--i", i)));
+/* Blog cards and testimonials: each card waits a little longer than the one before */
+document.querySelectorAll("#notesGrid .note, #voices .voice").forEach((el, i, all) => el.style.setProperty("--d", (i % 4) * 90 + "ms"));
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reduce) document.querySelector("#traveller")?.remove();
 if ("IntersectionObserver" in window && !reduce) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12, rootMargin: "0px 0px -40px 0px" });
-  document.querySelectorAll(".rv").forEach(el => io.observe(el));
-} else document.querySelectorAll(".rv").forEach(el => el.classList.add("in"));
+  document.querySelectorAll(".rv, [data-stagger]").forEach(el => io.observe(el));
+} else document.querySelectorAll(".rv, [data-stagger]").forEach(el => el.classList.add("in"));
 </script>
 </body>
 </html>

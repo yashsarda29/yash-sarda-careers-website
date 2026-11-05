@@ -10,7 +10,7 @@
   --hair: rgba(11,27,43,.12);
   --serif: "Instrument Serif", Georgia, serif;
   --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --mono: var(--sans);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { overflow-x: clip; }
@@ -22,7 +22,7 @@ a { color: inherit; text-decoration: none; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-.mono { font-family: var(--mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; }
+.mono { font-family: var(--sans); font-weight: 600; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
 .serif { font-family: var(--serif); font-weight: 400; font-style: italic; }
 
 .btn { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: .95rem; padding: 13px 22px; border-radius: 999px; transition: background .2s, color .2s; white-space: nowrap; }
@@ -166,3 +166,17 @@ img.av { object-fit: cover; object-position: 50% 20%; }
 .filters .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .post-list li[hidden] { display: none; }
 @media (max-width: 600px) { .filters { flex-wrap: nowrap; overflow-x: auto; margin: 0 -20px 18px; padding: 0 20px 4px; scrollbar-width: none; } .filters::-webkit-scrollbar { display: none; } .filters .chip { flex-shrink: 0; } }
+
+/* Motion: headings and lists arrive in order; buttons lift on hover */
+@keyframes riseSm { from { opacity: 0; transform: translateY(14px); } }
+.post-hero .wrap > *, .list-head .wrap > * { animation: riseSm .6s cubic-bezier(.2,.8,.2,1) backwards; }
+.post-hero .wrap > :nth-child(2), .list-head .wrap > :nth-child(2) { animation-delay: .08s; }
+.post-hero .wrap > :nth-child(3), .list-head .wrap > :nth-child(3) { animation-delay: .16s; }
+.post-hero .wrap > :nth-child(4) { animation-delay: .24s; }
+.post-list li, .filters .chip { animation: riseSm .5s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i, 0) * 45ms + 150ms); }
+.aside { animation: riseSm .6s cubic-bezier(.2,.8,.2,1) .3s backwards; }
+.btn { transition: background .2s, color .2s, transform .25s cubic-bezier(.2,.8,.2,1); }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: none; }
+.post-list a:hover .arrow { transform: rotate(45deg); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
