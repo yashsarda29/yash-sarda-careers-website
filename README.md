@@ -38,4 +38,3 @@ To edit questions, points, streams or result wording, change the `PROFILE`, `STR
 
 ## Photos
 - Stock photos live in `images/` as web-optimised `.webp` files (all free under the Unsplash License). Credits: `images/CREDITS.md`.
-- Route stages use `images/stage-<stage id>.webp` automatically; alt text is in `STAGE_IMG_ALT` in `index.html`.

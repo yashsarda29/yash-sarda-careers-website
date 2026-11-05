@@ -597,9 +597,18 @@
   .tc-img { aspect-ratio: auto; height: clamp(170px, 18vw, 220px); }
   @media (max-width: 760px) { .test-cards { grid-template-columns: 1fr; } .tc-img { height: 200px; } }
 
-  /* ---------- Photos in the route and booking card ---------- */
-  .stage-img { display: block; width: 100%; height: auto; max-width: 320px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 18px; margin-top: 18px; }
-  @media (max-width: 960px) { .stage-img { max-width: 420px; } }
+  /* ---------- Route side panel: facts, progress, button ---------- */
+  .stage-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .stage-facts span { padding: 8px 12px; border-radius: 12px; background: var(--paper); font-size: .88rem; color: var(--ink-soft); }
+  .stage-facts b { color: var(--ink); font-weight: 700; }
+  .stage-progress { display: flex; align-items: center; gap: 6px; margin-top: 18px; }
+  .stage-progress i { width: 34px; height: 6px; border-radius: 999px; background: var(--hair); transition: background .4s; }
+  .stage-progress i.done { background: rgba(10,102,194,.35); }
+  .stage-progress i.on { background: var(--blue); }
+  .stage-progress .mono { margin-left: 8px; color: var(--ink-soft); }
+  .stage-cta { margin-top: 20px; padding: 11px 18px; font-size: .9rem; }
+
+  /* ---------- Photo in the booking card ---------- */
   .cal::before, .cal::after { display: none; }  /* the photo replaces the decorative rings */
   .cal-img { display: block; width: calc(100% + 2 * clamp(26px, 4vw, 44px)); height: auto; max-width: none; margin: calc(-1 * clamp(26px, 4vw, 44px)) calc(-1 * clamp(26px, 4vw, 44px)) 22px; aspect-ratio: 900 / 360; object-fit: cover; }
 
@@ -1281,22 +1290,21 @@ const bookMsg = (name) => `Hi Yash, I'd like to book a session: ${name}.`;
 const esc = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const findSession = (name) => { for (const s of STAGES) { const x = s.sessions.find(r => r[0] === name); if (x) return { stage: s, row: x }; } };
 
-/* Photo for each stage (files in /images, credits in images/CREDITS.md) */
-const STAGE_IMG_ALT = {
-  clarity: "A student writing a plan in a notebook",
-  profile: "A student working on her laptop outdoors",
-  shortlist: "A recruiter reading a CV",
-  placements: "A candidate shaking hands at the end of an interview"
-};
-/* Stages: all four stacked, scrolled through in order */
-document.getElementById("stages").innerHTML = STAGES.map(s => `
+/* Stages: all four stacked, scrolled through in order.
+   Each side panel shows the stage's facts, where it sits on the route, and a WhatsApp button. */
+document.getElementById("stages").innerHTML = STAGES.map((s, si) => `
   <div class="stage" id="stage-${s.id}">
     <div class="stage-side rv">
       <div class="stage-num">${s.num}</div>
       <span class="mono stage-label">Stage ${Number(s.num)} · ${esc(s.name)}</span>
       <h3>${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></h3>
       <p>${esc(s.intro)}</p>
-      <img class="stage-img" src="images/stage-${s.id}.webp" alt="${esc(STAGE_IMG_ALT[s.id] || "")}" width="720" height="450" loading="lazy">
+      <div class="stage-facts"><span><b>${s.sessions.length}</b> sessions</span><span>from <b>₹99</b></span><span><b>30</b> min each</span></div>
+      <div class="stage-progress" role="img" aria-label="Stage ${si + 1} of ${STAGES.length}">
+        ${STAGES.map((x, xi) => `<i class="${xi < si ? "done" : xi === si ? "on" : ""}"></i>`).join("")}
+        <span class="mono">Stage ${si + 1} of ${STAGES.length}</span>
+      </div>
+      <a class="btn btn-line stage-cta js-wa" data-msg="Hi Yash, I'd like help with ${esc(s.name)}." href="#">Talk about this stage <span class="arr">↗</span></a>
     </div>
     <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
