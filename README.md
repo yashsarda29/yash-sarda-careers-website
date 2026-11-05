@@ -6,7 +6,7 @@ Static website for 1:1 career guidance sessions: a home page plus a blog. No bui
 - **WhatsApp, LinkedIn, Calendly:** `WHATSAPP_NUMBER`, `LINKEDIN_URL` and `CALENDLY_URL` near the top of `<body>`. The calendar appears as soon as `CALENDLY_URL` is filled in; until then a "message on WhatsApp" card shows instead. LinkedIn buttons stay hidden until `LINKEDIN_URL` is a real profile link (`https://www.linkedin.com/in/...`).
 - **Sessions:** the `STAGES` list near the bottom of the file
 - **"Where are you stuck?" answers:** the `PAINS` list
-- **Testimonials:** the `TESTIMONIALS` list. The current ones are SAMPLES: replace them with real student quotes (with permission) and set `sample: false` to remove the "Sample" tag.
+- **Testimonials:** the `TESTIMONIALS` list (real quotes only, with permission). One quote shows as a full-width feature; two or more switch to the card grid automatically.
 - **Blog cards on the home page:** the `POSTS` list
 - **Photo:** `yash.png` (used in the hero, the About card and blog bylines). Replace the file with a larger square photo (600×600 or more) for a sharper result.
 

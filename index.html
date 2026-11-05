@@ -409,6 +409,12 @@
   .voice.big q { font-size: clamp(1.5rem, 2.3vw, 2rem); }
   .outcome { margin-bottom: 10px; }
   .who .av { width: 40px; height: 40px; }
+  /* A single testimonial gets the full width, as a featured quote */
+  .voice.big:only-child { grid-column: 1 / -1; padding: clamp(28px, 4vw, 48px); flex-direction: row; align-items: flex-end; gap: 40px; }
+  .voice.big:only-child > div { flex: 1; max-width: 900px; }
+  .voice.big:only-child q { font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
+  .voice.big:only-child .who { flex-shrink: 0; }
+  @media (max-width: 760px) { .voice.big:only-child { flex-direction: column; align-items: flex-start; gap: 22px; } }
 
   /* Book: heading sits beside the calendar instead of above it */
   .book-wrap { grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: center; }
@@ -471,6 +477,8 @@
     .voices, .notes { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 4px 20px 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .voices::-webkit-scrollbar, .notes::-webkit-scrollbar { display: none; }
     .voice, .voice.big, .note { flex: 0 0 84%; scroll-snap-align: center; }
+    .voice.big:only-child { flex: 1 1 100%; }
+    .voices:has(> .voice:only-child) + .swipe-hint { display: none; }
     .voice q, .voice.big q { font-size: 1.22rem; }
     .swipe-hint { display: flex; }
   }
@@ -490,7 +498,7 @@
      ============================================================ -->
 <script>
   const WHATSAPP_NUMBER = "918850628288";               // country code + number, no spaces
-  const LINKEDIN_URL    = "https://www.linkedin.com/";  // TODO: replace with Yash's LinkedIn profile URL
+  const LINKEDIN_URL    = "https://www.linkedin.com/in/yash-sarda-483963167/";  // Yash's LinkedIn profile
   const CALENDLY_URL    = "https://calendly.com/yashsarda290220/30min";  // Calendly booking link (leave "" to hide the calendar)
 </script>
 
@@ -640,7 +648,7 @@
         <span class="mono">(04) Stories</span>
         <div>
           <h2>Thirty minutes that <span class="serif">changed the plan.</span></h2>
-          <p>What students said after their sessions.</p>
+          <p>In their own words, from students and teams I've worked with.</p>
         </div>
       </div>
       <div class="voices" id="voices"></div>
@@ -791,17 +799,12 @@ const PAINS = [
 ];
 
 /* ============================================================
-   EDIT HERE: testimonials
-   These are SAMPLES. Replace each with a real student's words
-   (with their permission) and set sample: false.
-   The first one is shown large.
+   EDIT HERE: testimonials (real students only, with permission)
+   The first one is shown large. To add one, copy a line:
+   { quote: "…", name: "Name", detail: "Course, year", outcome: "Short result or session", sample: false },
    ============================================================ */
 const TESTIMONIALS = [
-  { quote: "I walked in torn between a job and an MBA. Twenty minutes later I had a timeline, a target score and a reason for both.", name: "Student name", detail: "B.Com, final year", outcome: "Session: Job or MBA?", sample: true },
-  { quote: "My CV went from three pages of everything to one page that actually says something.", name: "Student name", detail: "B.Tech, 3rd year", outcome: "Session: CV review", sample: true },
-  { quote: "The GD practice made me realise I was talking a lot and saying very little. That's fixed now.", name: "Student name", detail: "MBA, 1st year", outcome: "Session: Group discussion", sample: true },
-  { quote: "Honest feedback in the mock interview. Uncomfortable, but exactly what I needed.", name: "Student name", detail: "BBA, final year", outcome: "Session: Mock interview", sample: true },
-  { quote: "I finally understand what each role in my branch looks like five years in. Choosing got easy.", name: "Student name", detail: "B.Tech, 2nd year", outcome: "Session: Career path mapping", sample: true }
+  { quote: "Our team qualified for the semi-finals after the first offline round, and we were ranked among the top 8 national finalists. Your guidance and PPT points really helped us a lot with preparation and idea formulation.", name: "Team JATAYU", detail: "National competition finalists", outcome: "Top 8 nationally", sample: false }
 ];
 
 /* ============================================================
