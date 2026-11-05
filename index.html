@@ -366,7 +366,6 @@
      ===================================================================== */
   section.block { padding: clamp(56px, 9vh, 96px) 0; }
   /* Paper sections that follow each other don't need double gaps */
-  #stories + #book, #book + #notes, #notes + #faq { padding-top: clamp(16px, 3vh, 32px); }
   .sec-head { margin-bottom: clamp(24px, 4vh, 40px); gap: 24px; grid-template-columns: 200px 1fr; }
   .sec-head .mono { padding-top: 10px; }
   .sec-head h2 { font-size: clamp(2rem, min(3.8vw, 6.4vh), 3.3rem); }
@@ -465,7 +464,6 @@
   /* Phone */
   @media (max-width: 760px) {
     section.block { padding: 56px 0; }
-    #stories + #book, #book + #notes, #notes + #faq { padding-top: 16px; }
     .sec-head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 24px; }
     .sec-head .mono { padding-top: 0; }
     .hero h1 { font-size: clamp(2.6rem, 12.5vw, 3.8rem); }
@@ -538,18 +536,7 @@
   .recs .ghost { background: transparent; border-style: dashed; }
 
 
-  /* Free tests: menu link + promo strip */
   .menu .new-link { color: var(--blue); font-weight: 600; }
-  .tests-strip { margin-top: clamp(28px, 5vh, 48px); display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap; padding: 18px 18px 18px 28px; border-radius: 26px; background: var(--ink); color: var(--paper); }
-  .tests-strip .mono { color: #9CC5F0; }
-  .tests-strip p { margin-top: 4px; font-size: 1.05rem; color: rgba(243,242,239,.8); }
-  .tests-strip p b { color: var(--paper); font-weight: 600; }
-  .tests-links { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tests-links a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; background: rgba(255,255,255,.1); font-weight: 600; font-size: .94rem; transition: background .2s, color .2s; }
-  .tests-links a:hover { background: var(--blue); }
-  .tests-links a:first-child { background: var(--blue); }
-  .tests-links a:first-child:hover { background: var(--white); color: var(--blue); }
-  @media (max-width: 760px) { .tests-strip { padding: 22px; border-radius: 22px; } .tests-links { width: 100%; } .tests-links a { flex: 1 1 100%; justify-content: space-between; } }
   @media (min-width: 901px) and (max-width: 1150px) { .menu { gap: 22px; } }
 
   /* 8 · Topic icons on blog covers */
@@ -575,8 +562,48 @@
     .voices, .notes { margin: 0 calc(-1 * var(--gutter)); padding-left: var(--gutter); padding-right: var(--gutter); }
   }
 
+  /* ---------- Clear section breaks ----------
+     Plain sections are full-width bands that alternate paper / white / light blue,
+     each opening with a dividing line; the rounded panels get breathing room around them. */
+  .band { position: relative; border-top: 1px solid var(--hair); }
+  .band-white { background: var(--white); }
+  .band-wash { background: var(--blue-wash); border-top-color: rgba(10,102,194,.15); }
+  .finder, .about { margin-top: clamp(20px, 4vh, 40px); margin-bottom: clamp(20px, 4vh, 40px); }
+  .final { margin-top: clamp(20px, 4vh, 40px); }
+  .about + .band, .finder + .band { border-top: 0; }
+  /* Section label with a short rule, so each new section announces itself */
+  .sec-head .mono::before, .about-label::before, .book-label::before { content: ""; display: inline-block; width: 22px; height: 2px; margin-right: 10px; vertical-align: middle; background: currentColor; }
+  /* Cards that sit on a white band use paper so they still stand out */
+  .band-white .plan:not(.plan-best), .band-white .cal { background: var(--paper); }
+  .band-white .promises li { background: var(--white); }
+
+  /* ---------- Free career tests (full section) ---------- */
+  .test-cards { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 16px; }
+  .test-card { display: flex; flex-direction: column; background: var(--white); border-radius: 26px; overflow: hidden; transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+  .test-card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgba(11,27,43,.4); }
+  .tc-img { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper); }
+  .tc-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .test-card:hover .tc-img img { transform: scale(1.05); }
+  .tc-body { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px 24px; flex: 1; }
+  .tc-body .mono { color: var(--blue); }
+  .tc-body b { font-size: 1.45rem; letter-spacing: -0.03em; line-height: 1.1; }
+  .tc-text { color: var(--ink-soft); font-size: .96rem; flex: 1; }
+  .tc-tracks { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tc-tracks span { padding: 5px 11px; border-radius: 999px; background: var(--blue-wash); color: var(--blue); font-size: .8rem; font-weight: 600; }
+  .tc-go { margin-top: 6px; font-weight: 600; color: var(--blue); }
+  .tc-go span { display: inline-block; transition: transform .25s; }
+  .test-card:hover .tc-go span { transform: translateX(4px); }
+  .test-card:first-child { box-shadow: inset 0 0 0 2px var(--blue); }
+  @media (max-width: 1000px) { .test-cards { grid-template-columns: 1fr 1fr; } .test-card:first-child { grid-column: 1 / -1; flex-direction: row; } .test-card:first-child .tc-img { width: 46%; aspect-ratio: auto; } }
+  @media (max-width: 640px) { .test-cards { grid-template-columns: 1fr; } .test-card:first-child { flex-direction: column; } .test-card:first-child .tc-img { width: auto; aspect-ratio: 16 / 10; } }
+
+  /* ---------- Photos in the route and booking card ---------- */
+  .stage-img { display: block; width: 100%; height: auto; max-width: 320px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 18px; margin-top: 18px; }
+  @media (max-width: 960px) { .stage-img { max-width: 420px; } }
+  .cal::before, .cal::after { display: none; }  /* the photo replaces the decorative rings */
+  .cal-img { display: block; width: calc(100% + 2 * clamp(26px, 4vw, 44px)); height: auto; max-width: none; margin: calc(-1 * clamp(26px, 4vw, 44px)) calc(-1 * clamp(26px, 4vw, 44px)) 22px; aspect-ratio: 900 / 360; object-fit: cover; }
+
   /* Pricing: three plan cards, the bundle highlighted */
-  #route + #pricing { padding-top: clamp(16px, 3vh, 32px); }
   .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
   .plan { position: relative; display: flex; flex-direction: column; background: var(--white); border-radius: 26px; padding: clamp(22px, 3vw, 30px); transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
   .plan:hover { transform: translateY(-4px); box-shadow: 0 30px 50px -34px rgba(11,27,43,.4); }
@@ -605,9 +632,10 @@
   @media (max-width: 560px) { .promises { grid-template-columns: 1fr; } }
   @media (max-width: 900px) { .plans { grid-template-columns: 1fr; max-width: 520px; } }
 
-  /* For parents: one light band between Pricing and About */
-  .parents-wrap { padding: 0 0 clamp(56px, 9vh, 96px); }
-  .parents { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px 48px; align-items: center; padding: clamp(24px, 4vw, 40px); border-radius: 28px; background: var(--blue-wash); }
+  /* For parents: photo on the left, text on the right */
+  .parents { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 18px 44px; align-items: start; padding: clamp(18px, 3vw, 28px); border-radius: 28px; background: var(--blue-wash); }
+  .parents > :not(.parents-img) { grid-column: 2; }
+  .parents-img { grid-column: 1; grid-row: 1 / span 3; width: 100%; height: 100%; min-height: 300px; object-fit: cover; border-radius: 20px; }
   .parents-head .mono { color: var(--blue); }
   .parents-head h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.02; letter-spacing: -0.04em; margin-top: 10px; }
   .parents-head h2 .serif { color: var(--blue); font-size: 1.06em; }
@@ -616,8 +644,9 @@
   .parents-points li { padding-left: 16px; border-left: 2px solid var(--blue); }
   .parents-points b { display: block; }
   .parents-points span { color: var(--ink-soft); font-size: .95rem; }
-  .parents .btn { grid-column: 1; justify-self: start; }
-  @media (max-width: 900px) { .parents { grid-template-columns: 1fr; } .parents .btn { grid-column: auto; } }
+  .parents .btn { justify-self: start; }
+  .parents-head { padding-top: 8px; }
+  @media (max-width: 900px) { .parents { grid-template-columns: 1fr; } .parents > :not(.parents-img), .parents-img { grid-column: 1; grid-row: auto; } .parents-img { min-height: 0; aspect-ratio: 16 / 10; } }
   @media (max-width: 600px) { .parents .btn { justify-self: stretch; justify-content: center; } }
 
   /* Spacing: the hero breathes at the bottom now the ticker is gone */
@@ -696,7 +725,7 @@
       <a href="#finder">Find your session</a>
       <a href="#route">The route</a>
       <a href="#pricing">Pricing</a>
-      <a href="tests.html" class="new-link">Free tests</a>
+      <a href="#tests" class="new-link">Free tests</a>
       <a href="#notes">Blog</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -711,7 +740,7 @@
     <a href="#pricing">Pricing <span aria-hidden="true">→</span></a>
     <a href="#parents">For parents <span aria-hidden="true">→</span></a>
     <a href="#stories">Stories <span aria-hidden="true">→</span></a>
-    <a href="tests.html">Free tests <span class="mono">New</span></a>
+    <a href="#tests">Free tests <span class="mono">New</span></a>
     <a href="#notes">Blog <span aria-hidden="true">→</span></a>
     <a href="#faq">FAQ <span aria-hidden="true">→</span></a>
     <a href="#book">Book a free call <span aria-hidden="true">→</span></a>
@@ -782,23 +811,51 @@
     </div>
   </section>
 
-  <!-- ================= FREE TESTS PROMO ================= -->
-  <div class="wrap">
-    <aside class="tests-strip rv" aria-label="Free career tests">
-      <div>
-        <span class="mono">Free · 3 minutes · no sign-up</span>
-        <p><b>Not sure where you stand?</b> Take a quick test and get a score with next steps.</p>
+  <!-- ================= FREE CAREER TESTS (full section) ================= -->
+  <section class="block band band-wash" id="tests">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">Free career tests</span>
+        <div>
+          <h2>Not sure where you stand? <span class="serif">Answer 10 questions.</span></h2>
+          <p>Three free tests, 3 minutes each, no sign-up. Get a score, see your strongest and weakest areas, and download your report as a PDF.</p>
+        </div>
       </div>
-      <nav class="tests-links" aria-label="Choose a test">
-        <a href="tests.html#profile">Profile score <span>→</span></a>
-        <a href="tests.html#stream">Stream selector <span>→</span></a>
-        <a href="tests.html#placement">Placement readiness <span>→</span></a>
-      </nav>
-    </aside>
-  </div>
+      <div class="test-cards" data-stagger>
+        <a class="test-card" href="tests.html#stream">
+          <span class="tc-img"><img src="images/test-stream.webp" alt="Two school students studying at their desks" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">For school students · Match % per stream</span>
+            <b>Stream selector</b>
+            <span class="tc-text">Engineering, Commerce or Arts? Pick your track, rate 10 statements, and see how well you match each of 6 streams.</span>
+            <span class="tc-tracks"><span>Engineering</span><span>Commerce</span><span>Arts &amp; Humanities</span></span>
+            <span class="tc-go">Find my stream <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="test-card" href="tests.html#profile">
+          <span class="tc-img"><img src="images/test-profile.webp" alt="College students walking across campus" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">For college students · Score out of 100</span>
+            <b>Profile evaluation</b>
+            <span class="tc-text">How strong is your profile? Scored across academics, experience, proof of skills, visibility and direction.</span>
+            <span class="tc-go">Score my profile <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="test-card" href="tests.html#placement">
+          <span class="tc-img"><img src="images/test-placement.webp" alt="Two people shaking hands after an interview" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">Before placements · Score out of 100</span>
+            <b>Placement readiness</b>
+            <span class="tc-text">Are you ready for placement season? Check your prep for online tests, interviews, GDs and company research.</span>
+            <span class="tc-go">Check my readiness <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- ================= ROUTE / ALL SESSIONS ================= -->
-  <section class="block" id="route">
+  <section class="block band" id="route">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">The route</span>
@@ -814,7 +871,7 @@
   <!-- ================= PRICING =================
        Kept deliberately short: free call, "from ₹99", and one bundle.
        The full per-session price list is shared on WhatsApp, not shown here. -->
-  <section class="block" id="pricing">
+  <section class="block band band-white" id="pricing">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Pricing</span>
@@ -870,9 +927,10 @@
   </section>
 
   <!-- ================= FOR PARENTS ================= -->
-  <section class="parents-wrap" id="parents" aria-labelledby="parentsTitle">
+  <section class="block band" id="parents" aria-labelledby="parentsTitle">
     <div class="wrap">
       <div class="parents rv">
+        <img class="parents-img" src="images/parents.webp" alt="Parents sitting together with their daughter, smiling" width="900" height="700" loading="lazy">
         <div class="parents-head">
           <span class="mono">For parents</span>
           <h2 id="parentsTitle">Choosing a stream or course <span class="serif">together.</span></h2>
@@ -922,7 +980,7 @@
   </section>
 
   <!-- ================= TESTIMONIALS ================= -->
-  <section class="block" id="stories">
+  <section class="block band" id="stories">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Stories</span>
@@ -937,7 +995,7 @@
   </section>
 
   <!-- ================= BOOK (CALENDLY) + HOW IT WORKS ================= -->
-  <section class="block" id="book">
+  <section class="block band band-white" id="book">
     <div class="wrap">
       <div class="book-wrap">
         <div class="rv">
@@ -953,6 +1011,7 @@
         <div class="cal rv" id="cal">
           <!-- Compact booking card: Calendly opens as a pop-up, so it doesn't take up the page -->
           <div class="cal-card" id="calCard" hidden>
+            <img class="cal-img" src="images/book-call.webp" alt="A student waving to her mentor on a video call" width="900" height="420" loading="lazy">
             <div class="cal-top">
               <span class="cal-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
               <span class="mono">Free intro call</span>
@@ -976,7 +1035,7 @@
   </section>
 
   <!-- ================= BLOG ================= -->
-  <section class="block" id="notes">
+  <section class="block band" id="notes">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Blog</span>
@@ -992,7 +1051,7 @@
   </section>
 
   <!-- ================= FAQ ================= -->
-  <section class="block" id="faq">
+  <section class="block band band-white" id="faq">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Questions</span>
@@ -1177,6 +1236,13 @@ const bookMsg = (name) => `Hi Yash, I'd like to book a session: ${name}.`;
 const esc = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const findSession = (name) => { for (const s of STAGES) { const x = s.sessions.find(r => r[0] === name); if (x) return { stage: s, row: x }; } };
 
+/* Photo for each stage (files in /images, credits in images/CREDITS.md) */
+const STAGE_IMG_ALT = {
+  clarity: "A student writing a plan in a notebook",
+  profile: "A student working on her laptop outdoors",
+  shortlist: "A recruiter reading a CV",
+  placements: "A candidate shaking hands at the end of an interview"
+};
 /* Stages: all four stacked, scrolled through in order */
 document.getElementById("stages").innerHTML = STAGES.map(s => `
   <div class="stage" id="stage-${s.id}">
@@ -1185,6 +1251,7 @@ document.getElementById("stages").innerHTML = STAGES.map(s => `
       <span class="mono stage-label">Stage ${Number(s.num)} · ${esc(s.name)}</span>
       <h3>${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></h3>
       <p>${esc(s.intro)}</p>
+      <img class="stage-img" src="images/stage-${s.id}.webp" alt="${esc(STAGE_IMG_ALT[s.id] || "")}" width="720" height="450" loading="lazy">
     </div>
     <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
@@ -1335,7 +1402,7 @@ if ("IntersectionObserver" in window) {
     if (!e.isIntersecting) return;
     links.forEach(a => { const on = a.getAttribute("href") === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
   }), { rootMargin: "-45% 0px -50% 0px" });
-  ["finder", "route", "pricing", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  ["finder", "tests", "route", "pricing", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
 }
 
 /* Reveal + active stage */
