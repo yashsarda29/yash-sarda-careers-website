@@ -281,12 +281,25 @@
   .book-points span { color: var(--ink-soft); font-size: .95rem; }
   .book-alt { margin-top: 26px; color: var(--ink-soft); font-size: .95rem; }
   .book-alt a { color: var(--blue); font-weight: 600; border-bottom: 1.5px solid currentColor; }
-  .cal { background: var(--white); border-radius: 28px; overflow: hidden; min-height: 680px; position: relative; box-shadow: 0 1px 0 var(--hair), 0 30px 60px -40px rgba(11,27,43,.3); }
-  .cal .calendly-inline-widget { min-width: 280px; height: 700px; }
-  .cal-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; gap: 18px; background: repeating-linear-gradient(135deg, var(--white) 0 14px, var(--paper) 14px 15px); }
+  /* Compact booking card (Calendly itself opens as a pop-up) */
+  .cal { background: var(--white); border-radius: 28px; overflow: hidden; position: relative; box-shadow: 0 1px 0 var(--hair), 0 30px 60px -40px rgba(11,27,43,.3); }
+  .cal::before, .cal::after { content: ""; position: absolute; border: 1.5px solid var(--blue-wash); border-radius: 50%; pointer-events: none; }
+  .cal::before { width: 280px; height: 280px; right: -110px; top: -110px; }
+  .cal::after { width: 170px; height: 170px; right: -55px; top: -55px; }
+  .cal-card { position: relative; padding: clamp(26px, 4vw, 44px); }
+  .cal-top { display: flex; align-items: center; gap: 12px; color: var(--blue); }
+  .cal-ic { width: 46px; height: 46px; border-radius: 14px; background: var(--blue-wash); display: grid; place-items: center; }
+  .cal-ic svg { width: 22px; height: 22px; }
+  .cal-card h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.05; letter-spacing: -0.035em; margin-top: 20px; }
+  .cal-card h3 .serif { color: var(--blue); font-size: 1.06em; }
+  .cal-card p { color: var(--ink-soft); margin-top: 10px; max-width: 440px; }
+  .cal-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .cal-card .cal-note { font-size: .84rem; margin-top: 14px; }
+  .cal-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: clamp(26px, 4vw, 44px); }
   .cal-empty .serif { font-size: 2rem; line-height: 1.1; }
   .cal-empty p { color: var(--ink-soft); max-width: 360px; }
-  @media (max-width: 960px) { .book-wrap { grid-template-columns: 1fr; } .cal { min-height: 0; } .cal-empty { position: static; min-height: 360px; } }
+  @media (max-width: 960px) { .book-wrap { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .cal-actions .btn { flex: 1 1 100%; justify-content: center; } }
 
   /* ---------- Blog cards ---------- */
   .notes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
@@ -414,9 +427,6 @@
   .book-h .serif { color: var(--blue); font-size: 1.06em; }
   .book-points li { padding: 14px 0; }
   .book-alt { margin-top: 18px; }
-  .cal { min-height: 0; }
-  .cal .calendly-inline-widget { height: clamp(560px, calc(100svh - 150px), 680px); }
-  .cal-empty { position: static; min-height: clamp(360px, 60vh, 520px); }
 
   /* Blog cards */
   .note .cover { aspect-ratio: 16/9; padding: 18px; }
@@ -454,7 +464,6 @@
     .final { padding: 64px 0; }
     .faq summary { grid-template-columns: 44px 1fr 34px; }
     .faq details p { padding: 0 0 18px 44px; }
-    .cal .calendly-inline-widget { height: 640px; }
   }
   @media (max-width: 560px) {
     .row { grid-template-columns: 1fr auto; padding: 16px 8px; margin: 0 -8px; }
@@ -517,15 +526,6 @@
   .answer.idle h3 { opacity: .95; }
   .recs .ghost { background: transparent; border-style: dashed; }
 
-  /* 7 · Calendar loading state */
-  .cal-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 32px; color: var(--ink-soft); z-index: 0; }
-  .cal-loading .spin { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--blue-wash); border-top-color: var(--blue); animation: spin .9s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .cal-loading .slow { display: none; max-width: 340px; }
-  .cal-loading.is-slow .slow { display: block; }
-  .cal-loading .slow a { color: var(--blue); font-weight: 600; border-bottom: 1.5px solid currentColor; }
-  .cal .calendly-inline-widget { position: relative; z-index: 1; }
-  .cal.loaded .cal-loading { display: none; }
 
   /* Free tests: menu link + promo strip */
   .menu .new-link { color: var(--blue); font-weight: 600; }
@@ -813,9 +813,23 @@
             <li><span class="mono">02</span><div><b>Tell me what's on your mind</b><span>A line or two on where you're stuck helps me prepare.</span></div></li>
             <li><span class="mono">03</span><div><b>Leave with a plan</b><span>A free 15-minute intro call on Google Meet. If you need more, full sessions are 30 minutes.</span></div></li>
           </ul>
-          <p class="book-alt">Ready for a full session? <a class="js-session" href="#" target="_blank" rel="noopener">Book a 30-minute session</a> · Prefer chat? <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">WhatsApp</a></p>
+          <p class="book-alt">Prefer chat? <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">Book on WhatsApp</a></p>
         </div>
         <div class="cal rv" id="cal">
+          <!-- Compact booking card: Calendly opens as a pop-up, so it doesn't take up the page -->
+          <div class="cal-card" id="calCard" hidden>
+            <div class="cal-top">
+              <span class="cal-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+              <span class="mono">Free intro call</span>
+            </div>
+            <h3>15 minutes on <span class="serif">Google Meet.</span></h3>
+            <p>Choose any open slot that suits you. It's free, and you'll know by the end which session, if any, will help.</p>
+            <div class="cal-actions">
+              <a class="btn btn-blue js-cal" data-cal="intro" href="#">See available times <span class="arr">↗</span></a>
+              <a class="btn btn-line js-cal" data-cal="session" href="#">Book a 30-min session</a>
+            </div>
+            <p class="cal-note">The booking calendar opens in a pop-up.</p>
+          </div>
           <div class="cal-empty" id="calEmpty">
             <span class="serif">Calendar coming soon.</span>
             <p>Online booking is being set up. Until then, message on WhatsApp and we'll find a time.</p>
@@ -1098,34 +1112,38 @@ document.getElementById("notesGrid").innerHTML = POSTS.map((p, i) => `
     <div class="body"><h3>${esc(p.title)}</h3><p>${esc(p.blurb)}</p><span class="read">${p.mins} min read →</span></div>
   </a>`).join("");
 
-/* Calendly: loads only when CALENDLY_URL is set */
+/* Calendly: opens as a pop-up from any booking button, instead of a full-size calendar on the page.
+   Its script loads only when someone is about to book (hover, focus or tap on a booking button). */
 if (CALENDLY_URL) {
-  const cal = document.getElementById("cal");
   document.getElementById("calEmpty").remove();
-  const sep = CALENDLY_URL.includes("?") ? "&" : "?";
-  /* Loading state sits behind the calendar until Calendly reports it is ready */
-  cal.insertAdjacentHTML("beforeend", `<div class="cal-loading" id="calLoading" role="status"><span class="spin" aria-hidden="true"></span><span>Loading calendar…</span><p class="slow">Taking a while? <a href="${esc(CALENDLY_URL)}" target="_blank" rel="noopener">Open the calendar in a new tab</a> or <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">book on WhatsApp</a>.</p></div>`);
-  cal.insertAdjacentHTML("beforeend", `<div class="calendly-inline-widget" data-url="${esc(CALENDLY_URL + sep + "primary_color=0a66c2&text_color=0b1b2b&hide_gdpr_banner=1")}"></div>`);
-  addEventListener("message", e => {
-    if (e.origin === "https://calendly.com" && e.data && typeof e.data.event === "string" && e.data.event.startsWith("calendly.")) cal.classList.add("loaded");
-  });
-  setTimeout(() => { if (!cal.classList.contains("loaded")) document.getElementById("calLoading").classList.add("is-slow"); }, 8000);
-  /* Load Calendly's script only when the visitor gets near the Book section */
-  const loadCal = () => {
-    if (loadCal.done) return; loadCal.done = true;
+  document.getElementById("calCard").hidden = false;
+  if (!CALENDLY_SESSION_URL) document.querySelector('.js-cal[data-cal="session"]').hidden = true;
+  const urlFor = (kind) => kind === "session" && CALENDLY_SESSION_URL ? CALENDLY_SESSION_URL : CALENDLY_URL;
+  /* Real links as a fallback: without JavaScript they open Calendly in a new tab */
+  document.querySelectorAll(".js-cal").forEach(a => { a.href = urlFor(a.dataset.cal); a.target = "_blank"; a.rel = "noopener"; });
+  const withColours = (u) => u + (u.includes("?") ? "&" : "?") + "hide_gdpr_banner=1&primary_color=0a66c2&text_color=0b1b2b";
+  let calReady = null;
+  const loadCalendly = () => calReady || (calReady = new Promise((ok, fail) => {
+    const css = document.createElement("link");
+    css.rel = "stylesheet"; css.href = "https://assets.calendly.com/assets/external/widget.css";
+    document.head.appendChild(css);
     const s = document.createElement("script");
     s.src = "https://assets.calendly.com/assets/external/widget.js"; s.async = true;
+    s.onload = ok; s.onerror = () => { calReady = null; fail(); };
     document.body.appendChild(s);
-  };
-  if ("IntersectionObserver" in window) {
-    const co = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { loadCal(); co.disconnect(); } }, { rootMargin: "800px 0px" });
-    co.observe(cal);
-  } else loadCal();
-  /* Safety net: load anyway shortly after the page has finished loading */
-  const later = () => setTimeout(loadCal, 3500);
-  if (document.readyState === "complete") later(); else addEventListener("load", later);
-  /* Booking links (#book) should also start the calendar loading immediately */
-  document.querySelectorAll('a[href="#book"]').forEach(a => a.addEventListener("click", loadCal));
+  }));
+  const TRIGGER = 'a[href="#book"], .js-cal';
+  /* Start loading as soon as a visitor reaches for a booking button */
+  ["pointerover", "focusin", "touchstart"].forEach(t => addEventListener(t, e => { if (e.target.closest?.(TRIGGER)) loadCalendly(); }, { passive: true }));
+  addEventListener("click", e => {
+    const a = e.target.closest(TRIGGER); if (!a) return;
+    if (e.ctrlKey || e.metaKey || e.shiftKey) return;  /* let "open in new tab" work as normal */
+    e.preventDefault();
+    const url = urlFor(a.dataset.cal);
+    loadCalendly()
+      .then(() => window.Calendly.initPopupWidget({ url: withColours(url) }))
+      .catch(() => { location.href = url; });  /* Calendly blocked or offline: go to the booking page itself */
+  });
 }
 
 /* Route map stops scroll down to their stage (mouse, touch and keyboard) */
@@ -1150,7 +1168,6 @@ addEventListener("click", e => { if (sheet.classList.contains("open") && !e.targ
 
 /* Links */
 document.querySelectorAll(".js-wa").forEach(a => { a.href = wa(a.dataset.msg || "Hi Yash!"); a.target = "_blank"; a.rel = "noopener"; });
-document.querySelectorAll(".js-session").forEach(a => { if (CALENDLY_SESSION_URL) a.href = CALENDLY_SESSION_URL; else a.hidden = true; });
 /* LinkedIn buttons stay hidden until a real profile URL is filled in above */
 const hasLinkedIn = /linkedin\.com\/in\/[^/]+/i.test(LINKEDIN_URL);
 document.querySelectorAll(".js-li").forEach(a => { if (hasLinkedIn) a.href = LINKEDIN_URL; else a.hidden = true; });
