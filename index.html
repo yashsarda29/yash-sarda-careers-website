@@ -784,7 +784,7 @@
       </div>
       <div class="notes" id="notesGrid"></div>
       <p class="swipe-hint mono" aria-hidden="true">Swipe for more →</p>
-      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All posts <span class="arr">↗</span></a></div>
+      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All 12 posts <span class="arr">↗</span></a></div>
     </div>
   </section>
 
@@ -912,10 +912,10 @@ const TESTIMONIALS = [
    Each one has its own page in the /blog folder.
    ============================================================ */
 const POSTS = [
-  { slug: "cv-not-getting-shortlisted", tag: "Getting shortlisted", icon: "doc", title: "Why your CV isn't getting shortlisted (and six fixes)", blurb: "Recruiters spend seconds, not minutes. Here's what they look for first.", mins: 6 },
-  { slug: "job-or-mba", tag: "Career clarity", icon: "scale", title: "Job now or MBA later? A decision you can actually make", blurb: "Three questions that settle it, and what an MBA does and doesn't fix.", mins: 7 },
-  { slug: "choose-your-branch", tag: "Career clarity", icon: "split", title: "CS or ECE? How to choose a specialisation you won't regret", blurb: "Stop comparing subjects. Compare Tuesdays, three years from now.", mins: 6 },
-  { slug: "crack-group-discussion", tag: "Placements", icon: "users", title: "How to crack a group discussion: enter, structure, close", blurb: "Speaking first isn't the goal. Being the one people build on is.", mins: 6 }
+  { slug: "tell-me-about-yourself", tag: "Placements", icon: "mic", title: "\"Tell me about yourself\": a 60-second answer that works", blurb: "The first question in almost every interview, and how to stop reading out your CV.", mins: 4 },
+  { slug: "linkedin-profile-guide", tag: "Getting shortlisted", icon: "user", title: "Your LinkedIn profile in 30 minutes: what recruiters actually read", blurb: "Recruiters read four things in a few seconds. Get those right first.", mins: 3 },
+  { slug: "internship-with-no-experience", tag: "Profile building", icon: "target", title: "How to land an internship with no experience: a weekly plan", blurb: "Break the \"need experience to get experience\" loop in a few focused weeks.", mins: 3 },
+  { slug: "guesstimates-made-simple", tag: "Placements", icon: "calc", title: "Guesstimates made simple: a 4-step method with a worked example", blurb: "Nobody expects the exact answer. They want to see how you think.", mins: 3 }
 ];
 
 const MARQUEE = ["CS or ECE?", "Job now or MBA later?", "Why am I not getting callbacks?", "Which certifications actually matter?", "How do I crack a GD?", "CAT, GMAT or GRE?", "Is my CV good enough?", "What does this JD really want?", "How do I start a case?", "Tell me about yourself…"];
@@ -1015,7 +1015,11 @@ const TOPIC_ICONS = {
   doc: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/>',
   scale: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
   split: '<path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"/><path d="m15 9 6-6"/>',
-  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>'
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>',
+  mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  calc: '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/><path d="M8 15h.01"/><path d="M12 15h.01"/><path d="M16 15h.01"/><path d="M8 19h8"/>'
 };
 const topicIcon = (k) => TOPIC_ICONS[k] ? `<span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${TOPIC_ICONS[k]}</svg></span>` : "";
 document.getElementById("notesGrid").innerHTML = POSTS.map((p, i) => `

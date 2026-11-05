@@ -11,7 +11,7 @@ Static website for 1:1 career guidance sessions: a home page plus a blog. No bui
 - **Photo:** `yash.png` (used in the hero, the About card and blog bylines). Replace the file with a larger square photo (600×600 or more) for a sharper result.
 
 ## Blog (`blog/`)
-- `blog/index.html` lists all posts; each post is its own `.html` file sharing `blog.css` and `blog.js`.
+- `blog/index.html` lists all posts (newest first, with topic filters); each post is its own `.html` file sharing `blog.css` and `blog.js`. Reading times are based on ~200 words per minute.
 - To add a post: copy an existing post file, change the text, then add it to `blog/index.html` and (optionally) the `POSTS` list in `index.html`.
 - Keep `WHATSAPP_NUMBER` in `blog/blog.js` in sync with the home page.
 

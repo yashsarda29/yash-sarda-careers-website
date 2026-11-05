@@ -157,3 +157,12 @@ footer a:hover { color: var(--blue); }
 .end-cta { padding: clamp(44px, 8vh, 64px) 40px; }
 @media (max-width: 760px) { .post-list a { padding: 20px 8px; } .end-cta { padding: 44px 22px; } }
 img.av { object-fit: cover; object-position: 50% 20%; }
+
+/* Topic filter chips on the blog list */
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+.filters .chip { font: inherit; font-weight: 600; font-size: .9rem; padding: 10px 16px; border-radius: 999px; border: 1.5px solid var(--hair); background: transparent; color: var(--ink); cursor: pointer; transition: all .2s; }
+.filters .chip span { font-family: var(--mono); font-size: .72rem; opacity: .6; margin-left: 4px; }
+.filters .chip:hover { border-color: var(--ink); }
+.filters .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.post-list li[hidden] { display: none; }
+@media (max-width: 600px) { .filters { flex-wrap: nowrap; overflow-x: auto; margin: 0 -20px 18px; padding: 0 20px 4px; scrollbar-width: none; } .filters::-webkit-scrollbar { display: none; } .filters .chip { flex-shrink: 0; } }
