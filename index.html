@@ -27,7 +27,6 @@
     --hair: rgba(11,27,43,.12);
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: var(--sans);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: clip; }
@@ -117,7 +116,7 @@
   .route-top { display: flex; justify-content: space-between; color: var(--ink-soft); }
   .route svg { width: 100%; height: auto; margin-top: 6px; }
   .route .st-label { font-family: var(--sans); font-size: 15px; font-weight: 600; fill: var(--ink); }
-  .route .st-num { font-family: var(--mono); font-size: 11px; fill: var(--blue); letter-spacing: .08em; }
+  .route .st-num { font-family: var(--sans); font-size: 11px; fill: var(--blue); letter-spacing: .08em; }
   .route .st { cursor: pointer; }
   .route .st circle.ring { transition: r .2s; }
   .route .st:hover circle.ring { r: 15; }
@@ -162,20 +161,23 @@
   .recs .go svg { width: 14px; height: 14px; }
   @media (max-width: 900px) { .finder-grid { grid-template-columns: 1fr; gap: 36px; } .finder { margin: 0 8px; border-radius: 28px; } .answer { min-height: 0; padding: 28px; } }
 
-  /* ---------- Stages (the route, long form) ---------- */
-  .stage { display: grid; grid-template-columns: 380px 1fr; gap: 56px; padding: 56px 0; border-top: 1.5px solid var(--ink); }
+  /* ---------- Stages (the route) ----------
+     All four stages are stacked. While you scroll a stage's sessions, its side panel
+     sticks in place, and the stage in the middle of the screen lights up blue. */
+  .stage { display: grid; grid-template-columns: 340px 1fr; gap: 48px; padding: clamp(32px, 5vh, 48px) 0; border-top: 1.5px solid var(--ink); }
   .stage:last-child { border-bottom: 1.5px solid var(--ink); }
-  .stage-side { position: sticky; top: 110px; align-self: start; }
-  .stage-num { font-size: clamp(5rem, 11vw, 9.5rem); font-weight: 800; line-height: .8; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1.5px var(--ink); transition: color .4s, -webkit-text-stroke-color .4s; }
-  .stage.active .stage-num { color: var(--blue); -webkit-text-stroke-color: var(--blue); }
-  .stage-side h3 { font-size: 2rem; letter-spacing: -0.03em; line-height: 1.05; margin-top: 22px; }
+  .stage-side { position: sticky; top: 100px; align-self: start; }
+  .stage-num { font-size: clamp(3.6rem, min(6.5vw, 11vh), 6rem); font-weight: 800; line-height: .8; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1.5px var(--ink); transition: color .4s, -webkit-text-stroke-color .4s, transform .5s cubic-bezier(.2,.8,.2,1); transform-origin: left bottom; }
+  .stage.active .stage-num { color: var(--blue); -webkit-text-stroke-color: var(--blue); transform: scale(1.06); }
+  .stage-label { display: block; margin-top: 20px; color: var(--blue); }
+  .stage-side h3 { font-size: 1.65rem; letter-spacing: -0.03em; line-height: 1.05; margin-top: 10px; }
   .stage-side h3 .serif { color: var(--blue); }
-  .stage-side p { color: var(--ink-soft); margin-top: 12px; max-width: 320px; }
+  .stage-side p { color: var(--ink-soft); margin-top: 10px; max-width: 320px; }
   .rows { list-style: none; }
   .rows li + li { border-top: 1px solid var(--hair); }
   .row { display: grid; grid-template-columns: 70px 1fr auto; gap: 20px; align-items: center; padding: 26px 16px; margin: 0 -16px; border-radius: 18px; transition: background .25s; }
   .row:hover { background: var(--white); }
-  .row .idx { font-family: var(--mono); font-size: .8rem; color: var(--ink-soft); }
+  .row .idx { font-family: var(--sans); font-size: .8rem; color: var(--ink-soft); }
   .row h4 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; transition: color .25s; }
   .row p { color: var(--ink-soft); font-size: .98rem; margin-top: 4px; max-width: 520px; }
   .row .book { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: .9rem; color: var(--blue); opacity: .0; transform: translateX(-8px); transition: all .25s; white-space: nowrap; }
@@ -185,7 +187,7 @@
   .row:hover .book { opacity: 1; transform: none; }
   @media (hover: none) { .row .book { opacity: 1; transform: none; } .row .book span { display: none; } }
   @media (max-width: 960px) {
-    .stage { grid-template-columns: 1fr; gap: 28px; padding: 44px 0; }
+    .stage { grid-template-columns: 1fr; gap: 20px; }
     .stage-side { position: static; }
   }
   @media (max-width: 560px) {
@@ -207,7 +209,6 @@
   .id-card:hover { transform: rotate(0deg) translateY(-4px); }
   .photo { aspect-ratio: 1; border-radius: 16px; background: var(--blue); display: grid; place-items: center; overflow: hidden; position: relative; }
   .photo img { width: 100%; height: 100%; object-fit: cover; }
-  .photo .ini { font-family: var(--serif); font-style: italic; font-size: 7rem; color: var(--white); line-height: 1; }
   .photo::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,.07) 18px 19px); }
   .id-card h4 { font-size: 1.4rem; margin-top: 18px; letter-spacing: -0.02em; }
   .id-card .role { color: var(--ink-soft); font-size: .92rem; }
@@ -269,8 +270,7 @@
   .voice.big .av, .voice.dark .av { background: rgba(255,255,255,.14); color: var(--white); }
   .who b { display: block; font-size: .98rem; }
   .who span { font-size: .85rem; opacity: .7; }
-  .outcome { display: block; width: fit-content; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1px solid currentColor; opacity: .75; margin-bottom: 14px; }
-  .sample { position: absolute; top: 18px; right: 18px; font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; background: var(--paper); color: var(--ink); padding: 4px 8px; border-radius: 6px; }
+  .outcome { display: block; width: fit-content; font-family: var(--sans); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; border: 1px solid currentColor; opacity: .75; margin-bottom: 14px; }
   @media (max-width: 960px) { .voice, .voice.big { grid-column: span 12; } }
   @media (min-width: 961px) and (max-width: 1100px) { .voice { grid-column: span 6; } .voice.big { grid-column: span 12; } }
 
@@ -372,10 +372,7 @@
   .answer h3 { font-size: clamp(1.5rem, 2.3vw, 2rem); margin: 8px 0 16px; }
   .recs a { padding: 12px 16px; }
 
-  /* Stages */
-  .stage { padding: clamp(28px, 4.5vh, 40px) 0; gap: 48px; grid-template-columns: 340px 1fr; }
-  .stage-num { font-size: clamp(3.6rem, min(6.5vw, 11vh), 6rem); }
-  .stage-side h3 { font-size: 1.65rem; }
+  /* Session rows */
   .row { padding: 15px 14px; margin: 0 -14px; grid-template-columns: 56px 1fr auto; }
   .row h4 { font-size: 1.14rem; }
   .row p { font-size: .94rem; margin-top: 2px; }
@@ -388,7 +385,6 @@
   .about-copy { margin-top: 18px; font-size: 1.02rem; }
   .id-card { padding: 16px; max-width: 320px; justify-self: end; }
   .photo { aspect-ratio: 5/4; }
-  .photo .ini { font-size: 5rem; }
   .id-card h4 { margin-top: 12px; font-size: 1.25rem; }
   .id-meta { margin-top: 12px; }
   .id-meta div { padding: 9px 12px; }
@@ -439,7 +435,6 @@
   @media (max-width: 960px) {
     .hero { min-height: 0; padding-top: 104px; }
     .route svg { height: auto; }
-    .stage { grid-template-columns: 1fr; gap: 20px; }
     .book-wrap { grid-template-columns: 1fr; gap: 28px; }
     .id-card { justify-self: start; }
   }
@@ -451,7 +446,7 @@
     .sec-head .mono { padding-top: 0; }
     .hero h1 { font-size: clamp(2.6rem, 12.5vw, 3.8rem); }
     .finder-grid { gap: 24px; }
-    .stage-num { font-size: 3.6rem; }
+    .stage-num { font-size: 3.4rem; }
     .about-grid { gap: 32px; }
     .final { padding: 64px 0; }
     .faq summary { grid-template-columns: 44px 1fr 34px; }
@@ -476,27 +471,7 @@
   /* =====================================================================
      DESIGN ROUND 2
      ===================================================================== */
-  /* 1 · Session stages as tabs */
-  .stage-tabs { display: flex; gap: 8px; margin-bottom: clamp(18px, 3vh, 28px); overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
-  .stage-tabs::-webkit-scrollbar { display: none; }
-  .stage-tab { flex-shrink: 0; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; border: 1.5px solid var(--hair); font-weight: 600; font-size: .95rem; transition: all .2s; white-space: nowrap; }
-  .stage-tab .mono { color: var(--blue); }
-  .stage-tab:hover { border-color: var(--ink); }
-  .stage-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-  .stage-tab[aria-selected="true"] .mono { color: #9CC5F0; }
-  .stage-tab .count { font-family: var(--mono); font-size: .7rem; opacity: .6; }
-  .js .stage { border-bottom: 1.5px solid var(--ink); }
-  .js .stage[hidden] { display: none; }
-  .js .stage:not([hidden]) { animation: fade .4s both; }
-  .stage-next { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-weight: 600; color: var(--blue); }
-  .stage-next:hover { text-decoration: underline; text-underline-offset: 4px; }
-  .stage-side { position: static; }
-  /* Compact panel so a whole stage (incl. tabs and the school note) fits one laptop screen */
-  .stage { padding: clamp(18px, 2.8vh, 26px) 0; }
-  .stage-num { font-size: clamp(3rem, min(5vw, 8vh), 4.4rem); }
-  .stage-side h3 { font-size: 1.5rem; }
-  .stage-side .mono { margin-top: 14px !important; }
-  .stage-side p { margin-top: 8px; font-size: .96rem; }
+  /* 1 · Session rows: compact */
   .row { padding: 11px 14px; }
   .row h4 { font-size: 1.08rem; }
   #route .sec-head p { margin-top: 8px; }
@@ -574,6 +549,19 @@
   /* =====================================================================
      DESIGN ROUND 3 · calmer spacing, clickable route, more motion
      ===================================================================== */
+  /* Side spacing shared by every page (tests and blog use the same numbers), so content
+     edges line up everywhere. Rounded panels sit --inset from the screen edge and pull
+     their content in by the difference, so their text aligns with everything else. */
+  :root { --gutter: 32px; --inset: 16px; --max: 1240px; }
+  @media (max-width: 900px) { :root { --inset: 8px; } }
+  @media (max-width: 600px) { :root { --gutter: 20px; } }
+  .wrap { max-width: var(--max); width: 100%; padding-left: var(--gutter); padding-right: var(--gutter); }
+  .finder, .about, .final { margin-left: var(--inset); margin-right: var(--inset); }
+  .finder > .wrap, .about > .wrap, .final > .wrap { max-width: calc(var(--max) - 2 * var(--inset)); padding-left: calc(var(--gutter) - var(--inset)); padding-right: calc(var(--gutter) - var(--inset)); }
+  @media (max-width: 600px) {
+    .voices, .notes { margin: 0 calc(-1 * var(--gutter)); padding-left: var(--gutter); padding-right: var(--gutter); }
+  }
+
   /* Spacing: the hero breathes at the bottom now the ticker is gone */
   .hero { padding-bottom: clamp(40px, 7vh, 80px); }
   .sheet a > span[aria-hidden] { color: var(--ink-soft); }
@@ -608,10 +596,6 @@
   /* Lists fill in one item at a time when they scroll into view */
   .js [data-stagger].in > * { animation: riseSm .55s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i, 0) * 70ms + 120ms); }
 
-  /* Switching stage: the big number slides in and the sessions follow */
-  .js .stage.active .stage-num { animation: numIn .6s cubic-bezier(.2,.8,.2,1) backwards; }
-  @keyframes numIn { from { opacity: 0; transform: translateX(-16px); } }
-  .js .stage:not([hidden]) .rows li { animation: riseSm .45s cubic-bezier(.2,.8,.2,1) backwards; animation-delay: calc(var(--i, 0) * 55ms + 100ms); }
 
   /* FAQ answers ease open */
   .faq summary { transition: color .2s; }
@@ -711,7 +695,7 @@
           <g class="st" data-go="stage-shortlist" tabindex="0" role="link" aria-label="Jump to stage 3, Getting shortlisted"><rect class="hit" x="120" y="137" width="172" height="50" rx="12"/><circle class="ring" cx="270" cy="165" r="12" fill="#fff" stroke="#0B1B2B" stroke-width="2"/><circle cx="270" cy="165" r="4" fill="#0B1B2B"/><text class="st-num" x="246" y="157" text-anchor="end">03</text><text class="st-label" x="246" y="176" text-anchor="end">Get shortlisted</text></g>
           <g class="st" data-go="stage-placements" tabindex="0" role="link" aria-label="Jump to stage 4, Placements"><rect class="hit" x="240" y="17" width="132" height="50" rx="12"/><circle class="ring" cx="350" cy="45" r="12" fill="#0A66C2" stroke="#0A66C2" stroke-width="2"/><circle cx="350" cy="45" r="4" fill="#fff"/><text class="st-num" x="326" y="37" text-anchor="end">04</text><text class="st-label" x="326" y="56" text-anchor="end">The offer</text></g>
         </svg>
-        <div class="route-foot"><span class="serif">Start anywhere.</span><a class="tap" href="#route" data-go="stage-clarity">Tap a stop <span class="arr" aria-hidden="true">↓</span></a></div>
+        <div class="route-foot"><span class="serif">Start anywhere.</span><a class="tap" href="#route">Tap a stop <span class="arr" aria-hidden="true">↓</span></a></div>
       </aside>
     </div>
   </section>
@@ -762,7 +746,6 @@
           <p>Each session is 30 minutes, one-on-one, online, and ends with a framework you can act on. Tap any session to book it on WhatsApp.</p>
         </div>
       </div>
-      <div class="stage-tabs" role="tablist" aria-label="Career stages" id="stageTabs"></div>
       <div id="stages"></div>
     </div>
   </section>
@@ -960,10 +943,10 @@ const PAINS = [
 /* ============================================================
    EDIT HERE: testimonials (real students only, with permission)
    The first one is shown large. To add one, copy a line:
-   { quote: "…", name: "Name", detail: "Course, year", outcome: "Short result or session", sample: false },
+   { quote: "…", name: "Name", detail: "Course, year", outcome: "Short result or session" },
    ============================================================ */
 const TESTIMONIALS = [
-  { quote: "Our team qualified for the semi-finals after the first offline round, and we were ranked among the top 8 national finalists. Your guidance and PPT points really helped us a lot with preparation and idea formulation.", name: "Team JATAYU", detail: "National competition finalists", outcome: "Top 8 nationally", sample: false }
+  { quote: "Our team qualified for the semi-finals after the first offline round, and we were ranked among the top 8 national finalists. Your guidance and PPT points really helped us a lot with preparation and idea formulation.", name: "Team JATAYU", detail: "National competition finalists", outcome: "Top 8 nationally" }
 ];
 
 /* ============================================================
@@ -983,47 +966,24 @@ const bookMsg = (name) => `Hi Yash, I'd like to book a session: ${name}.`;
 const esc = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const findSession = (name) => { for (const s of STAGES) { const x = s.sessions.find(r => r[0] === name); if (x) return { stage: s, row: x }; } };
 
-/* Stages: one tab per stage, one panel visible at a time */
-const tabsEl = document.getElementById("stageTabs");
-tabsEl.innerHTML = STAGES.map((s, i) => `<button class="stage-tab" role="tab" id="tab-${s.id}" aria-controls="stage-${s.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-stage="${s.id}"><span class="mono">${s.num}</span>${esc(s.name)} <span class="count">${s.sessions.length}</span></button>`).join("");
-document.getElementById("stages").innerHTML = STAGES.map((s, i) => `
-  <div class="stage" id="stage-${s.id}" role="tabpanel" aria-labelledby="tab-${s.id}">
-    <div class="stage-side">
+/* Stages: all four stacked, scrolled through in order */
+document.getElementById("stages").innerHTML = STAGES.map(s => `
+  <div class="stage" id="stage-${s.id}">
+    <div class="stage-side rv">
       <div class="stage-num">${s.num}</div>
-      <span class="mono" style="display:block;margin-top:22px;color:var(--blue)">Stage ${Number(s.num)} · ${s.name}</span>
-      <h3 style="margin-top:10px">${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></h3>
+      <span class="mono stage-label">Stage ${Number(s.num)} · ${esc(s.name)}</span>
+      <h3>${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></h3>
       <p>${esc(s.intro)}</p>
-      ${STAGES[i + 1] ? `<button class="stage-next" data-stage="${STAGES[i + 1].id}">Next: ${esc(STAGES[i + 1].name)} →</button>` : `<a class="stage-next" href="#book">Book a free call →</a>`}
     </div>
-    <ol class="rows">
+    <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
-        <li style="--i:${i}"><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
+        <li><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
           <span class="idx">${s.num}.${i + 1}</span>
           <div><h4>${esc(r[0])}</h4><p>${esc(r[1])}</p></div>
           <span class="book"><span>Book</span><span class="go">${ARROW}</span></span>
         </a></li>`).join("")}
     </ol>
   </div>`).join("");
-
-function showStage(id, focusTab) {
-  STAGES.forEach(s => {
-    const on = s.id === id, tab = document.getElementById("tab-" + s.id), panel = document.getElementById("stage-" + s.id);
-    tab.setAttribute("aria-selected", on); tab.tabIndex = on ? 0 : -1;
-    panel.hidden = !on; panel.classList.toggle("active", on);
-    if (on && focusTab) tab.focus();
-  });
-}
-tabsEl.addEventListener("click", e => { const t = e.target.closest(".stage-tab"); if (t) showStage(t.dataset.stage); });
-tabsEl.addEventListener("keydown", e => {
-  const keys = { ArrowRight: 1, ArrowLeft: -1 }; if (!(e.key in keys)) return;
-  const i = STAGES.findIndex(s => s.id === document.activeElement.dataset.stage);
-  showStage(STAGES[(i + keys[e.key] + STAGES.length) % STAGES.length].id, true);
-});
-document.getElementById("stages").addEventListener("click", e => {
-  const n = e.target.closest("button.stage-next"); if (!n) return;
-  showStage(n.dataset.stage); document.getElementById("route").scrollIntoView({ block: "start" });
-});
-showStage(STAGES[0].id);
 
 /* Finder */
 const painsEl = document.getElementById("pains");
@@ -1059,7 +1019,6 @@ idle();
 /* Testimonials */
 document.getElementById("voices").innerHTML = TESTIMONIALS.map((t, i) => `
   <figure class="voice rv ${i === 0 ? "big" : i === 3 ? "dark" : ""}">
-    ${t.sample ? '<span class="sample">Sample</span>' : ""}
     <div>${t.outcome ? `<span class="outcome">${esc(t.outcome)}</span>` : ""}<q>${esc(t.quote)}</q></div>
     <figcaption class="who"><span class="av">${esc(t.name.split(" ").map(w => w[0]).join("").slice(0, 2))}</span><span><b>${esc(t.name)}</b><span>${esc(t.detail)}</span></span></figcaption>
   </figure>`).join("");
@@ -1112,15 +1071,11 @@ if (CALENDLY_URL) {
   document.querySelectorAll('a[href="#book"]').forEach(a => a.addEventListener("click", loadCal));
 }
 
-/* Route map stops scroll to their stage (mouse, touch and keyboard) */
+/* Route map stops scroll down to their stage (mouse, touch and keyboard) */
 document.querySelectorAll(".route .st").forEach(g => {
-  const go = () => { showStage(g.dataset.go.replace("stage-", "")); document.getElementById("route").scrollIntoView({ block: "start" }); };
+  const go = () => document.getElementById(g.dataset.go)?.scrollIntoView({ block: "start" });
   g.addEventListener("click", go);
   g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
-});
-/* "Tap a stop" opens the route at the first stage */
-document.querySelector(".route-foot .tap").addEventListener("click", e => {
-  e.preventDefault(); showStage("clarity"); document.getElementById("route").scrollIntoView({ block: "start" });
 });
 
 /* Phone menu */
@@ -1180,6 +1135,11 @@ if ("IntersectionObserver" in window && !reduce) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12, rootMargin: "0px 0px -40px 0px" });
   document.querySelectorAll(".rv, [data-stagger]").forEach(el => io.observe(el));
 } else document.querySelectorAll(".rv, [data-stagger]").forEach(el => el.classList.add("in"));
+/* The stage crossing the middle of the screen lights up as you scroll */
+if ("IntersectionObserver" in window) {
+  const so = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("active", e.isIntersecting)), { rootMargin: "-45% 0px -45% 0px" });
+  document.querySelectorAll(".stage").forEach(el => so.observe(el));
+}
 </script>
 </body>
 </html>

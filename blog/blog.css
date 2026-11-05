@@ -10,7 +10,6 @@
   --hair: rgba(11,27,43,.12);
   --serif: "Instrument Serif", Georgia, serif;
   --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: var(--sans);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { overflow-x: clip; }
@@ -83,7 +82,7 @@ header { position: sticky; top: 0; z-index: 50; background: rgba(243,242,239,.9)
 .prose { max-width: 700px; font-size: 1.14rem; line-height: 1.75; }
 .prose > * + * { margin-top: 1.2em; }
 .prose h2 { font-size: 1.8rem; line-height: 1.15; letter-spacing: -0.03em; margin-top: 2.2em; }
-.prose h2 .n { font-family: var(--mono); font-size: .8rem; color: var(--blue); letter-spacing: .08em; display: block; margin-bottom: 8px; font-weight: 500; }
+.prose h2 .n { font-family: var(--sans); font-size: .8rem; color: var(--blue); letter-spacing: .08em; display: block; margin-bottom: 8px; font-weight: 500; }
 .prose h3 { font-size: 1.25rem; letter-spacing: -0.02em; margin-top: 1.8em; }
 .prose p { color: #26323F; }
 .prose strong { color: var(--ink); }
@@ -161,7 +160,7 @@ img.av { object-fit: cover; object-position: 50% 20%; }
 /* Topic filter chips on the blog list */
 .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
 .filters .chip { font: inherit; font-weight: 600; font-size: .9rem; padding: 10px 16px; border-radius: 999px; border: 1.5px solid var(--hair); background: transparent; color: var(--ink); cursor: pointer; transition: all .2s; }
-.filters .chip span { font-family: var(--mono); font-size: .72rem; opacity: .6; margin-left: 4px; }
+.filters .chip span { font-family: var(--sans); font-size: .72rem; opacity: .6; margin-left: 4px; }
 .filters .chip:hover { border-color: var(--ink); }
 .filters .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .post-list li[hidden] { display: none; }
@@ -180,3 +179,11 @@ img.av { object-fit: cover; object-position: 50% 20%; }
 .btn:active { transform: none; }
 .post-list a:hover .arrow { transform: rotate(45deg); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+
+/* Side spacing shared with the home page and tests page, so content edges line up everywhere */
+:root { --gutter: 32px; --inset: 16px; --max: 1240px; }
+@media (max-width: 900px) { :root { --inset: 8px; } }
+@media (max-width: 600px) { :root { --gutter: 20px; } }
+.wrap { max-width: var(--max); width: 100%; padding-left: var(--gutter); padding-right: var(--gutter); }
+.end-cta { margin-left: var(--inset); margin-right: var(--inset); padding-left: var(--gutter); padding-right: var(--gutter); }
+@media (max-width: 600px) { .filters { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); padding-left: var(--gutter); padding-right: var(--gutter); } }
