@@ -156,3 +156,4 @@ footer a:hover { color: var(--blue); }
 .more { padding: clamp(48px, 8vh, 72px) 0 40px; }
 .end-cta { padding: clamp(44px, 8vh, 64px) 40px; }
 @media (max-width: 760px) { .post-list a { padding: 20px 8px; } .end-cta { padding: 44px 22px; } }
+img.av { object-fit: cover; object-position: 50% 20%; }

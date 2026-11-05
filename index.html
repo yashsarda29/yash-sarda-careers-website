@@ -361,7 +361,12 @@
   .hero h1 { font-size: clamp(2.8rem, min(7.2vw, 11.2vh), 6.6rem); margin: clamp(14px, 2.4vh, 24px) 0 clamp(14px, 2.4vh, 22px); }
   .hero .sub { font-size: clamp(1rem, 2.2vh, 1.15rem); }
   .hero-ctas { margin-top: clamp(18px, 3vh, 28px); }
-  .free-note { margin-top: 14px; }
+  .free-note { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
+  .free-note .mini-av { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; flex-shrink: 0; box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--blue); }
+  .photo.has-img { aspect-ratio: 1; background: var(--blue-wash); }
+  .photo.has-img::after { display: none; }
+  .photo.has-img img { object-position: 50% 25%; }
+  .id-card { max-width: 290px; }
   .route { padding: 20px 22px 16px; }
   .route svg { height: clamp(220px, 46vh, 400px); }
   .route-foot { padding-top: 10px; }
@@ -535,7 +540,7 @@
           </a>
           <a class="btn btn-line" href="#finder">Where am I stuck? <span class="arr">↘</span></a>
         </div>
-        <p class="free-note"><b>The first 15 minutes are on me.</b> Book a slot, or just message on WhatsApp.</p>
+        <p class="free-note"><img class="mini-av" src="yash.png" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b> Book a slot, or just message on WhatsApp.</span></p>
       </div>
 
       <!-- Route map -->
@@ -612,8 +617,7 @@
           <p class="about-copy">I'm Yash, a business solutions and career path consultant with an MBA from Great Lakes, Chennai and 5+ years in industry. I've seen what recruiters shortlist and where good students lose out. My sessions are short, practical and honest: you leave with a framework to decide and act, not a pile of generic advice.</p>
         </div>
         <div class="id-card rv">
-          <!-- To add a photo: replace the <span class="ini">YS</span> with <img src="yash.jpg" alt="Yash Sarda"> -->
-          <div class="photo"><span class="ini">YS</span></div>
+          <div class="photo has-img"><img src="yash.png" alt="Yash Sarda" width="200" height="200" loading="lazy"></div>
           <h4>Yash Sarda</h4>
           <div class="role">Business Solutions &amp; Career Path Consultant</div>
           <div class="id-meta">

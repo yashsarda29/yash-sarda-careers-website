@@ -8,7 +8,7 @@ Static website for 1:1 career guidance sessions: a home page plus a blog. No bui
 - **"Where are you stuck?" answers:** the `PAINS` list
 - **Testimonials:** the `TESTIMONIALS` list. The current ones are SAMPLES: replace them with real student quotes (with permission) and set `sample: false` to remove the "Sample" tag.
 - **Blog cards on the home page:** the `POSTS` list
-- **Photo:** add `yash.jpg` to this folder and replace the `YS` placeholder in the About card with `<img src="yash.jpg" alt="Yash Sarda">`
+- **Photo:** `yash.png` (used in the hero, the About card and blog bylines). Replace the file with a larger square photo (600×600 or more) for a sharper result.
 
 ## Blog (`blog/`)
 - `blog/index.html` lists all posts; each post is its own `.html` file sharing `blog.css` and `blog.js`.
