@@ -232,8 +232,8 @@
     <div class="wrap intro">
       <span class="mono" style="color:var(--blue)">Free career tests · 3 minutes each</span>
       <h1>Find out where you stand, <span class="serif">in three minutes.</span></h1>
-      <p>Pick a test, answer honestly, and get a score with clear next steps. No sign-up needed.</p>
-      <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your answers stay in your browser. Nothing is sent or saved.</span>
+      <p>Get a score and next steps. No sign-up.</p>
+      <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your answers stay private.</span>
     </div>
     <div class="wrap picker" id="picker"></div>
   </section>
@@ -264,7 +264,7 @@
     <div class="sf-grid">
       <div class="sf-brand">
         <a href="index.html" class="sf-mark"><i></i>NextMove Careers</a>
-        <p>One-on-one online career guidance for college and school students. Choose your path, build your profile, get shortlisted and crack placements with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry).</p>
+        <p>1:1 career guidance for college and school students, with Yash Sarda.</p>
         <a class="sf-cta" href="index.html#book">Book a free 15-min call <span aria-hidden="true">&rarr;</span></a>
       </div>
       <nav class="sf-col" aria-label="Career guidance sessions">
@@ -290,10 +290,8 @@
         <h2>Career guides</h2>
         <ul>
           <li><a href="blog/stream-after-10th.html">Choosing a stream after 10th</a></li>
-          <li><a href="blog/choose-your-branch.html">CS or ECE: picking a branch</a></li>
           <li><a href="blog/job-or-mba.html">Job now or MBA later?</a></li>
           <li><a href="blog/cv-not-getting-shortlisted.html">Why your CV isn't shortlisted</a></li>
-          <li><a href="blog/tell-me-about-yourself.html">Answering "Tell me about yourself"</a></li>
           <li><a href="downloads/cv-checklist.pdf" download>Free CV checklist (PDF)</a></li>
           <li><a href="blog/index.html">All career guides</a></li>
         </ul>
@@ -306,7 +304,6 @@
           <li><a href="index.html#parents">For parents</a></li>
           <li><a href="index.html#faq">Frequently asked questions</a></li>
         </ul>
-        <p class="sf-note">All sessions are one-on-one video calls, in Hindi or English.</p>
       </div>
     </div>
     <div class="sf-bottom">
@@ -357,7 +354,7 @@ const SESSIONS = {
    ============================================================ */
 const PROFILE = {
   id: "profile", name: "Profile evaluation", icon: "profile", mins: 3,
-  blurb: "Score your profile out of 100 across academics, experience, proof of skills, visibility and direction.",
+  blurb: "How strong is your profile? Get a score out of 100.",
   cats: {
     acad: { name: "Academics", fix: "Profile gap check" },
     exp:  { name: "Experience", fix: "Internship strategy" },
@@ -385,7 +382,7 @@ const PROFILE = {
    ============================================================ */
 const PLACEMENT = {
   id: "placement", name: "Placement readiness", icon: "placement", mins: 3,
-  blurb: "How ready are you for placement season? Score your prep for tests, interviews, GDs and company research.",
+  blurb: "Are you ready for placement season?",
   cats: {
     tests: { name: "Online tests", fix: "Aptitude tests" },
     intv:  { name: "Interviews", fix: "Mock interview" },
@@ -416,7 +413,7 @@ const PLACEMENT = {
 const SCALE = ["Not me", "A little", "Somewhat", "Mostly", "Totally me"];
 const STREAM = {
   id: "stream", name: "Stream selector", icon: "stream", mins: 3,
-  blurb: "Engineering, commerce or arts? Pick your track and get a match score for each stream within it.",
+  blurb: "Engineering, Commerce or Arts? Find your best-fit stream.",
   tracks: {
     eng: {
       name: "Engineering", icon: "eng", sub: "CS, AI & data, electronics, electrical, mechanical, civil",
