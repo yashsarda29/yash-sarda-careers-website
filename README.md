@@ -38,3 +38,4 @@ To edit questions, points, streams or result wording, change the `PROFILE`, `STR
 
 ## Photos
 - Stock photos live in `images/` as web-optimised `.webp` files (all free under the Unsplash License). Credits: `images/CREDITS.md`.
+- Blog photos: `images/blog/<post-file-name>.webp` (cover on the post, thumbnail on the blog list, home cards and "Keep reading"), plus `images/blog/share/<post-file-name>.jpg` used for link previews. A new post needs both files with the same name as the post.

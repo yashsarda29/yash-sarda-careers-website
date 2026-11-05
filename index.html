@@ -65,7 +65,7 @@
 
   /* ---------- Header ---------- */
   header { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s; }
-  header.solid { background: rgba(243,242,239,.9); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--hair); }
+  header.solid { background: rgba(244,246,248,.9); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--hair); }
   .bar { display: flex; align-items: center; justify-content: space-between; height: 76px; }
   .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
   .mark i { width: 12px; height: 12px; background: var(--blue); border-radius: 3px; transform: rotate(45deg); }
@@ -92,7 +92,7 @@
     .sheet a:hover, .sheet a:focus-visible { background: var(--blue-wash); color: var(--blue); }
     .sheet a + a { border-top: 1px solid var(--hair); }
     .sheet .mono { color: var(--ink-soft); align-self: center; }
-    header.menu-open { background: rgba(243,242,239,.97); }
+    header.menu-open { background: rgba(244,246,248,.97); }
   }
   @media (max-width: 420px) { .bar .btn .long { display: none; } .bar .btn { padding: 11px 16px; } }
 
@@ -215,8 +215,8 @@
   .about-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 64px; align-items: end; }
   .manifesto { font-family: var(--serif); font-size: clamp(2.2rem, 4.6vw, 4rem); line-height: 1.05; letter-spacing: -0.01em; }
   .manifesto em { color: #6FA8E8; }
-  .manifesto .dim { color: rgba(243,242,239,.35); }
-  .about-copy { color: rgba(243,242,239,.72); margin-top: 32px; max-width: 560px; font-size: 1.08rem; }
+  .manifesto .dim { color: rgba(244,246,248,.35); }
+  .about-copy { color: rgba(244,246,248,.72); margin-top: 32px; max-width: 560px; font-size: 1.08rem; }
   .id-card { background: var(--paper); color: var(--ink); border-radius: 24px; padding: 22px; transform: rotate(2.5deg); box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); transition: transform .4s; }
   .id-card:hover { transform: rotate(0deg) translateY(-4px); }
   .photo { aspect-ratio: 1; border-radius: 16px; background: var(--blue); display: grid; place-items: center; overflow: hidden; position: relative; }
@@ -405,11 +405,11 @@
   .manifesto { font-size: clamp(1.9rem, min(3.4vw, 5.6vh), 3rem); font-weight: 400; }
   .about-copy { margin-top: 18px; font-size: 1.02rem; }
   /* Three short points on how sessions work */
-  .about-points { list-style: none; display: grid; gap: 0; margin-top: 24px; max-width: 600px; border-top: 1px solid rgba(243,242,239,.14); }
-  .about-points li { display: grid; grid-template-columns: 22px 1fr; column-gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(243,242,239,.14); }
+  .about-points { list-style: none; display: grid; gap: 0; margin-top: 24px; max-width: 600px; border-top: 1px solid rgba(244,246,248,.14); }
+  .about-points li { display: grid; grid-template-columns: 22px 1fr; column-gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(244,246,248,.14); }
   .about-points li::before { content: ""; grid-row: span 2; width: 10px; height: 10px; margin-top: 7px; background: var(--blue); border-radius: 2px; transform: rotate(45deg); }
   .about-points b { color: var(--paper); font-weight: 600; }
-  .about-points span { color: rgba(243,242,239,.68); font-size: .96rem; }
+  .about-points span { color: rgba(244,246,248,.68); font-size: .96rem; }
   .id-card { padding: 16px; max-width: 320px; justify-self: end; }
   .photo { aspect-ratio: 5/4; }
   .id-card h4 { margin-top: 12px; font-size: 1.25rem; }
@@ -733,17 +733,19 @@
   .voice.big q::before, .voice.dark q::before { color: rgba(255,255,255,.6); }
   .route-foot .serif { font-weight: 600; font-size: 1.05rem; }
 
-  /* Blog cards: one calm style instead of four colours */
-  .note .cover, .note:nth-child(n) .cover { background: var(--paper); color: var(--ink); box-shadow: none; }
+  /* Blog cards: a photo cover with the topic tag on top */
+  .note .cover, .note:nth-child(n) .cover { background: var(--paper); color: var(--ink); box-shadow: none; padding: 0; position: relative; display: block; }
   .note .cover::after { display: none; }
-  .note .cover .mono { color: var(--ink-soft); }
-  .note .cover .n { font-weight: 800; font-size: 2.6rem; letter-spacing: -0.04em; color: var(--blue); }
-  .note .cover .ic, .note:nth-child(n) .cover .ic { background: var(--white); color: var(--blue); }
+  .note .cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .note:hover .cover img { transform: scale(1.05); }
+  .note .cover .cover-tag { position: absolute; left: 12px; top: 12px; padding: 5px 10px; border-radius: 999px; background: var(--white); color: var(--ink); }
 
   /* Cards sit on the opposite background to their band */
   .band-white .parents { background: var(--paper); }
   .band-white .row:hover { background: var(--paper); }
   .promises li { background: var(--white); }
+  .band-white .promises li { background: var(--paper); }
+  #route .stage-facts span { background: var(--white); }
   .tc-tracks span { background: var(--paper); color: var(--ink); }
   .answer h3, .note .cover .n { font-style: normal; }
   /* Last light-blue tints become grey */
@@ -792,9 +794,9 @@
     <a href="#finder">Find your session <span aria-hidden="true">→</span></a>
     <a href="#route">The route <span aria-hidden="true">→</span></a>
     <a href="#pricing">Pricing <span aria-hidden="true">→</span></a>
+    <a href="#tests">Free tests <span class="mono">New</span></a>
     <a href="#parents">For parents <span aria-hidden="true">→</span></a>
     <a href="#stories">Stories <span aria-hidden="true">→</span></a>
-    <a href="#tests">Free tests <span class="mono">New</span></a>
     <a href="#notes">Blog <span aria-hidden="true">→</span></a>
     <a href="#faq">FAQ <span aria-hidden="true">→</span></a>
     <a href="#book">Book a free call <span aria-hidden="true">→</span></a>
@@ -865,51 +867,8 @@
     </div>
   </section>
 
-  <!-- ================= FREE CAREER TESTS (full section) ================= -->
-  <section class="block band" id="tests">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono">Free career tests</span>
-        <div>
-          <h2>Not sure where you stand? <span class="serif">Answer 10 questions.</span></h2>
-          <p>Three free tests, 3 minutes each, no sign-up. Get a score, see your strongest and weakest areas, and download your report as a PDF.</p>
-        </div>
-      </div>
-      <div class="test-cards" data-stagger>
-        <a class="test-card" href="tests.html#stream">
-          <span class="tc-img"><img src="images/test-stream.webp" alt="Two school students studying at their desks" width="800" height="500" loading="lazy"></span>
-          <span class="tc-body">
-            <span class="mono">For school students · Match % per stream</span>
-            <b>Stream selector</b>
-            <span class="tc-text">Engineering, Commerce or Arts? Pick your track, rate 10 statements, and see how well you match each of 6 streams.</span>
-            <span class="tc-tracks"><span>Engineering</span><span>Commerce</span><span>Arts &amp; Humanities</span></span>
-            <span class="tc-go">Find my stream <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
-        <a class="test-card" href="tests.html#profile">
-          <span class="tc-img"><img src="images/test-profile.webp" alt="College students walking across campus" width="800" height="500" loading="lazy"></span>
-          <span class="tc-body">
-            <span class="mono">For college students · Score out of 100</span>
-            <b>Profile evaluation</b>
-            <span class="tc-text">How strong is your profile? Scored across academics, experience, proof of skills, visibility and direction.</span>
-            <span class="tc-go">Score my profile <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
-        <a class="test-card" href="tests.html#placement">
-          <span class="tc-img"><img src="images/test-placement.webp" alt="Two people shaking hands after an interview" width="800" height="500" loading="lazy"></span>
-          <span class="tc-body">
-            <span class="mono">Before placements · Score out of 100</span>
-            <b>Placement readiness</b>
-            <span class="tc-text">Are you ready for placement season? Check your prep for online tests, interviews, GDs and company research.</span>
-            <span class="tc-go">Check my readiness <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= ROUTE / ALL SESSIONS ================= -->
-  <section class="block band band-white" id="route">
+  <section class="block band" id="route">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">The route</span>
@@ -925,7 +884,7 @@
   <!-- ================= PRICING =================
        Kept deliberately short: free call, "from ₹99", and one bundle.
        The full per-session price list is shared on WhatsApp, not shown here. -->
-  <section class="block band" id="pricing">
+  <section class="block band band-white" id="pricing">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Pricing</span>
@@ -977,6 +936,49 @@
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg><span><b>Free reschedule</b>Up to 12 hours before. Full refund if you cancel 24+ hours before</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg><span><b>Hindi or English</b>Online video calls, pay by UPI or any mode</span></li>
       </ul>
+    </div>
+  </section>
+
+  <!-- ================= FREE CAREER TESTS (full section) ================= -->
+  <section class="block band" id="tests">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">Free career tests</span>
+        <div>
+          <h2>Not sure where you stand? <span class="serif">Answer 10 questions.</span></h2>
+          <p>Three free tests, 3 minutes each, no sign-up. Get a score, see your strongest and weakest areas, and download your report as a PDF.</p>
+        </div>
+      </div>
+      <div class="test-cards" data-stagger>
+        <a class="test-card" href="tests.html#stream">
+          <span class="tc-img"><img src="images/test-stream.webp" alt="Two school students studying at their desks" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">For school students · Match % per stream</span>
+            <b>Stream selector</b>
+            <span class="tc-text">Engineering, Commerce or Arts? Pick your track, rate 10 statements, and see how well you match each of 6 streams.</span>
+            <span class="tc-tracks"><span>Engineering</span><span>Commerce</span><span>Arts &amp; Humanities</span></span>
+            <span class="tc-go">Find my stream <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="test-card" href="tests.html#profile">
+          <span class="tc-img"><img src="images/test-profile.webp" alt="College students walking across campus" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">For college students · Score out of 100</span>
+            <b>Profile evaluation</b>
+            <span class="tc-text">How strong is your profile? Scored across academics, experience, proof of skills, visibility and direction.</span>
+            <span class="tc-go">Score my profile <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="test-card" href="tests.html#placement">
+          <span class="tc-img"><img src="images/test-placement.webp" alt="Two people shaking hands after an interview" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">Before placements · Score out of 100</span>
+            <b>Placement readiness</b>
+            <span class="tc-text">Are you ready for placement season? Check your prep for online tests, interviews, GDs and company research.</span>
+            <span class="tc-go">Check my readiness <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -1309,7 +1311,7 @@ document.getElementById("stages").innerHTML = STAGES.map((s, si) => `
     <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
         <li><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
-          <span class="idx">${s.num}.${i + 1}</span>
+          <span class="idx">${Number(s.num)}.${i + 1}</span>
           <div><h4>${esc(r[0])}</h4><p>${esc(r[1])}</p></div>
           <span class="book"><span>Book</span><span class="go">${ARROW}</span></span>
         </a></li>`).join("")}
@@ -1354,21 +1356,10 @@ document.getElementById("voices").innerHTML = TESTIMONIALS.map((t, i) => `
     <figcaption class="who"><span class="av">${esc(t.name.split(" ").map(w => w[0]).join("").slice(0, 2))}</span><span><b>${esc(t.name)}</b><span>${esc(t.detail)}</span></span></figcaption>
   </figure>`).join("");
 
-/* Blog cards (with a topic icon) */
-const TOPIC_ICONS = {
-  doc: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/>',
-  scale: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
-  split: '<path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"/><path d="m15 9 6-6"/>',
-  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>',
-  mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/>',
-  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
-  target: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
-  calc: '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/><path d="M8 15h.01"/><path d="M12 15h.01"/><path d="M16 15h.01"/><path d="M8 19h8"/>'
-};
-const topicIcon = (k) => TOPIC_ICONS[k] ? `<span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${TOPIC_ICONS[k]}</svg></span>` : "";
+/* Blog cards: photo cover (images/blog/<slug>.webp) with the topic tag */
 document.getElementById("notesGrid").innerHTML = POSTS.map((p, i) => `
   <a class="note rv" href="blog/${p.slug}.html">
-    <div class="cover"><div class="top"><span class="mono">${esc(p.tag)}</span>${topicIcon(p.icon)}</div><span class="n">${String(i + 1).padStart(2, "0")}</span></div>
+    <div class="cover"><img src="images/blog/${p.slug}.webp" alt="" width="1200" height="600" loading="lazy"><span class="mono cover-tag">${esc(p.tag)}</span></div>
     <div class="body"><h3>${esc(p.title)}</h3><p>${esc(p.blurb)}</p><span class="read">${p.mins} min read →</span></div>
   </a>`).join("");
 
@@ -1455,7 +1446,7 @@ if ("IntersectionObserver" in window) {
     if (!e.isIntersecting) return;
     links.forEach(a => { const on = a.getAttribute("href") === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
   }), { rootMargin: "-45% 0px -50% 0px" });
-  ["finder", "tests", "route", "pricing", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  ["finder", "route", "pricing", "tests", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
 }
 
 /* Reveal + active stage */
