@@ -143,3 +143,16 @@ footer a:hover { color: var(--blue); }
   .prose { font-size: 1.06rem; }
   .end-cta { padding: 52px 24px; margin: 0 8px 16px; border-radius: 26px; }
 }
+
+/* Fit-to-screen pass: spacing scales with screen height, matching the home page */
+.list-head { padding: clamp(48px, 9vh, 80px) 0 clamp(32px, 5vh, 48px); }
+.list-head h1 { font-size: clamp(2.6rem, min(6vw, 10vh), 5rem); }
+.post-list { margin-bottom: clamp(56px, 9vh, 96px); }
+.post-list a { padding: 22px 12px; }
+.post-hero { padding: clamp(44px, 8vh, 72px) 0 clamp(32px, 5vh, 48px); }
+.post-hero h1 { font-size: clamp(2.3rem, min(5.4vw, 9vh), 4.4rem); margin: 18px 0 18px; }
+.byline { margin-top: 24px; padding-top: 18px; }
+.article-grid { padding-bottom: clamp(56px, 9vh, 88px); }
+.more { padding: clamp(48px, 8vh, 72px) 0 40px; }
+.end-cta { padding: clamp(44px, 8vh, 64px) 40px; }
+@media (max-width: 760px) { .post-list a { padding: 20px 8px; } .end-cta { padding: 44px 22px; } }

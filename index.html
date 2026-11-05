@@ -229,23 +229,6 @@
   .id-card .li svg { width: 18px; height: 18px; }
   @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .id-card { max-width: 340px; } .about { margin: 0 8px; border-radius: 28px; } }
 
-  /* ---------- Steps ---------- */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); position: relative; }
-  .steps::before { content: ""; position: absolute; top: 27px; left: 28px; right: 28px; height: 1.5px; background: repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 12px); }
-  .step { position: relative; padding-right: 32px; }
-  .step .dot { width: 56px; height: 56px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--ink); display: grid; place-items: center; font-family: var(--mono); font-size: .85rem; position: relative; transition: all .3s; }
-  .step:hover .dot { background: var(--blue); border-color: var(--blue); color: var(--white); }
-  .step:first-child .dot { background: var(--blue); border-color: var(--blue); color: var(--white); }
-  .step h3 { font-size: 1.6rem; letter-spacing: -0.03em; margin: 28px 0 8px; }
-  .step p { color: var(--ink-soft); max-width: 300px; }
-  @media (max-width: 760px) {
-    .steps { grid-template-columns: 1fr; gap: 36px; }
-    .steps::before { top: 28px; bottom: 28px; left: 27px; right: auto; width: 1.5px; height: auto; background: repeating-linear-gradient(180deg, var(--ink) 0 6px, transparent 6px 12px); }
-    .step { display: grid; grid-template-columns: 56px 1fr; column-gap: 20px; padding: 0; }
-    .step h3 { margin: 10px 0 6px; font-size: 1.35rem; }
-    .step p { grid-column: 2; }
-  }
-
   /* ---------- FAQ ---------- */
   .faq { border-top: 1.5px solid var(--ink); }
   .faq details { border-bottom: 1px solid var(--hair); }
@@ -359,6 +342,134 @@
     .float span { display: none; }
     .float { padding: 10px; }
   }
+  /* =====================================================================
+     FIT-TO-SCREEN PASS
+     Spacing and type scale with the screen HEIGHT as well as width, so
+     each section fits in one laptop screen (1366×768) instead of
+     spilling over with large fixed paddings.
+     ===================================================================== */
+  section.block { padding: clamp(56px, 9vh, 96px) 0; }
+  /* Paper sections that follow each other don't need double gaps */
+  #stories + #book, #book + #notes, #notes + #faq { padding-top: clamp(16px, 3vh, 32px); }
+  .sec-head { margin-bottom: clamp(24px, 4vh, 40px); gap: 24px; grid-template-columns: 200px 1fr; }
+  .sec-head .mono { padding-top: 10px; }
+  .sec-head h2 { font-size: clamp(2rem, min(3.8vw, 6.4vh), 3.3rem); }
+  .sec-head p { font-size: 1.04rem; margin-top: 12px; }
+
+  /* Hero: everything including the ticker fits in the first screen */
+  .hero { padding-top: clamp(92px, 13vh, 120px); min-height: min(100svh, 920px); }
+  .hero h1 { font-size: clamp(2.8rem, min(7.2vw, 11.2vh), 6.6rem); margin: clamp(14px, 2.4vh, 24px) 0 clamp(14px, 2.4vh, 22px); }
+  .hero .sub { font-size: clamp(1rem, 2.2vh, 1.15rem); }
+  .hero-ctas { margin-top: clamp(18px, 3vh, 28px); }
+  .free-note { margin-top: 14px; }
+  .route { padding: 20px 22px 16px; }
+  .route svg { height: clamp(220px, 46vh, 400px); }
+  .route-foot { padding-top: 10px; }
+  .marquee { margin-top: clamp(24px, 4vh, 44px); padding: clamp(12px, 2vh, 18px) 0; }
+  .marquee span { font-size: clamp(1.25rem, min(2.2vw, 3.6vh), 1.8rem); }
+
+  /* Finder */
+  .finder-grid { gap: 40px; }
+  .pain { padding: 10px 16px; font-size: .95rem; }
+  .answer { min-height: 0; padding: 26px 28px; }
+  .answer h3 { font-size: clamp(1.5rem, 2.3vw, 2rem); margin: 8px 0 16px; }
+  .recs a { padding: 12px 16px; }
+
+  /* Stages */
+  .stage { padding: clamp(28px, 4.5vh, 40px) 0; gap: 48px; grid-template-columns: 340px 1fr; }
+  .stage-num { font-size: clamp(3.6rem, min(6.5vw, 11vh), 6rem); }
+  .stage-side h3 { font-size: 1.65rem; }
+  .row { padding: 15px 14px; margin: 0 -14px; grid-template-columns: 56px 1fr auto; }
+  .row h4 { font-size: 1.14rem; }
+  .row p { font-size: .94rem; margin-top: 2px; }
+  .row .book .go { width: 36px; height: 36px; }
+  .school { margin-top: 32px; padding: 20px 26px; }
+
+  /* About */
+  .about-grid { gap: 48px; align-items: center; }
+  .about-label { display: block; color: #6FA8E8; margin-bottom: 18px; }
+  .manifesto { font-size: clamp(1.9rem, min(3.4vw, 5.6vh), 3rem); }
+  .about-copy { margin-top: 18px; font-size: 1.02rem; }
+  .id-card { padding: 16px; max-width: 320px; justify-self: end; }
+  .photo { aspect-ratio: 5/4; }
+  .photo .ini { font-size: 5rem; }
+  .id-card h4 { margin-top: 12px; font-size: 1.25rem; }
+  .id-meta { margin-top: 12px; }
+  .id-meta div { padding: 9px 12px; }
+
+  /* Testimonials */
+  .voices { gap: 14px; }
+  .voice { padding: 22px 24px; gap: 18px; border-radius: 22px; }
+  .voice q { font-size: 1.28rem; }
+  .voice.big q { font-size: clamp(1.5rem, 2.3vw, 2rem); }
+  .outcome { margin-bottom: 10px; }
+  .who .av { width: 40px; height: 40px; }
+
+  /* Book: heading sits beside the calendar instead of above it */
+  .book-wrap { grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: center; }
+  .book-label { display: block; color: var(--blue); margin-bottom: 14px; }
+  .book-h { font-size: clamp(2rem, min(3.4vw, 6vh), 3rem); line-height: 1; letter-spacing: -0.04em; font-weight: 700; margin-bottom: clamp(18px, 3vh, 28px); }
+  .book-h .serif { color: var(--blue); font-size: 1.06em; }
+  .book-points li { padding: 14px 0; }
+  .book-alt { margin-top: 18px; }
+  .cal { min-height: 0; }
+  .cal .calendly-inline-widget { height: clamp(560px, calc(100svh - 150px), 680px); }
+  .cal-empty { position: static; min-height: clamp(360px, 60vh, 520px); }
+
+  /* Blog cards */
+  .note .cover { aspect-ratio: 16/9; padding: 18px; }
+  .note .cover .n { font-size: 3.6rem; }
+  .note .body { padding: 18px; gap: 8px; }
+  .note h3 { font-size: 1.08rem; }
+  .notes-foot { margin-top: 24px; }
+
+  /* FAQ */
+  .faq summary { padding: 18px 0; font-size: clamp(1.05rem, 1.6vw, 1.3rem); grid-template-columns: 64px 1fr 36px; }
+  .faq summary .pm { width: 34px; height: 34px; }
+  .faq details p { padding: 0 36px 20px 64px; font-size: 1rem; }
+
+  /* Final CTA */
+  .final { padding: clamp(60px, 10vh, 96px) 0; }
+  .final h2 { font-size: clamp(2.6rem, min(7.4vw, 12vh), 6.2rem); margin: 16px 0 18px; }
+  footer { padding: 28px 0 32px; }
+
+  /* Tablet */
+  @media (max-width: 960px) {
+    .hero { min-height: 0; padding-top: 104px; }
+    .route svg { height: auto; }
+    .stage { grid-template-columns: 1fr; gap: 20px; }
+    .book-wrap { grid-template-columns: 1fr; gap: 28px; }
+    .id-card { justify-self: start; }
+  }
+  /* Phone */
+  @media (max-width: 760px) {
+    section.block { padding: 56px 0; }
+    #stories + #book, #book + #notes, #notes + #faq { padding-top: 16px; }
+    .sec-head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 24px; }
+    .sec-head .mono { padding-top: 0; }
+    .hero h1 { font-size: clamp(2.6rem, 12.5vw, 3.8rem); }
+    .marquee { margin-top: 36px; }
+    .finder-grid { gap: 24px; }
+    .stage-num { font-size: 3.6rem; }
+    .about-grid { gap: 32px; }
+    .final { padding: 64px 0; }
+    .faq summary { grid-template-columns: 44px 1fr 34px; }
+    .faq details p { padding: 0 0 18px 44px; }
+    .cal .calendly-inline-widget { height: 640px; }
+  }
+  @media (max-width: 560px) {
+    .row { grid-template-columns: 1fr auto; padding: 16px 8px; margin: 0 -8px; }
+  }
+  /* Phones: testimonials and blog cards become a swipeable row instead of a tall stack */
+  .swipe-hint { display: none; align-items: center; gap: 8px; margin-top: 12px; color: var(--ink-soft); }
+  @media (max-width: 600px) {
+    .voices, .notes { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 4px 20px 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .voices::-webkit-scrollbar, .notes::-webkit-scrollbar { display: none; }
+    .voice, .voice.big, .note { flex: 0 0 84%; scroll-snap-align: center; }
+    .voice q, .voice.big q { font-size: 1.22rem; }
+    .swipe-hint { display: flex; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .js .rv { opacity: 1; transform: none; }
@@ -398,9 +509,9 @@
     <a href="#finder">Find your session <span class="mono">01</span></a>
     <a href="#route">The route <span class="mono">02</span></a>
     <a href="#stories">Stories <span class="mono">04</span></a>
-    <a href="#book">Book a call <span class="mono">06</span></a>
-    <a href="#notes">Blog <span class="mono">07</span></a>
-    <a href="#faq">FAQ <span class="mono">08</span></a>
+    <a href="#book">Book a call <span class="mono">05</span></a>
+    <a href="#notes">Blog <span class="mono">06</span></a>
+    <a href="#faq">FAQ <span class="mono">07</span></a>
   </nav>
 </header>
 
@@ -494,12 +605,9 @@
   <!-- ================= ABOUT ================= -->
   <section class="block about" id="about">
     <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono" style="color:#6FA8E8">(03) Who you'll talk to</span>
-        <div></div>
-      </div>
       <div class="about-grid">
         <div class="rv">
+          <span class="mono about-label">(03) Who you'll talk to</span>
           <p class="manifesto">Not a coach who read about the industry. <span class="dim">Someone who</span> <em>works in it</em><span class="dim">, and tells you what actually gets people hired.</span></p>
           <p class="about-copy">I'm Yash, a business solutions and career path consultant with an MBA from Great Lakes, Chennai and 5+ years in industry. I've seen what recruiters shortlist and where good students lose out. My sessions are short, practical and honest: you leave with a framework to decide and act, not a pile of generic advice.</p>
         </div>
@@ -532,39 +640,21 @@
         </div>
       </div>
       <div class="voices" id="voices"></div>
+      <p class="swipe-hint mono" aria-hidden="true">Swipe for more →</p>
     </div>
   </section>
 
-  <!-- ================= STEPS ================= -->
-  <section class="block" style="padding-top:40px">
+  <!-- ================= BOOK (CALENDLY) + HOW IT WORKS ================= -->
+  <section class="block" id="book">
     <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono">(05) How it works</span>
-        <div><h2>Three steps. <span class="serif">Zero fluff.</span></h2></div>
-      </div>
-      <div class="steps">
-        <div class="step rv"><div class="dot">01</div><h3>Pick a session</h3><p>Choose the one that matches where you are right now, or ask me on the free call.</p></div>
-        <div class="step rv"><div class="dot">02</div><h3>Book a slot</h3><p>Pick a time in the calendar below, or message on WhatsApp. It's a 30-minute online video call.</p></div>
-        <div class="step rv"><div class="dot">03</div><h3>Leave with a plan</h3><p>A clear framework to decide and act, not generic advice.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= BOOK (CALENDLY) ================= -->
-  <section class="block" id="book" style="padding-top:40px">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono">(06) Book</span>
-        <div>
-          <h2>Pick a time. <span class="serif">The first 15 minutes are free.</span></h2>
-        </div>
-      </div>
       <div class="book-wrap">
         <div class="rv">
+          <span class="mono book-label">(05) How it works</span>
+          <h2 class="book-h">Pick a time. <span class="serif">The first 15 minutes are free.</span></h2>
           <ul class="book-points">
-            <li><span class="mono">01</span><div><b>Choose a slot</b><span>Pick any open time that suits you.</span></div></li>
+            <li><span class="mono">01</span><div><b>Pick a slot</b><span>Choose any open time, or ask me which session fits on the free call.</span></div></li>
             <li><span class="mono">02</span><div><b>Tell me what's on your mind</b><span>A line or two on where you're stuck helps me prepare.</span></div></li>
-            <li><span class="mono">03</span><div><b>Join the video call</b><span>You'll get the link by email, with a reminder before we start.</span></div></li>
+            <li><span class="mono">03</span><div><b>Leave with a plan</b><span>A 30-minute video call that ends with a clear framework, not generic advice.</span></div></li>
           </ul>
           <p class="book-alt">Prefer chat? <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">Message on WhatsApp</a></p>
         </div>
@@ -580,25 +670,26 @@
   </section>
 
   <!-- ================= BLOG ================= -->
-  <section class="block" id="notes" style="padding-top:40px">
+  <section class="block" id="notes">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(07) Blog</span>
+        <span class="mono">(06) Blog</span>
         <div>
           <h2>Notes from the <span class="serif">other side of the table.</span></h2>
           <p>Short, practical reads on the decisions students get stuck on most.</p>
         </div>
       </div>
       <div class="notes" id="notesGrid"></div>
+      <p class="swipe-hint mono" aria-hidden="true">Swipe for more →</p>
       <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All posts <span class="arr">↗</span></a></div>
     </div>
   </section>
 
   <!-- ================= FAQ ================= -->
-  <section class="block" id="faq" style="padding-top:40px">
+  <section class="block" id="faq">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="mono">(08) Questions</span>
+        <span class="mono">(07) Questions</span>
         <div><h2>Before you <span class="serif">message.</span></h2></div>
       </div>
       <div class="faq rv">
@@ -829,7 +920,13 @@ document.getElementById("yr").textContent = new Date().getFullYear();
 
 /* Header + floating button */
 const hdr = document.getElementById("hdr"), fl = document.getElementById("float");
-const onScroll = () => { hdr.classList.toggle("solid", scrollY > 20); fl.classList.toggle("show", scrollY > innerHeight * .8); };
+/* The floating button hides near the bottom, where the final section has its own WhatsApp button */
+const finalEl = document.querySelector(".final");
+const onScroll = () => {
+  hdr.classList.toggle("solid", scrollY > 20);
+  const nearEnd = finalEl.getBoundingClientRect().top < innerHeight * .85;
+  fl.classList.toggle("show", scrollY > innerHeight * .8 && !nearEnd);
+};
 addEventListener("scroll", onScroll, { passive: true }); onScroll();
 
 /* Reveal + active stage */
