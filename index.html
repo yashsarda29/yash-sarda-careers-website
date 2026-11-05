@@ -25,7 +25,7 @@
 <script>document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   /* Palette: LinkedIn blue + ink + paper. Nothing else. */
   :root {
@@ -696,6 +696,51 @@
   .final .rings i:nth-child(4) { animation-delay: 2.4s; }
   @keyframes breathe { 0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 1; } 50% { transform: translate(-50%,-50%) scale(1.05); opacity: .55; } }
 
+  /* =====================================================================
+     DESIGN SYSTEM · fewer colours, one main font
+     Colours: blue (accent) · navy (text and dark panels) · grey (muted text)
+              · white and light grey (backgrounds, alternating by section).
+     Fonts:   Inter Tight everywhere; the italic serif only in the hero headline.
+     ===================================================================== */
+  :root { --paper: #F4F6F8; --serif: var(--sans); }
+  .serif { font-family: var(--sans); font-style: normal; font-weight: inherit; letter-spacing: inherit; }
+  .hero h1 .serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+
+  /* Finder is a full-width white band now, not a floating panel */
+  .finder { margin: 0 !important; border-radius: 0; }
+  .finder > .wrap { max-width: var(--max); padding-left: var(--gutter); padding-right: var(--gutter); }
+  .finder + .band { border-top: 1px solid var(--hair); }
+  .answer { background: var(--ink); }
+  .answer h3 { font-weight: 700; letter-spacing: -0.03em; }
+
+  /* About (navy panel): white and white-alpha only, no extra light blues */
+  .manifesto { font-weight: 700; letter-spacing: -0.035em; line-height: 1.08; }
+  .manifesto em { font-style: normal; color: var(--white); }
+  .manifesto .dim { color: rgba(255,255,255,.45); }
+  .about-label { color: rgba(255,255,255,.6); }
+
+  /* Testimonials, route card, booking, final call to action */
+  .voice q { font-weight: 500; letter-spacing: -0.01em; }
+  .voice.big q::before, .voice.dark q::before { color: rgba(255,255,255,.6); }
+  .route-foot .serif { font-weight: 600; font-size: 1.05rem; }
+
+  /* Blog cards: one calm style instead of four colours */
+  .note .cover, .note:nth-child(n) .cover { background: var(--paper); color: var(--ink); box-shadow: none; }
+  .note .cover::after { display: none; }
+  .note .cover .mono { color: var(--ink-soft); }
+  .note .cover .n { font-weight: 800; font-size: 2.6rem; letter-spacing: -0.04em; color: var(--blue); }
+  .note .cover .ic, .note:nth-child(n) .cover .ic { background: var(--white); color: var(--blue); }
+
+  /* Cards sit on the opposite background to their band */
+  .band-white .parents { background: var(--paper); }
+  .band-white .row:hover { background: var(--paper); }
+  .promises li { background: var(--white); }
+  .tc-tracks span { background: var(--paper); color: var(--ink); }
+  .answer h3, .note .cover .n { font-style: normal; }
+  /* Last light-blue tints become grey */
+  .route-foot .tap, .cal-ic, .photo.has-img { background: var(--paper); }
+  .route-foot .tap:hover { background: var(--blue); }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .js .rv { opacity: 1; transform: none; }
@@ -791,7 +836,7 @@
   </section>
 
   <!-- ================= FINDER ================= -->
-  <section class="block finder" id="finder">
+  <section class="block band band-white finder" id="finder">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Find your session</span>
@@ -811,7 +856,7 @@
   </section>
 
   <!-- ================= FREE CAREER TESTS (full section) ================= -->
-  <section class="block band band-wash" id="tests">
+  <section class="block band" id="tests">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Free career tests</span>
@@ -854,7 +899,7 @@
   </section>
 
   <!-- ================= ROUTE / ALL SESSIONS ================= -->
-  <section class="block band" id="route">
+  <section class="block band band-white" id="route">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">The route</span>
@@ -870,7 +915,7 @@
   <!-- ================= PRICING =================
        Kept deliberately short: free call, "from ₹99", and one bundle.
        The full per-session price list is shared on WhatsApp, not shown here. -->
-  <section class="block band band-white" id="pricing">
+  <section class="block band" id="pricing">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Pricing</span>
@@ -922,7 +967,7 @@
   </section>
 
   <!-- ================= FOR PARENTS ================= -->
-  <section class="block band" id="parents" aria-labelledby="parentsTitle">
+  <section class="block band band-white" id="parents" aria-labelledby="parentsTitle">
     <div class="wrap">
       <div class="parents rv">
         <img class="parents-img" src="images/parents.webp" alt="Parents sitting together with their daughter, smiling" width="900" height="700" loading="lazy">

@@ -196,3 +196,14 @@ img.av { object-fit: cover; object-position: 50% 20%; }
 .dl-strip { grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: 16px 22px; margin-bottom: 22px; }
 .dl-strip span:last-child { font-weight: 600; color: var(--blue); }
 @media (max-width: 600px) { .dl-strip { grid-template-columns: 1fr; gap: 4px; } }
+
+/* DESIGN SYSTEM: same palette as the home page; no serif on blog pages */
+:root { --paper: #F4F6F8; --serif: var(--sans); }
+.serif { font-family: var(--sans); font-style: normal; font-weight: inherit; letter-spacing: inherit; }
+.prose p { color: var(--ink); }
+.post-hero .dek { font-weight: 400; font-size: clamp(1.15rem, 2vw, 1.35rem); line-height: 1.45; }
+.prose blockquote { font-weight: 600; font-size: 1.35rem; line-height: 1.35; }
+.post-list .num { font-weight: 800; font-style: normal; font-size: 2rem; letter-spacing: -0.04em; }
+.aside .card .serif { font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em; }
+.dl-card:hover, .dl-strip:hover { background: var(--white); box-shadow: inset 0 0 0 1.5px var(--blue); }
+.dl-card, .dl-strip { background: var(--white); box-shadow: inset 0 0 0 1.5px var(--hair); }
