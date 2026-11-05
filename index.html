@@ -576,7 +576,7 @@
   .band-white .plan:not(.plan-best), .band-white .cal { background: var(--paper); }
   .band-white .promises li { background: var(--white); }
 
-  /* ---------- Free career tests (full section) ---------- */
+  /* ---------- Career Check: free tests (full section) ---------- */
   .test-cards { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 16px; }
   .test-card { display: flex; flex-direction: column; background: var(--white); border-radius: 26px; overflow: hidden; transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
   .test-card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgba(11,27,43,.4); }
@@ -597,16 +597,18 @@
   .tc-img { aspect-ratio: auto; height: clamp(170px, 18vw, 220px); }
   @media (max-width: 760px) { .test-cards { grid-template-columns: 1fr; } .tc-img { height: 200px; } }
 
-  /* ---------- Route side panel: facts, progress, button ---------- */
-  .stage-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .stage-facts span { padding: 8px 12px; border-radius: 12px; background: var(--paper); font-size: .88rem; color: var(--ink-soft); }
-  .stage-facts b { color: var(--ink); font-weight: 700; }
-  .stage-progress { display: flex; align-items: center; gap: 6px; margin-top: 18px; }
-  .stage-progress i { width: 34px; height: 6px; border-radius: 999px; background: var(--hair); transition: background .4s; }
-  .stage-progress i.done { background: rgba(10,102,194,.35); }
-  .stage-progress i.on { background: var(--blue); }
-  .stage-progress .mono { margin-left: 8px; color: var(--ink-soft); }
-  .stage-cta { margin-top: 20px; padding: 11px 18px; font-size: .9rem; }
+  /* ---------- Route sessions as cards ---------- */
+  #route .rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-content: start; }
+  #route .rows li, #route .rows li + li { border: 0; }
+  #route .row { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; height: 100%; margin: 0; padding: 18px 20px; border-radius: 18px; background: var(--white); box-shadow: inset 0 0 0 1px var(--hair); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+  #route .row:hover { background: var(--white); transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px var(--blue), 0 18px 30px -24px rgba(11,27,43,.45); }
+  #route .row .idx { padding: 0; font-weight: 700; color: var(--blue); }
+  #route .row h4 { font-size: 1.08rem; }
+  #route .row p { margin-top: 4px; font-size: .92rem; }
+  #route .row .book { margin-top: auto; padding-top: 6px; opacity: 1; transform: none; align-self: stretch; justify-content: space-between; }
+  #route .row .book span:first-child { display: inline; }
+  #route .row .book .go { width: 32px; height: 32px; }
+  @media (max-width: 640px) { #route .rows { grid-template-columns: 1fr; } }
 
   /* ---------- Photo in the booking card ---------- */
   .cal::before, .cal::after { display: none; }  /* the photo replaces the decorative rings */
@@ -745,7 +747,8 @@
   .band-white .row:hover { background: var(--paper); }
   .promises li { background: var(--white); }
   .band-white .promises li { background: var(--paper); }
-  #route .stage-facts span { background: var(--white); }
+  .band-white .test-card { background: var(--paper); }
+  .band-white .tc-tracks span { background: var(--white); }
   .tc-tracks span { background: var(--paper); color: var(--ink); }
   .answer h3, .note .cover .n { font-style: normal; }
   /* Last light-blue tints become grey */
@@ -780,8 +783,8 @@
     <nav class="menu" aria-label="Main">
       <a href="#finder">Find your session</a>
       <a href="#route">The route</a>
+      <a href="#tests" class="new-link">Career Check</a>
       <a href="#pricing">Pricing</a>
-      <a href="#tests" class="new-link">Free tests</a>
       <a href="#notes">Blog</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -793,9 +796,9 @@
   <nav class="sheet" id="sheet" aria-label="Mobile">
     <a href="#finder">Find your session <span aria-hidden="true">→</span></a>
     <a href="#route">The route <span aria-hidden="true">→</span></a>
-    <a href="#pricing">Pricing <span aria-hidden="true">→</span></a>
-    <a href="#tests">Free tests <span class="mono">New</span></a>
     <a href="#parents">For parents <span aria-hidden="true">→</span></a>
+    <a href="#tests">Career Check <span class="mono">Free</span></a>
+    <a href="#pricing">Pricing <span aria-hidden="true">→</span></a>
     <a href="#stories">Stories <span aria-hidden="true">→</span></a>
     <a href="#notes">Blog <span aria-hidden="true">→</span></a>
     <a href="#faq">FAQ <span aria-hidden="true">→</span></a>
@@ -874,10 +877,73 @@
         <span class="mono">The route</span>
         <div>
           <h2>Four stages. Eighteen sessions. <span class="serif">One clear plan.</span></h2>
-          <p>Each session is 30 minutes, one-on-one, online, and ends with a framework you can act on. Sessions start at ₹99. Tap any session to book it on WhatsApp.</p>
+          <p>Each session is 30 minutes, one-on-one, online, and ends with a framework you can act on. Tap any session to book it on WhatsApp.</p>
         </div>
       </div>
       <div id="stages"></div>
+    </div>
+  </section>
+
+  <!-- ================= FOR PARENTS ================= -->
+  <section class="block band band-white" id="parents" aria-labelledby="parentsTitle">
+    <div class="wrap">
+      <div class="parents rv">
+        <img class="parents-img" src="images/parents.webp" alt="Parents sitting together with their daughter, smiling" width="900" height="700" loading="lazy">
+        <div class="parents-head">
+          <span class="mono">For parents</span>
+          <h2 id="parentsTitle">Choosing a stream or course <span class="serif">together.</span></h2>
+          <p>After 10th and 12th, the decision is a family one. You're welcome to join your child's session.</p>
+        </div>
+        <ul class="parents-points" data-stagger>
+          <li><b>Options explained plainly</b><span>What each stream or course leads to, and the skills it needs, without jargon.</span></li>
+          <li><b>A summary to discuss at home</b><span>The written summary after the call means nothing is forgotten.</span></li>
+          <li><b>₹99, in Hindi or English</b><span>Stream or course choice is a single ₹99 session. The first 15 minutes are free.</span></li>
+        </ul>
+        <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'm a parent and would like guidance on my child's stream / course choice." href="#">Talk to Yash as a parent <span class="arr">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAREER CHECK: free tests (full section) ================= -->
+  <section class="block band" id="tests">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">Free Career Check</span>
+        <div>
+          <h2>Not sure where you stand? <span class="serif">Answer 10 questions.</span></h2>
+          <p>Three free tests, 3 minutes each, no sign-up. Get a score, see your strongest and weakest areas, and download your report as a PDF.</p>
+        </div>
+      </div>
+      <div class="test-cards" data-stagger>
+        <a class="test-card" href="tests.html#stream">
+          <span class="tc-img"><img src="images/test-stream.webp" alt="Two school students studying at their desks" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">For school students · Match % per stream</span>
+            <b>Stream selector</b>
+            <span class="tc-text">Engineering, Commerce or Arts? Pick your track, rate 10 statements, and see how well you match each of 6 streams.</span>
+            <span class="tc-tracks"><span>Engineering</span><span>Commerce</span><span>Arts &amp; Humanities</span></span>
+            <span class="tc-go">Find my stream <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="test-card" href="tests.html#profile">
+          <span class="tc-img"><img src="images/test-profile.webp" alt="College students walking across campus" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">For college students · Score out of 100</span>
+            <b>Profile evaluation</b>
+            <span class="tc-text">How strong is your profile? Scored across academics, experience, proof of skills, visibility and direction.</span>
+            <span class="tc-go">Score my profile <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="test-card" href="tests.html#placement">
+          <span class="tc-img"><img src="images/test-placement.webp" alt="Two people shaking hands after an interview" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">Before placements · Score out of 100</span>
+            <b>Placement readiness</b>
+            <span class="tc-text">Are you ready for placement season? Check your prep for online tests, interviews, GDs and company research.</span>
+            <span class="tc-go">Check my readiness <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -936,69 +1002,6 @@
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg><span><b>Free reschedule</b>Up to 12 hours before. Full refund if you cancel 24+ hours before</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg><span><b>Hindi or English</b>Online video calls, pay by UPI or any mode</span></li>
       </ul>
-    </div>
-  </section>
-
-  <!-- ================= FREE CAREER TESTS (full section) ================= -->
-  <section class="block band" id="tests">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono">Free career tests</span>
-        <div>
-          <h2>Not sure where you stand? <span class="serif">Answer 10 questions.</span></h2>
-          <p>Three free tests, 3 minutes each, no sign-up. Get a score, see your strongest and weakest areas, and download your report as a PDF.</p>
-        </div>
-      </div>
-      <div class="test-cards" data-stagger>
-        <a class="test-card" href="tests.html#stream">
-          <span class="tc-img"><img src="images/test-stream.webp" alt="Two school students studying at their desks" width="800" height="500" loading="lazy"></span>
-          <span class="tc-body">
-            <span class="mono">For school students · Match % per stream</span>
-            <b>Stream selector</b>
-            <span class="tc-text">Engineering, Commerce or Arts? Pick your track, rate 10 statements, and see how well you match each of 6 streams.</span>
-            <span class="tc-tracks"><span>Engineering</span><span>Commerce</span><span>Arts &amp; Humanities</span></span>
-            <span class="tc-go">Find my stream <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
-        <a class="test-card" href="tests.html#profile">
-          <span class="tc-img"><img src="images/test-profile.webp" alt="College students walking across campus" width="800" height="500" loading="lazy"></span>
-          <span class="tc-body">
-            <span class="mono">For college students · Score out of 100</span>
-            <b>Profile evaluation</b>
-            <span class="tc-text">How strong is your profile? Scored across academics, experience, proof of skills, visibility and direction.</span>
-            <span class="tc-go">Score my profile <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
-        <a class="test-card" href="tests.html#placement">
-          <span class="tc-img"><img src="images/test-placement.webp" alt="Two people shaking hands after an interview" width="800" height="500" loading="lazy"></span>
-          <span class="tc-body">
-            <span class="mono">Before placements · Score out of 100</span>
-            <b>Placement readiness</b>
-            <span class="tc-text">Are you ready for placement season? Check your prep for online tests, interviews, GDs and company research.</span>
-            <span class="tc-go">Check my readiness <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FOR PARENTS ================= -->
-  <section class="block band band-white" id="parents" aria-labelledby="parentsTitle">
-    <div class="wrap">
-      <div class="parents rv">
-        <img class="parents-img" src="images/parents.webp" alt="Parents sitting together with their daughter, smiling" width="900" height="700" loading="lazy">
-        <div class="parents-head">
-          <span class="mono">For parents</span>
-          <h2 id="parentsTitle">Choosing a stream or course <span class="serif">together.</span></h2>
-          <p>After 10th and 12th, the decision is a family one. You're welcome to join your child's session.</p>
-        </div>
-        <ul class="parents-points" data-stagger>
-          <li><b>Options explained plainly</b><span>What each stream or course leads to, and the skills it needs, without jargon.</span></li>
-          <li><b>A summary to discuss at home</b><span>The written summary after the call means nothing is forgotten.</span></li>
-          <li><b>₹99, in Hindi or English</b><span>Stream or course choice is a single ₹99 session. The first 15 minutes are free.</span></li>
-        </ul>
-        <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'm a parent and would like guidance on my child's stream / course choice." href="#">Talk to Yash as a parent <span class="arr">↗</span></a>
-      </div>
     </div>
   </section>
 
@@ -1164,8 +1167,8 @@
           <li><a href="index.html#pricing">Pricing: sessions from ₹99</a></li>
         </ul>
       </nav>
-      <nav class="sf-col" aria-label="Free career tests">
-        <h2>Free career tests</h2>
+      <nav class="sf-col" aria-label="Career Check: free tests">
+        <h2>Free Career Check</h2>
         <ul>
           <li><a href="tests.html#profile">Profile evaluation test</a></li>
           <li><a href="tests.html#stream">Stream selector test</a></li>
@@ -1197,6 +1200,7 @@
     </div>
     <div class="sf-bottom">
       <span>&copy; <span id="yr">2026</span> NextMove Careers. Career guidance by Yash Sarda.</span>
+      <a href="privacy.html">Privacy policy</a>
       <a href="#">Back to top &uarr;</a>
     </div>
   </div>
@@ -1292,21 +1296,14 @@ const bookMsg = (name) => `Hi Yash, I'd like to book a session: ${name}.`;
 const esc = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const findSession = (name) => { for (const s of STAGES) { const x = s.sessions.find(r => r[0] === name); if (x) return { stage: s, row: x }; } };
 
-/* Stages: all four stacked, scrolled through in order.
-   Each side panel shows the stage's facts, where it sits on the route, and a WhatsApp button. */
-document.getElementById("stages").innerHTML = STAGES.map((s, si) => `
+/* Stages: all four stacked, scrolled through in order; each session is a card */
+document.getElementById("stages").innerHTML = STAGES.map(s => `
   <div class="stage" id="stage-${s.id}">
     <div class="stage-side rv">
       <div class="stage-num">${s.num}</div>
       <span class="mono stage-label">Stage ${Number(s.num)} · ${esc(s.name)}</span>
       <h3>${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></h3>
       <p>${esc(s.intro)}</p>
-      <div class="stage-facts"><span><b>${s.sessions.length}</b> sessions</span><span>from <b>₹99</b></span><span><b>30</b> min each</span></div>
-      <div class="stage-progress" role="img" aria-label="Stage ${si + 1} of ${STAGES.length}">
-        ${STAGES.map((x, xi) => `<i class="${xi < si ? "done" : xi === si ? "on" : ""}"></i>`).join("")}
-        <span class="mono">Stage ${si + 1} of ${STAGES.length}</span>
-      </div>
-      <a class="btn btn-line stage-cta js-wa" data-msg="Hi Yash, I'd like help with ${esc(s.name)}." href="#">Talk about this stage <span class="arr">↗</span></a>
     </div>
     <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
@@ -1446,7 +1443,7 @@ if ("IntersectionObserver" in window) {
     if (!e.isIntersecting) return;
     links.forEach(a => { const on = a.getAttribute("href") === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
   }), { rootMargin: "-45% 0px -50% 0px" });
-  ["finder", "route", "pricing", "tests", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  ["finder", "route", "tests", "pricing", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
 }
 
 /* Reveal + active stage */
@@ -1466,5 +1463,6 @@ if ("IntersectionObserver" in window) {
   document.querySelectorAll(".stage").forEach(el => so.observe(el));
 }
 </script>
+<script src="lead-gate.js"></script>
 </body>
 </html>

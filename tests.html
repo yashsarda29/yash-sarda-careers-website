@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free career tests | NextMove Careers</title>
+<title>Career Check: free career tests | NextMove Careers</title>
 <meta name="description" content="Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.">
-<meta property="og:title" content="Free career tests | NextMove Careers">
+<meta property="og:title" content="Career Check: free career tests | NextMove Careers">
 <meta property="og:description" content="Find out where you stand in 3 minutes: profile score, best-fit stream, and placement readiness.">
 <meta property="og:site_name" content="NextMove Careers">
 <meta name="theme-color" content="#0A66C2">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="NextMove Careers: 1:1 career guidance with Yash Sarda">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Free career tests | NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/tests.html", "description": "Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.", "publisher": {"@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "@type": "Organization", "name": "NextMove Careers"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Career Check: free career tests | NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/tests.html", "description": "Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.", "publisher": {"@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "@type": "Organization", "name": "NextMove Careers"}}</script>
 <!-- /seo -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -231,7 +231,7 @@
 <header>
   <div class="wrap bar">
     <a href="index.html" class="mark"><i></i>NextMove Careers</a>
-    <nav aria-label="Main"><a href="index.html#route">Sessions</a><a href="tests.html" class="on" aria-current="page">Free tests</a><a href="blog/index.html">Blog</a><a href="index.html#faq">FAQ</a></nav>
+    <nav aria-label="Main"><a href="index.html#route">Sessions</a><a href="tests.html" class="on" aria-current="page">Career Check</a><a href="blog/index.html">Blog</a><a href="index.html#faq">FAQ</a></nav>
     <a class="btn btn-blue" href="index.html#book">Book a free call</a>
   </div>
 </header>
@@ -240,10 +240,10 @@
   <!-- Picker (start screen) -->
   <section id="screen-picker">
     <div class="wrap intro">
-      <span class="mono" style="color:var(--blue)">Free career tests · 3 minutes each</span>
+      <span class="mono" style="color:var(--blue)">Free Career Check · 3 minutes each</span>
       <h1>Find out where you stand, <span class="serif">in three minutes.</span></h1>
       <p>Pick a test, answer honestly, and get a score with clear next steps. No sign-up needed.</p>
-      <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your answers stay in your browser. Nothing is sent or saved.</span>
+      <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your answers stay in your browser. We only save your name, email and number.</span>
     </div>
     <div class="wrap picker" id="picker"></div>
   </section>
@@ -288,8 +288,8 @@
           <li><a href="index.html#pricing">Pricing: sessions from ₹99</a></li>
         </ul>
       </nav>
-      <nav class="sf-col" aria-label="Free career tests">
-        <h2>Free career tests</h2>
+      <nav class="sf-col" aria-label="Career Check: free tests">
+        <h2>Free Career Check</h2>
         <ul>
           <li><a href="tests.html#profile">Profile evaluation test</a></li>
           <li><a href="tests.html#stream">Stream selector test</a></li>
@@ -321,11 +321,13 @@
     </div>
     <div class="sf-bottom">
       <span>&copy; <span id="yr">2026</span> NextMove Careers. Career guidance by Yash Sarda.</span>
+      <a href="privacy.html">Privacy policy</a>
       <a href="#">Back to top &uarr;</a>
     </div>
   </div>
 </footer>
 
+<script src="lead-gate.js"></script>
 <script>
 /* ============================================================
    Settings
@@ -533,9 +535,16 @@ $("picker").addEventListener("click", e => { const c = e.target.closest(".tcard"
 function start(id) {
   cancelAdvance();
   if (!TESTS[id]) { state = null; show("picker"); return; }
-  state = { test: id, track: null, i: 0, answers: [] };
-  show("quiz");
-  render();
+  /* Name + email (or Google) before the test begins; closing the box goes back to the test list */
+  LeadGate.require("Test: " + TESTS[id].name, () => {
+    state = { test: id, track: null, i: 0, answers: [] };
+    show("quiz");
+    render();
+  }, {
+    title: "Before you start the " + TESTS[id].name.toLowerCase() + " test",
+    cancel: () => { state = null; history.replaceState(null, "", location.pathname); show("picker"); }
+  });
+  return;
 }
 
 /* Questions for the current test */
@@ -713,9 +722,11 @@ function result() {
   $("rBody").querySelector("[data-retake]").addEventListener("click", () => start(state.test));
   /* "Download my report": the browser's print dialog, where "Save as PDF" is the default on phones and most desktops */
   $("rBody").querySelector("[data-pdf]").addEventListener("click", () => {
-    document.querySelectorAll(".meter i").forEach(m => m.style.transition = "none");
-    document.querySelectorAll(".ring .val").forEach(c => c.style.transition = "none");
-    print();
+    LeadGate.require("Download: " + TESTS[state.test].name + " report", () => {
+      document.querySelectorAll(".meter i").forEach(m => m.style.transition = "none");
+      document.querySelectorAll(".ring .val").forEach(c => c.style.transition = "none");
+      print();
+    }, { title: "Get your report" });
   });
   show("result");
   animateIn();

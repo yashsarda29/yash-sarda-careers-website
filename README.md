@@ -39,3 +39,24 @@ To edit questions, points, streams or result wording, change the `PROFILE`, `STR
 ## Photos
 - Stock photos live in `images/` as web-optimised `.webp` files (all free under the Unsplash License). Credits: `images/CREDITS.md`.
 - Blog photos: `images/blog/<post-file-name>.webp` (cover on the post, thumbnail on the blog list, home cards and "Keep reading"), plus `images/blog/share/<post-file-name>.jpg` used for link previews. A new post needs both files with the same name as the post.
+
+## Email capture (Career Check tests and downloads)
+Before a Career Check test starts, and before any report or PDF download, visitors enter their **name, email and mobile number** (or tap **Continue with Google**, then add their number). This is handled by `lead-gate.js`, which every page loads. A visitor is asked only once per browser; later tests and downloads are still logged against them.
+
+Two values at the top of `lead-gate.js` switch it on:
+
+1. **`SHEET_ENDPOINT`: where sign-ups are saved (a Google Sheet)**
+   - Create a Google Sheet (e.g. "NextMove leads"), then **Extensions > Apps Script**.
+   - Paste the whole of `setup/google-sheet-lead-capture.gs`, save.
+   - **Deploy > New deployment > Web app**, *Execute as: Me*, *Who has access: Anyone* > Deploy > allow permissions.
+   - Copy the **Web app URL** (ends in `/exec`) into `SHEET_ENDPOINT`.
+   - Rows appear in the sheet's **Leads** tab: time, name, email, mobile, sign-in method, what they wanted (test or download), page.
+
+2. **`GOOGLE_CLIENT_ID`: the "Continue with Google" button**
+   - Go to <https://console.cloud.google.com/>, create a project (e.g. "NextMove Careers").
+   - **APIs & Services > OAuth consent screen**: External, app name "NextMove Careers", your email; save.
+   - **APIs & Services > Credentials > Create credentials > OAuth client ID**, type **Web application**.
+   - **Authorised JavaScript origins**: `https://yashsarda29.github.io` (and `http://localhost:5181` for local testing). No redirect URIs needed.
+   - Copy the **Client ID** (ends in `.apps.googleusercontent.com`) into `GOOGLE_CLIENT_ID`.
+
+Until `SHEET_ENDPOINT` is set the box still appears and visitors can continue, but nothing is saved. Until `GOOGLE_CLIENT_ID` is set, only the form is shown.
