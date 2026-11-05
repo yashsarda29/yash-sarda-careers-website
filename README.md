@@ -16,7 +16,8 @@ Static website for 1:1 career guidance sessions: a home page plus a blog. No bui
 - Keep `WHATSAPP_NUMBER` in `blog/blog.js` in sync with the home page.
 
 ## Hosting
-- `404.html` is the "page not found" page. Its buttons link to `/`, which is correct on a custom domain or a `username.github.io` site; on a project site (`username.github.io/repo/`) change them to `/repo/`.
+- Live site: https://yashsarda29.github.io/yash-sarda-careers-website/ (GitHub Pages, from the `main` branch). Every push to `main` updates it within a minute or two.
+- `404.html` is the "page not found" page. Its buttons point to `/yash-sarda-careers-website/`; change them if you move to a custom domain.
 
 ## Free tests (`tests.html`)
 Three self-check tests that run entirely in the visitor's browser (nothing is sent or stored):
