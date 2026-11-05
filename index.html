@@ -10,6 +10,17 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NextMove Careers">
 <meta name="theme-color" content="#0A66C2">
+<!-- seo -->
+<link rel="canonical" href="https://yashsarda29.github.io/yash-sarda-careers-website/">
+<meta property="og:url" content="https://yashsarda29.github.io/yash-sarda-careers-website/">
+<meta property="og:image" content="https://yashsarda29.github.io/yash-sarda-careers-website/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NextMove Careers: 1:1 career guidance with Yash Sarda">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@type": "ProfessionalService", "@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "name": "NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/", "image": "https://yashsarda29.github.io/yash-sarda-careers-website/og-image.png", "logo": "https://yashsarda29.github.io/yash-sarda-careers-website/og-image.png", "description": "One-on-one online career guidance for college and school students.", "telephone": "+91-88506-28288", "priceRange": "₹99–₹799", "areaServed": "IN", "availableLanguage": ["English", "Hindi"], "founder": {"@type": "Person", "name": "Yash Sarda", "jobTitle": "Career mentor", "alumniOf": {"@type": "CollegeOrUniversity", "name": "Great Lakes Institute of Management, Chennai"}, "sameAs": ["https://www.linkedin.com/in/yash-sarda-483963167/"], "image": "https://yashsarda29.github.io/yash-sarda-careers-website/yash.png"}, "sameAs": ["https://www.linkedin.com/in/yash-sarda-483963167/"], "makesOffer": [{"@type": "Offer", "name": "Free 15-minute intro call", "price": "0", "priceCurrency": "INR"}, {"@type": "Offer", "name": "Single 30-minute session", "price": "99", "priceCurrency": "INR", "description": "Starting price; varies by topic."}, {"@type": "Offer", "name": "Bundle of any 8 sessions", "price": "799", "priceCurrency": "INR"}], "@context": "https://schema.org"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the first call really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most."}}, {"@type": "Question", "name": "How much do sessions cost?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions start at ₹99 for 30 minutes, and any 8 different sessions cost ₹799 as a bundle. The first 15-minute call is free. You can pay by UPI or any other mode."}}, {"@type": "Question", "name": "How are sessions held?", "acceptedAnswer": {"@type": "Answer", "text": "Every session is a 30-minute one-on-one video call, in Hindi or English. A phone or laptop and a stable connection is all you need. Afterwards you get a written summary and 7 days of WhatsApp follow-up."}}, {"@type": "Question", "name": "What if I need to reschedule or cancel?", "acceptedAnswer": {"@type": "Answer", "text": "You can reschedule for free up to 12 hours before your session. If you cancel 24 hours or more before, you get a full refund."}}, {"@type": "Question", "name": "Can I mix or book several sessions?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so the ₹799 bundle of 8 is usually the better deal."}}, {"@type": "Question", "name": "I'm still in school. Can you help?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. I help with stream choice after 10th and course choice after 12th."}}]}</script>
+<!-- /seo -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <script>document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -433,7 +444,7 @@
   .note .cover .n { font-size: 3.6rem; }
   .note .body { padding: 18px; gap: 8px; }
   .note h3 { font-size: 1.08rem; }
-  .notes-foot { margin-top: 24px; }
+  .notes-foot { margin-top: 24px; gap: 10px; flex-wrap: wrap; }
 
   /* FAQ */
   .faq summary { padding: 18px 0; font-size: clamp(1.05rem, 1.6vw, 1.3rem); grid-template-columns: 64px 1fr 36px; }
@@ -564,6 +575,51 @@
     .voices, .notes { margin: 0 calc(-1 * var(--gutter)); padding-left: var(--gutter); padding-right: var(--gutter); }
   }
 
+  /* Pricing: three plan cards, the bundle highlighted */
+  #route + #pricing { padding-top: clamp(16px, 3vh, 32px); }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+  .plan { position: relative; display: flex; flex-direction: column; background: var(--white); border-radius: 26px; padding: clamp(22px, 3vw, 30px); transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+  .plan:hover { transform: translateY(-4px); box-shadow: 0 30px 50px -34px rgba(11,27,43,.4); }
+  .plan > .mono { color: var(--blue); }
+  .plan h3 { font-size: 1.35rem; letter-spacing: -0.02em; margin-top: 8px; }
+  .plan .price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 14px 0 18px; }
+  .plan .price b { font-size: clamp(2.4rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+  .plan .price small { font-size: .9rem; color: var(--ink-soft); }
+  .plan .price span { font-size: .9rem; color: var(--ink-soft); }
+  .plan ul { list-style: none; display: grid; gap: 10px; padding-top: 18px; border-top: 1px solid var(--hair); flex: 1; }
+  .plan li { position: relative; padding-left: 24px; font-size: .96rem; }
+  .plan li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; background: var(--blue); border-radius: 2px; transform: rotate(45deg); }
+  .plan .btn { margin-top: 22px; justify-content: center; }
+  .plan-best { background: var(--blue); color: var(--white); }
+  .plan-best > .mono, .plan-best .price small, .plan-best .price span { color: rgba(255,255,255,.78); }
+  .plan-best ul { border-top-color: rgba(255,255,255,.22); }
+  .plan-best li::before { background: var(--white); }
+  .plan-best .btn-white { background: var(--white); color: var(--blue); }
+  .plan-best .btn-white:hover { background: var(--ink); color: var(--white); }
+  .plan-tag { position: absolute; top: 18px; right: 18px; padding: 5px 10px; border-radius: 999px; background: var(--white); color: var(--blue) !important; font-size: .66rem; }
+  .promises { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 16px; background: var(--hair); border-radius: 22px; overflow: hidden; }
+  .promises li { display: flex; gap: 12px; align-items: flex-start; padding: 18px 20px; background: var(--paper); font-size: .9rem; color: var(--ink-soft); }
+  .promises svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--blue); margin-top: 1px; }
+  .promises b { display: block; color: var(--ink); font-size: .96rem; margin-bottom: 2px; }
+  @media (max-width: 1000px) { .promises { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .promises { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .plans { grid-template-columns: 1fr; max-width: 520px; } }
+
+  /* For parents: one light band between Pricing and About */
+  .parents-wrap { padding: 0 0 clamp(56px, 9vh, 96px); }
+  .parents { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px 48px; align-items: center; padding: clamp(24px, 4vw, 40px); border-radius: 28px; background: var(--blue-wash); }
+  .parents-head .mono { color: var(--blue); }
+  .parents-head h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.02; letter-spacing: -0.04em; margin-top: 10px; }
+  .parents-head h2 .serif { color: var(--blue); font-size: 1.06em; }
+  .parents-head p { color: var(--ink-soft); margin-top: 12px; max-width: 420px; }
+  .parents-points { list-style: none; display: grid; gap: 14px; }
+  .parents-points li { padding-left: 16px; border-left: 2px solid var(--blue); }
+  .parents-points b { display: block; }
+  .parents-points span { color: var(--ink-soft); font-size: .95rem; }
+  .parents .btn { grid-column: 1; justify-self: start; }
+  @media (max-width: 900px) { .parents { grid-template-columns: 1fr; } .parents .btn { grid-column: auto; } }
+  @media (max-width: 600px) { .parents .btn { justify-self: stretch; justify-content: center; } }
+
   /* Spacing: the hero breathes at the bottom now the ticker is gone */
   .hero { padding-bottom: clamp(40px, 7vh, 80px); }
   .sheet a > span[aria-hidden] { color: var(--ink-soft); }
@@ -639,7 +695,7 @@
     <nav class="menu" aria-label="Main">
       <a href="#finder">Find your session</a>
       <a href="#route">The route</a>
-      <a href="#stories">Stories</a>
+      <a href="#pricing">Pricing</a>
       <a href="tests.html" class="new-link">Free tests</a>
       <a href="#notes">Blog</a>
       <a href="#faq">FAQ</a>
@@ -652,6 +708,8 @@
   <nav class="sheet" id="sheet" aria-label="Mobile">
     <a href="#finder">Find your session <span aria-hidden="true">→</span></a>
     <a href="#route">The route <span aria-hidden="true">→</span></a>
+    <a href="#pricing">Pricing <span aria-hidden="true">→</span></a>
+    <a href="#parents">For parents <span aria-hidden="true">→</span></a>
     <a href="#stories">Stories <span aria-hidden="true">→</span></a>
     <a href="tests.html">Free tests <span class="mono">New</span></a>
     <a href="#notes">Blog <span aria-hidden="true">→</span></a>
@@ -666,7 +724,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="kicker mono"><span class="pulse"></span>1:1 career guidance · online</div>
+        <div class="kicker mono"><span class="pulse"></span>1:1 career guidance · online · Hindi or English</div>
         <h1>
           <span class="line"><span>Clarity for</span></span>
           <span class="line"><span>your <span class="serif">next</span></span></span>
@@ -680,7 +738,7 @@
           </a>
           <a class="btn btn-line" href="#finder">Where am I stuck? <span class="arr">↘</span></a>
         </div>
-        <p class="free-note"><img class="mini-av" src="yash.png" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b><span class="proof">MBA, Great Lakes Chennai · 5+ years in industry · Mentored a <b>top-8 national</b> team</span></span></p>
+        <p class="free-note"><img class="mini-av" src="yash.png" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b><span class="proof"><b>50+ students guided</b> · MBA, Great Lakes Chennai · 5+ years in industry</span></span></p>
       </div>
 
       <!-- Route map -->
@@ -746,10 +804,87 @@
         <span class="mono">The route</span>
         <div>
           <h2>Four stages. Eighteen sessions. <span class="serif">One clear plan.</span></h2>
-          <p>Each session is 30 minutes, one-on-one, online, and ends with a framework you can act on. Tap any session to book it on WhatsApp.</p>
+          <p>Each session is 30 minutes, one-on-one, online, and ends with a framework you can act on. Sessions start at ₹99. Tap any session to book it on WhatsApp.</p>
         </div>
       </div>
       <div id="stages"></div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING =================
+       Kept deliberately short: free call, "from ₹99", and one bundle.
+       The full per-session price list is shared on WhatsApp, not shown here. -->
+  <section class="block" id="pricing">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">Pricing</span>
+        <div>
+          <h2>Less than a movie ticket. <span class="serif">Start free.</span></h2>
+          <p>Talk for 15 minutes at no cost, then book only the sessions you need.</p>
+        </div>
+      </div>
+      <div class="plans" data-stagger>
+        <article class="plan">
+          <span class="mono">Start here</span>
+          <h3>Intro call</h3>
+          <p class="price"><b>Free</b><span>15 minutes</span></p>
+          <ul>
+            <li>Tell me where you're stuck</li>
+            <li>Find out which session fits</li>
+            <li>No payment, no commitment</li>
+          </ul>
+          <a class="btn btn-line" href="#book">Book the free call</a>
+        </article>
+        <article class="plan">
+          <span class="mono">Pay per session</span>
+          <h3>Single session</h3>
+          <p class="price"><small>from</small><b>₹99</b><span>30 minutes</span></p>
+          <ul>
+            <li>Any one of the 18 topics</li>
+            <li>One-on-one video call</li>
+            <li>School stream or course choice: ₹99</li>
+          </ul>
+          <a class="btn btn-line js-wa" data-msg="Hi Yash, I'd like to book a single session. Which topics and prices are available?" href="#">Ask for the price list</a>
+        </article>
+        <article class="plan plan-best">
+          <span class="plan-tag mono">Best value</span>
+          <span class="mono">Bundle</span>
+          <h3>Any 8 sessions</h3>
+          <p class="price"><b>₹799</b><span>8 × 30 minutes</span></p>
+          <ul>
+            <li>Mix any 8 different sessions, from any stage</li>
+            <li>Worth ₹822 to ₹1,272 if booked one by one</li>
+            <li>Ideal for a full placement or profile plan</li>
+          </ul>
+          <a class="btn btn-white js-wa" data-msg="Hi Yash, I'd like the ₹799 bundle of 8 sessions." href="#">Get the bundle</a>
+        </article>
+      </div>
+      <!-- What every paid session includes, and the booking promise -->
+      <ul class="promises" data-stagger aria-label="Included with every paid session">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg><span><b>Written summary</b>Your framework and next steps, sent after the call</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.2-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg><span><b>7 days of WhatsApp follow-up</b>Ask questions as you put the plan into action</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg><span><b>Free reschedule</b>Up to 12 hours before. Full refund if you cancel 24+ hours before</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg><span><b>Hindi or English</b>Online video calls, pay by UPI or any mode</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= FOR PARENTS ================= -->
+  <section class="parents-wrap" id="parents" aria-labelledby="parentsTitle">
+    <div class="wrap">
+      <div class="parents rv">
+        <div class="parents-head">
+          <span class="mono">For parents</span>
+          <h2 id="parentsTitle">Choosing a stream or course <span class="serif">together.</span></h2>
+          <p>After 10th and 12th, the decision is a family one. You're welcome to join your child's session.</p>
+        </div>
+        <ul class="parents-points" data-stagger>
+          <li><b>Options explained plainly</b><span>What each stream or course leads to, and the skills it needs, without jargon.</span></li>
+          <li><b>A summary to discuss at home</b><span>The written summary after the call means nothing is forgotten.</span></li>
+          <li><b>₹99, in Hindi or English</b><span>Stream or course choice is a single ₹99 session. The first 15 minutes are free.</span></li>
+        </ul>
+        <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'm a parent and would like guidance on my child's stream / course choice." href="#">Talk to Yash as a parent <span class="arr">↗</span></a>
+      </div>
     </div>
   </section>
 
@@ -775,7 +910,7 @@
             <div><b>MBA</b><span>Great Lakes, Chennai</span></div>
             <div><b>5+ years</b><span>in industry</span></div>
             <div><b>Top 8</b><span>national team mentored</span></div>
-            <div><b>18</b><span>session topics</span></div>
+            <div><b>50+</b><span>students guided</span></div>
           </div>
           <a class="li js-li" href="#" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
@@ -852,7 +987,7 @@
       </div>
       <div class="notes" id="notesGrid"></div>
       <p class="swipe-hint mono" aria-hidden="true">Swipe for more →</p>
-      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All 12 posts <span class="arr">↗</span></a></div>
+      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All 12 posts <span class="arr">↗</span></a><a class="btn btn-blue" href="downloads/cv-checklist.pdf" download>Free CV checklist (PDF) <span class="arr">↓</span></a></div>
     </div>
   </section>
 
@@ -865,9 +1000,11 @@
       </div>
       <div class="faq rv" data-stagger>
         <details><summary><span class="mono">01</span>Is the first call really free?<span class="pm"></span></summary><p>Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most.</p></details>
-        <details><summary><span class="mono">02</span>How are sessions held?<span class="pm"></span></summary><p>Every session is a 30-minute one-on-one video call. A phone or laptop and a stable connection is all you need.</p></details>
-        <details><summary><span class="mono">03</span>Can I mix or book several sessions?<span class="pm"></span></summary><p>Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so ask on WhatsApp and we'll plan it.</p></details>
-        <details><summary><span class="mono">04</span>I'm still in school. Can you help?<span class="pm"></span></summary><p>Yes. I help with stream choice after 10th and course choice after 12th.</p></details>
+        <details><summary><span class="mono">02</span>How much do sessions cost?<span class="pm"></span></summary><p>Sessions start at ₹99 for 30 minutes, and any 8 different sessions cost ₹799 as a bundle. The first 15-minute call is free. You can pay by UPI or any other mode.</p></details>
+        <details><summary><span class="mono">03</span>How are sessions held?<span class="pm"></span></summary><p>Every session is a 30-minute one-on-one video call, in Hindi or English. A phone or laptop and a stable connection is all you need. Afterwards you get a written summary and 7 days of WhatsApp follow-up.</p></details>
+        <details><summary><span class="mono">04</span>What if I need to reschedule or cancel?<span class="pm"></span></summary><p>You can reschedule for free up to 12 hours before your session. If you cancel 24 hours or more before, you get a full refund.</p></details>
+        <details><summary><span class="mono">05</span>Can I mix or book several sessions?<span class="pm"></span></summary><p>Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so the ₹799 bundle of 8 is usually the better deal.</p></details>
+        <details><summary><span class="mono">06</span>I'm still in school. Can you help?<span class="pm"></span></summary><p>Yes. I help with stream choice after 10th and course choice after 12th.</p></details>
       </div>
     </div>
   </section>
@@ -909,6 +1046,7 @@
           <li><a href="index.html#stage-shortlist">CV &amp; LinkedIn review</a></li>
           <li><a href="index.html#stage-placements">Placement &amp; interview prep</a></li>
           <li><a href="index.html#route">All 18 sessions</a></li>
+          <li><a href="index.html#pricing">Pricing: sessions from ₹99</a></li>
         </ul>
       </nav>
       <nav class="sf-col" aria-label="Free career tests">
@@ -927,6 +1065,7 @@
           <li><a href="blog/job-or-mba.html">Job now or MBA later?</a></li>
           <li><a href="blog/cv-not-getting-shortlisted.html">Why your CV isn't shortlisted</a></li>
           <li><a href="blog/tell-me-about-yourself.html">Answering "Tell me about yourself"</a></li>
+          <li><a href="downloads/cv-checklist.pdf" download>Free CV checklist (PDF)</a></li>
           <li><a href="blog/index.html">All career guides</a></li>
         </ul>
       </nav>
@@ -935,9 +1074,10 @@
         <ul>
           <li><a href="https://wa.me/918850628288" target="_blank" rel="noopener">WhatsApp +91 88506 28288</a></li>
           <li><a href="https://www.linkedin.com/in/yash-sarda-483963167/" target="_blank" rel="noopener">Yash Sarda on LinkedIn</a></li>
+          <li><a href="index.html#parents">For parents</a></li>
           <li><a href="index.html#faq">Frequently asked questions</a></li>
         </ul>
-        <p class="sf-note">All sessions are one-on-one video calls.</p>
+        <p class="sf-note">All sessions are one-on-one video calls, in Hindi or English.</p>
       </div>
     </div>
     <div class="sf-bottom">
@@ -1195,7 +1335,7 @@ if ("IntersectionObserver" in window) {
     if (!e.isIntersecting) return;
     links.forEach(a => { const on = a.getAttribute("href") === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
   }), { rootMargin: "-45% 0px -50% 0px" });
-  ["finder", "route", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  ["finder", "route", "pricing", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
 }
 
 /* Reveal + active stage */

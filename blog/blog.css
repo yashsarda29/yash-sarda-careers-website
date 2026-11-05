@@ -184,3 +184,15 @@ img.av { object-fit: cover; object-position: 50% 20%; }
 .wrap { max-width: var(--max); width: 100%; padding-left: var(--gutter); padding-right: var(--gutter); }
 .end-cta { margin-left: var(--inset); margin-right: var(--inset); padding-left: var(--gutter); padding-right: var(--gutter); }
 @media (max-width: 600px) { .filters { margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); padding-left: var(--gutter); padding-right: var(--gutter); } }
+
+/* Free CV checklist download: card in the CV post's sidebar, strip on the blog list */
+.dl-card, .dl-strip { display: grid; gap: 4px; border-radius: 22px; background: var(--blue-wash); color: var(--ink); transition: transform .25s cubic-bezier(.2,.8,.2,1), background .2s; }
+.dl-card { padding: 22px; }
+.dl-card:hover, .dl-strip:hover { transform: translateY(-3px); background: #DCEAF9; }
+.dl-card .mono, .dl-strip .mono { color: var(--blue); }
+.dl-card b, .dl-strip b { font-size: 1.15rem; letter-spacing: -0.02em; }
+.dl-card span:not(.mono) { color: var(--ink-soft); font-size: .92rem; }
+.dl-card em { font-style: normal; font-weight: 600; color: var(--blue); margin-top: 8px; }
+.dl-strip { grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: 16px 22px; margin-bottom: 22px; }
+.dl-strip span:last-child { font-weight: 600; color: var(--blue); }
+@media (max-width: 600px) { .dl-strip { grid-template-columns: 1fr; gap: 4px; } }

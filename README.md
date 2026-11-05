@@ -26,3 +26,12 @@ Three self-check tests that run entirely in the visitor's browser (nothing is se
 - **Placement readiness**: 10 questions, score out of 100 across Online tests, Interviews, GDs and cases, Targeting and research.
 
 To edit questions, points, streams or result wording, change the `PROFILE`, `STREAM` and `PLACEMENT` objects in the `<script>` of `tests.html`. Direct links: `tests.html#profile`, `tests.html#stream`, `tests.html#placement`.
+
+## SEO and sharing
+- Every page has a canonical link, link-preview tags (`og-image.png`, 1200×630) and structured data (business + FAQ on the home page, articles on blog posts). These sit between `<!-- seo -->` and `<!-- /seo -->` in each page's `<head>`.
+- `sitemap.xml` lists every page; `robots.txt` points to it. Submit the sitemap in Google Search Console.
+- All of these use the live address `https://yashsarda29.github.io/yash-sarda-careers-website/`. If the site moves to its own domain, find-and-replace that address across the site.
+- The home page FAQ is mirrored in the structured data: if you change a FAQ answer, update the FAQPage block in the `<!-- seo -->` section too.
+
+## Downloads
+- `downloads/cv-checklist.pdf`: free one-page CV checklist, linked from the home page, the blog, the CV post and the footer.

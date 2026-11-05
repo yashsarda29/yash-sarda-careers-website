@@ -9,6 +9,17 @@
 <meta property="og:description" content="Find out where you stand in 3 minutes: profile score, best-fit stream, and placement readiness.">
 <meta property="og:site_name" content="NextMove Careers">
 <meta name="theme-color" content="#0A66C2">
+<!-- seo -->
+<link rel="canonical" href="https://yashsarda29.github.io/yash-sarda-careers-website/tests.html">
+<meta property="og:url" content="https://yashsarda29.github.io/yash-sarda-careers-website/tests.html">
+<meta property="og:image" content="https://yashsarda29.github.io/yash-sarda-careers-website/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NextMove Careers: 1:1 career guidance with Yash Sarda">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Free career tests | NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/tests.html", "description": "Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.", "publisher": {"@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "@type": "Organization", "name": "NextMove Careers"}}</script>
+<!-- /seo -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -177,6 +188,24 @@
   .btn:active { transform: none; }
 
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+
+  /* Downloaded report (print / Save as PDF): just the result, on a clean page */
+  .print-only { display: none; }
+  @media print {
+    @page { margin: 14mm; }
+    body { background: #fff; }
+    header, footer, .site-footer, .ractions, #screen-picker, #screen-quiz { display: none !important; }
+    .print-only { display: block; }
+    .print-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 10px; margin-bottom: 18px; border-bottom: 2px solid var(--blue); }
+    .print-head b { font-size: 1.2rem; color: var(--blue); }
+    .print-head span { color: var(--ink-soft); font-size: .9rem; }
+    .print-foot { margin-top: 18px; padding-top: 10px; border-top: 1px solid var(--hair); font-size: .85rem; color: var(--ink-soft); }
+    .result { padding: 0; }
+    .rgrid { grid-template-columns: .9fr 1.1fr; gap: 14px; }
+    .rcard { break-inside: avoid; box-shadow: inset 0 0 0 1px var(--hair); }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 </style>
 <link rel="stylesheet" href="site-footer.css">
 </head>
@@ -238,6 +267,7 @@
           <li><a href="index.html#stage-shortlist">CV &amp; LinkedIn review</a></li>
           <li><a href="index.html#stage-placements">Placement &amp; interview prep</a></li>
           <li><a href="index.html#route">All 18 sessions</a></li>
+          <li><a href="index.html#pricing">Pricing: sessions from ₹99</a></li>
         </ul>
       </nav>
       <nav class="sf-col" aria-label="Free career tests">
@@ -256,6 +286,7 @@
           <li><a href="blog/job-or-mba.html">Job now or MBA later?</a></li>
           <li><a href="blog/cv-not-getting-shortlisted.html">Why your CV isn't shortlisted</a></li>
           <li><a href="blog/tell-me-about-yourself.html">Answering "Tell me about yourself"</a></li>
+          <li><a href="downloads/cv-checklist.pdf" download>Free CV checklist (PDF)</a></li>
           <li><a href="blog/index.html">All career guides</a></li>
         </ul>
       </nav>
@@ -264,9 +295,10 @@
         <ul>
           <li><a href="https://wa.me/918850628288" target="_blank" rel="noopener">WhatsApp +91 88506 28288</a></li>
           <li><a href="https://www.linkedin.com/in/yash-sarda-483963167/" target="_blank" rel="noopener">Yash Sarda on LinkedIn</a></li>
+          <li><a href="index.html#parents">For parents</a></li>
           <li><a href="index.html#faq">Frequently asked questions</a></li>
         </ul>
-        <p class="sf-note">All sessions are one-on-one video calls.</p>
+        <p class="sf-note">All sessions are one-on-one video calls, in Hindi or English.</p>
       </div>
     </div>
     <div class="sf-bottom">
@@ -585,6 +617,7 @@ function animateIn() {
 const actions = (msg) => `<div class="ractions">
   <a class="btn btn-blue" href="index.html#book">Book a free 15-min call</a>
   <a class="btn btn-line" href="${wa(msg)}" target="_blank" rel="noopener">Send my result on WhatsApp</a>
+  <button class="btn btn-line" data-pdf>Download my report (PDF)</button>
   <button class="btn btn-ghost" data-retake>Retake</button>
   <a class="btn btn-ghost" href="tests.html#">Try another test</a>
 </div>`;
@@ -653,8 +686,18 @@ function result() {
       </div>
     </div>${actions(`Hi Yash, I took the ${t.name} test on your website and scored ${score}/100 (${lvl[1]}). My weakest areas were ${weakest.map(w => w.name).join(" and ")}. I'd like to book a free call.`)}`;
   }
-  $("rBody").innerHTML = html;
+  /* Header and footer that only appear in the downloaded PDF report */
+  const today = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+  const printHead = `<div class="print-only print-head"><b>NextMove Careers</b><span>${esc(t.name)} report · ${today}</span></div>`;
+  const printFoot = `<div class="print-only print-foot">Want help with your next steps? Book a free 15-minute call with Yash Sarda: WhatsApp +91 88506 28288 · yashsarda29.github.io/yash-sarda-careers-website</div>`;
+  $("rBody").innerHTML = printHead + html + printFoot;
   $("rBody").querySelector("[data-retake]").addEventListener("click", () => start(state.test));
+  /* "Download my report": the browser's print dialog, where "Save as PDF" is the default on phones and most desktops */
+  $("rBody").querySelector("[data-pdf]").addEventListener("click", () => {
+    document.querySelectorAll(".meter i").forEach(m => m.style.transition = "none");
+    document.querySelectorAll(".ring .val").forEach(c => c.style.transition = "none");
+    print();
+  });
   show("result");
   animateIn();
 }
