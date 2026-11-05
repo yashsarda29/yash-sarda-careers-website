@@ -588,7 +588,8 @@
 <script>
   const WHATSAPP_NUMBER = "918850628288";               // country code + number, no spaces
   const LINKEDIN_URL    = "https://www.linkedin.com/in/yash-sarda-483963167/";  // Yash's LinkedIn profile
-  const CALENDLY_URL    = "https://calendly.com/yashsarda290220/30min";  // Calendly booking link (leave "" to hide the calendar)
+  const CALENDLY_URL    = "https://calendly.com/yashsarda290220/free-intro-call";  // Free 15-min intro call, shown on the page (leave "" to hide the calendar)
+  const CALENDLY_SESSION_URL = "https://calendly.com/yashsarda290220/30min";     // Full 30-min career guidance session
 </script>
 
 <a class="skip" href="#finder">Skip to content</a>
@@ -756,9 +757,9 @@
           <ul class="book-points">
             <li><span class="mono">01</span><div><b>Pick a slot</b><span>Choose any open time, or ask me which session fits on the free call.</span></div></li>
             <li><span class="mono">02</span><div><b>Tell me what's on your mind</b><span>A line or two on where you're stuck helps me prepare.</span></div></li>
-            <li><span class="mono">03</span><div><b>Leave with a plan</b><span>A 30-minute video call that ends with a clear framework, not generic advice.</span></div></li>
+            <li><span class="mono">03</span><div><b>Leave with a plan</b><span>A free 15-minute intro call on Google Meet. If you need more, full sessions are 30 minutes.</span></div></li>
           </ul>
-          <p class="book-alt">Prefer chat? <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">Message on WhatsApp</a></p>
+          <p class="book-alt">Ready for a full session? <a class="js-session" href="#" target="_blank" rel="noopener">Book a 30-minute session</a> · Prefer chat? <a class="js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">WhatsApp</a></p>
         </div>
         <div class="cal rv" id="cal">
           <div class="cal-empty" id="calEmpty">
@@ -1046,6 +1047,11 @@ if (CALENDLY_URL) {
     const co = new IntersectionObserver(es => { if (es.some(x => x.isIntersecting)) { loadCal(); co.disconnect(); } }, { rootMargin: "800px 0px" });
     co.observe(cal);
   } else loadCal();
+  /* Safety net: load anyway shortly after the page has finished loading */
+  const later = () => setTimeout(loadCal, 3500);
+  if (document.readyState === "complete") later(); else addEventListener("load", later);
+  /* Booking links (#book) should also start the calendar loading immediately */
+  document.querySelectorAll('a[href="#book"]').forEach(a => a.addEventListener("click", loadCal));
 }
 
 /* Route map stops scroll to their stage (mouse, touch and keyboard) */
@@ -1070,6 +1076,7 @@ addEventListener("click", e => { if (sheet.classList.contains("open") && !e.targ
 
 /* Links */
 document.querySelectorAll(".js-wa").forEach(a => { a.href = wa(a.dataset.msg || "Hi Yash!"); a.target = "_blank"; a.rel = "noopener"; });
+document.querySelectorAll(".js-session").forEach(a => { if (CALENDLY_SESSION_URL) a.href = CALENDLY_SESSION_URL; else a.hidden = true; });
 /* LinkedIn buttons stay hidden until a real profile URL is filled in above */
 const hasLinkedIn = /linkedin\.com\/in\/[^/]+/i.test(LINKEDIN_URL);
 document.querySelectorAll(".js-li").forEach(a => { if (hasLinkedIn) a.href = LINKEDIN_URL; else a.hidden = true; });

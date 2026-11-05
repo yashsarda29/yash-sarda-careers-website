@@ -3,7 +3,7 @@
 Static website for 1:1 career guidance sessions: a home page plus a blog. No build step. Open `index.html` in a browser, or host it free on GitHub Pages.
 
 ## Editing the home page (`index.html`)
-- **WhatsApp, LinkedIn, Calendly:** `WHATSAPP_NUMBER`, `LINKEDIN_URL` and `CALENDLY_URL` near the top of `<body>`. The calendar appears as soon as `CALENDLY_URL` is filled in; until then a "message on WhatsApp" card shows instead. LinkedIn buttons stay hidden until `LINKEDIN_URL` is a real profile link (`https://www.linkedin.com/in/...`).
+- **WhatsApp, LinkedIn, Calendly:** `WHATSAPP_NUMBER`, `LINKEDIN_URL`, `CALENDLY_URL` (free 15-min intro call, shown on the page) and `CALENDLY_SESSION_URL` (full 30-min session link) near the top of `<body>`. The calendar appears as soon as `CALENDLY_URL` is filled in; until then a "message on WhatsApp" card shows instead. LinkedIn buttons stay hidden until `LINKEDIN_URL` is a real profile link (`https://www.linkedin.com/in/...`).
 - **Sessions:** the `STAGES` list near the bottom of the file
 - **"Where are you stuck?" answers:** the `PAINS` list
 - **Testimonials:** the `TESTIMONIALS` list (real quotes only, with permission). One quote shows as a full-width feature; two or more switch to the card grid automatically.
