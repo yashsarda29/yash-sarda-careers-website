@@ -17,3 +17,11 @@ Static website for 1:1 career guidance sessions: a home page plus a blog. No bui
 
 ## Hosting
 - `404.html` is the "page not found" page. Its buttons link to `/`, which is correct on a custom domain or a `username.github.io` site; on a project site (`username.github.io/repo/`) change them to `/repo/`.
+
+## Free tests (`tests.html`)
+Three self-check tests that run entirely in the visitor's browser (nothing is sent or stored):
+- **Profile evaluation**: 10 questions, score out of 100 across Academics, Experience, Proof of skills, Visibility and Direction.
+- **Stream selector**: pick Engineering, Commerce or Arts & Humanities, rate 10 statements, get a % match for 6 streams in that track.
+- **Placement readiness**: 10 questions, score out of 100 across Online tests, Interviews, GDs and cases, Targeting and research.
+
+To edit questions, points, streams or result wording, change the `PROFILE`, `STREAM` and `PLACEMENT` objects in the `<script>` of `tests.html`. Direct links: `tests.html#profile`, `tests.html#stream`, `tests.html#placement`.

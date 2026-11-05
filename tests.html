@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free career tests | Yash Sarda</title>
+<meta name="description" content="Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.">
+<meta property="og:title" content="Free career tests | Yash Sarda">
+<meta property="og:description" content="Find out where you stand in 3 minutes: profile score, best-fit stream, and placement readiness.">
+<meta name="theme-color" content="#0A66C2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0A66C2; --blue-deep: #004182; --blue-wash: #E8F1FB;
+    --ink: #0B1B2B; --ink-soft: #4A5868; --paper: #F3F2EF; --white: #FFFFFF;
+    --hair: rgba(11,27,43,.12);
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { overflow-x: clip; scroll-behavior: smooth; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--paper); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: var(--blue); color: var(--white); }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 32px; width: 100%; }
+  .mono { font-family: var(--mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; }
+  .serif { font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -0.01em; }
+  [hidden] { display: none !important; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600; font-size: .98rem; padding: 14px 24px; border-radius: 999px; transition: background .2s, color .2s, border-color .2s; white-space: nowrap; }
+  .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .btn-blue { background: var(--blue); color: var(--white); }
+  .btn-blue:hover { background: var(--blue-deep); }
+  .btn-line { border: 1.5px solid var(--ink); }
+  .btn-line:hover { background: var(--ink); color: var(--paper); }
+  .btn-ghost { color: var(--ink-soft); padding-left: 8px; padding-right: 8px; }
+  .btn-ghost:hover { color: var(--ink); }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 50; background: rgba(243,242,239,.92); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--hair); }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+  .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
+  .mark i { width: 12px; height: 12px; background: var(--blue); border-radius: 3px; transform: rotate(45deg); }
+  .bar nav { display: flex; gap: 28px; font-size: .92rem; font-weight: 500; }
+  .bar nav a:hover, .bar nav a.on { color: var(--blue); }
+  .bar .btn { padding: 10px 18px; font-size: .88rem; }
+  @media (max-width: 760px) { .bar nav { display: none; } }
+
+  main { flex: 1; }
+
+  /* Intro + test picker */
+  .intro { padding: clamp(40px, 8vh, 72px) 0 clamp(24px, 4vh, 36px); }
+  .intro h1 { font-size: clamp(2.5rem, min(6vw, 10vh), 4.6rem); line-height: .98; letter-spacing: -0.045em; font-weight: 700; margin: 16px 0 14px; max-width: 900px; }
+  .intro h1 .serif { color: var(--blue); }
+  .intro p { color: var(--ink-soft); font-size: 1.1rem; max-width: 600px; }
+  .privacy { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: .88rem; color: var(--ink-soft); }
+  .privacy svg { width: 16px; height: 16px; color: var(--blue); }
+
+  .picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: clamp(48px, 9vh, 88px); }
+  .tcard { text-align: left; display: flex; flex-direction: column; background: var(--white); border-radius: 26px; padding: 26px; min-height: 300px; transition: transform .3s, box-shadow .3s; position: relative; overflow: hidden; }
+  .tcard:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgba(11,27,43,.35); }
+  .tcard:nth-child(1) { background: var(--blue); color: var(--white); }
+  .tcard:nth-child(2) { background: var(--ink); color: var(--paper); }
+  .tcard::after { content: ""; position: absolute; right: -60px; bottom: -60px; width: 200px; height: 200px; border-radius: 50%; border: 1.5px solid currentColor; opacity: .18; }
+  .tcard .ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.14); }
+  .tcard:nth-child(3) .ic { background: var(--blue-wash); color: var(--blue); }
+  .tcard .ic svg { width: 24px; height: 24px; }
+  .tcard .mono { opacity: .75; margin-top: 22px; }
+  .tcard h2 { font-size: 1.6rem; letter-spacing: -0.03em; line-height: 1.1; margin: 8px 0 10px; }
+  .tcard p { opacity: .8; font-size: .98rem; flex: 1; }
+  .tcard .go { margin-top: 22px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+  .tcard .go .arr { transition: transform .25s; }
+  .tcard:hover .go .arr { transform: translateX(4px); }
+  @media (max-width: 900px) { .picker { grid-template-columns: 1fr; } .tcard { min-height: 0; } }
+
+  /* Quiz */
+  .quiz { padding: clamp(28px, 6vh, 56px) 0 clamp(48px, 9vh, 88px); }
+  .qbox { max-width: 760px; margin: 0 auto; }
+  .qtop { display: flex; justify-content: space-between; align-items: center; gap: 16px; color: var(--ink-soft); }
+  .qtop .mono b { color: var(--blue); font-weight: 500; }
+  .progress { height: 6px; border-radius: 999px; background: var(--hair); margin: 14px 0 clamp(24px, 5vh, 40px); overflow: hidden; }
+  .progress i { display: block; height: 100%; width: 0; background: var(--blue); border-radius: 999px; transition: width .35s cubic-bezier(.2,.8,.2,1); }
+  .qtitle { font-size: clamp(1.6rem, min(3.4vw, 5.4vh), 2.4rem); line-height: 1.12; letter-spacing: -0.03em; font-weight: 700; }
+  .qhint { color: var(--ink-soft); margin-top: 10px; }
+  .opts { display: grid; gap: 10px; margin-top: clamp(20px, 4vh, 32px); }
+  .opt { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 16px 18px; border-radius: 16px; background: var(--white); border: 1.5px solid transparent; font-weight: 500; font-size: 1.02rem; transition: border-color .15s, background .15s, transform .15s; }
+  .opt:hover { border-color: var(--ink); }
+  .opt .key { width: 30px; height: 30px; flex-shrink: 0; border-radius: 9px; display: grid; place-items: center; font-family: var(--mono); font-size: .78rem; background: var(--paper); color: var(--ink-soft); }
+  .opt[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-wash); }
+  .opt[aria-pressed="true"] .key { background: var(--blue); color: var(--white); }
+  .scale { grid-template-columns: repeat(5, 1fr); }
+  .scale .opt { flex-direction: column; justify-content: center; text-align: center; gap: 8px; padding: 16px 8px; font-size: .9rem; min-height: 96px; }
+  @media (max-width: 600px) { .scale { grid-template-columns: 1fr; } .scale .opt { flex-direction: row; justify-content: flex-start; text-align: left; min-height: 0; padding: 14px 16px; } }
+  .qnav { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; }
+  .qnav .tip { font-size: .85rem; color: var(--ink-soft); }
+  @media (max-width: 600px) { .qnav .tip { display: none; } }
+  .qanim { animation: qin .35s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes qin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* Track picker (stream selector) */
+  .tracks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: clamp(20px, 4vh, 32px); }
+  .track { text-align: left; background: var(--white); border-radius: 20px; padding: 22px; border: 1.5px solid transparent; transition: border-color .15s, transform .2s; }
+  .track:hover { border-color: var(--ink); transform: translateY(-3px); }
+  .track b { display: block; font-size: 1.25rem; letter-spacing: -0.02em; margin: 12px 0 6px; }
+  .track span { color: var(--ink-soft); font-size: .92rem; }
+  .track .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--blue-wash); color: var(--blue); }
+  .track .ic svg { width: 22px; height: 22px; }
+  @media (max-width: 700px) { .tracks { grid-template-columns: 1fr; } }
+
+  /* Result */
+  .result { padding: clamp(28px, 6vh, 56px) 0 clamp(48px, 9vh, 88px); }
+  .rgrid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; align-items: start; }
+  .rcard { background: var(--white); border-radius: 26px; padding: clamp(22px, 3vw, 32px); }
+  .rhead { background: var(--blue); color: var(--white); position: relative; overflow: hidden; }
+  .rhead::after { content: ""; position: absolute; right: -70px; top: -70px; width: 240px; height: 240px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.2); }
+  .rhead .mono { opacity: .8; }
+  .ring { position: relative; width: 168px; height: 168px; margin: 18px 0; }
+  .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 12; }
+  .ring .track-c { stroke: rgba(255,255,255,.18); }
+  .ring .val { stroke: var(--white); stroke-linecap: round; transition: stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1); }
+  .ring .num { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+  .ring .num b { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1; display: block; }
+  .ring .num span { font-family: var(--mono); font-size: .72rem; opacity: .75; }
+  .rhead h2 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; }
+  .rhead p { opacity: .85; margin-top: 8px; max-width: 420px; }
+  .rcard h3 { font-size: 1.15rem; letter-spacing: -0.02em; margin-bottom: 14px; }
+  .bars { display: grid; gap: 12px; }
+  .bar-row { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+  .bar-row .lbl { font-weight: 600; font-size: .95rem; }
+  .bar-row .pct { font-family: var(--mono); font-size: .8rem; color: var(--ink-soft); }
+  .bar-row .meter { grid-column: 1 / -1; height: 8px; border-radius: 999px; background: var(--paper); overflow: hidden; }
+  .bar-row .meter i { display: block; height: 100%; width: 0; border-radius: 999px; background: var(--blue); transition: width 1s cubic-bezier(.2,.8,.2,1); }
+  .bar-row.top .lbl { color: var(--blue); }
+  .bar-row.low .meter i { background: var(--ink-soft); }
+  .bar-row .desc { grid-column: 1 / -1; color: var(--ink-soft); font-size: .88rem; }
+  .recs { list-style: none; display: grid; gap: 10px; margin-top: 4px; }
+  .recs a { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; background: var(--paper); font-weight: 600; transition: background .2s, color .2s; }
+  .recs a:hover { background: var(--blue); color: var(--white); }
+  .recs small { display: block; font-weight: 400; color: var(--ink-soft); font-size: .86rem; margin-top: 2px; }
+  .recs a:hover small { color: rgba(255,255,255,.8); }
+  .recs .arr { flex-shrink: 0; }
+  .ractions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .disclaimer { margin-top: 16px; font-size: .84rem; color: var(--ink-soft); }
+  .stack { display: grid; gap: 16px; }
+  @media (max-width: 900px) { .rgrid { grid-template-columns: 1fr; } }
+
+  footer { padding: 28px 0 32px; font-size: .9rem; color: var(--ink-soft); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a:hover { color: var(--blue); }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 0 20px; }
+    .ractions .btn { flex: 1 1 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a href="index.html" class="mark"><i></i>Yash Sarda</a>
+    <nav aria-label="Main"><a href="index.html#route">Sessions</a><a href="tests.html" class="on" aria-current="page">Free tests</a><a href="blog/index.html">Blog</a><a href="index.html#faq">FAQ</a></nav>
+    <a class="btn btn-blue" href="index.html#book">Book a free call</a>
+  </div>
+</header>
+
+<main id="app">
+  <!-- Picker (start screen) -->
+  <section id="screen-picker">
+    <div class="wrap intro">
+      <span class="mono" style="color:var(--blue)">Free career tests · 3 minutes each</span>
+      <h1>Find out where you stand, <span class="serif">in three minutes.</span></h1>
+      <p>Pick a test, answer honestly, and get a score with clear next steps. No sign-up needed.</p>
+      <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your answers stay in your browser. Nothing is sent or saved.</span>
+    </div>
+    <div class="wrap picker" id="picker"></div>
+  </section>
+
+  <!-- Quiz -->
+  <section id="screen-quiz" class="quiz" hidden>
+    <div class="wrap">
+      <div class="qbox">
+        <div class="qtop"><span class="mono" id="qLabel"></span><span class="mono" id="qCount"></span></div>
+        <div class="progress" aria-hidden="true"><i id="qBar"></i></div>
+        <div id="qBody" aria-live="polite"></div>
+        <div class="qnav">
+          <button class="btn btn-ghost" id="qBack">← Back</button>
+          <span class="tip" id="qTip"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section id="screen-result" class="result" hidden>
+    <div class="wrap" id="rBody"></div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> Yash Sarda · Career guidance, 1:1</span><span><a href="index.html">Home</a> · <a href="blog/index.html">Blog</a> · <a class="js-wa" data-msg="Hi Yash!" href="#">WhatsApp</a></span></div></footer>
+
+<script>
+/* ============================================================
+   Settings
+   ============================================================ */
+const WHATSAPP_NUMBER = "918850628288";
+const wa = (msg) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ICON = {
+  profile: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="m16 11 2 2 4-4"/>',
+  stream: '<path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"/><path d="m15 9 6-6"/>',
+  placement: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  eng: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  com: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>',
+  arts: '<path d="M12 19c-4 0-7-2-7-5 0-4 4-9 7-9s7 5 7 9c0 3-3 5-7 5Z"/><circle cx="9" cy="11" r="1"/><circle cx="15" cy="11" r="1"/><path d="M10 15h4"/>'
+};
+const svg = (k, w = 2) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]}</svg>`;
+
+/* Session suggestions (names match the home page) */
+const SESSIONS = {
+  "Profile gap check": "See where your profile stands for a target role, and the three gaps to close first.",
+  "Internship strategy": "Where to find internships, how to reach out, and a weekly plan to land one.",
+  "Projects and certifications": "Pick the projects, certifications and competitions worth your time.",
+  "CV review": "Line-by-line feedback on your CV, with the top fixes to make it stand out.",
+  "LinkedIn review": "A sharper headline, About section and profile that recruiters want to click on.",
+  "Career path mapping": "See the roles your degree leads to, how they grow, and the skills each needs.",
+  "Specialisation or branch choice": "Compare options on fit, skills and job outcomes.",
+  "Aptitude tests": "A clear strategy for quant, logic and verbal online tests.",
+  "Mock interview": "A full mock for your target role, with honest feedback.",
+  "HR interview": "Answer common questions and tell your story clearly.",
+  "Group discussion": "Enter, structure and close a GD, with practice rounds.",
+  "Cases and guesstimates": "Structured practice for consulting and analyst roles.",
+  "Placement game plan": "Companies to target, timelines, and prep for each round.",
+  "CV and LinkedIn rebuild": "Rebuild your CV and profile together, aligned to your target roles."
+};
+
+/* ============================================================
+   TEST 1 · Profile evaluation (scored out of 100)
+   Each option is [label, points]. 10 questions × 10 points.
+   ============================================================ */
+const PROFILE = {
+  id: "profile", name: "Profile evaluation", icon: "profile", mins: 3,
+  blurb: "Score your profile out of 100 across academics, experience, proof of skills, visibility and direction.",
+  cats: {
+    acad: { name: "Academics", fix: "Profile gap check" },
+    exp:  { name: "Experience", fix: "Internship strategy" },
+    proof:{ name: "Proof of skills", fix: "Projects and certifications" },
+    vis:  { name: "Visibility (CV & LinkedIn)", fix: "CV review" },
+    dir:  { name: "Direction", fix: "Career path mapping" }
+  },
+  questions: [
+    { cat: "acad", q: "What's your current CGPA or percentage?", o: [["Below 6 CGPA / 60%", 3], ["6 to 7 CGPA / 60–70%", 5], ["7 to 8 CGPA / 70–80%", 7], ["Above 8 CGPA / 80%", 10]] },
+    { cat: "exp", q: "How many internships have you done?", o: [["None yet", 0], ["One short or virtual internship", 5], ["One internship related to my target role", 8], ["Two or more relevant internships", 10]] },
+    { cat: "exp", q: "Have you held a responsibility outside class?", hint: "Clubs, fests, societies, sports, volunteering, family business.", o: [["No", 0], ["I'm a member of a club or team", 4], ["I've had a role with real responsibility", 8], ["I've led something with a clear result", 10]] },
+    { cat: "proof", q: "What projects can you show?", o: [["None", 0], ["Only coursework assignments", 3], ["One project I chose and finished myself", 7], ["Two or more, with links or write-ups", 10]] },
+    { cat: "proof", q: "Which best describes your certifications?", o: [["I don't have any", 0], ["A few general online courses", 3], ["One or two relevant to my target role", 7], ["Relevant ones that I've used in a project", 10]] },
+    { cat: "proof", q: "Have you taken part in competitions?", hint: "Hackathons, case competitions, quizzes, olympiads, debates.", o: [["Never", 0], ["Participated", 5], ["Reached later rounds", 8], ["Won or was a finalist", 10]] },
+    { cat: "vis", q: "What's the state of your CV?", o: [["I don't have one", 0], ["I have a generic CV", 4], ["A one-page CV, recently updated", 7], ["I tailor it for each role I apply to", 10]] },
+    { cat: "vis", q: "What's the state of your LinkedIn profile?", o: [["I don't have one", 0], ["Basic, just my college name", 3], ["Proper headline and About section", 7], ["Complete, and I'm active on it", 10]] },
+    { cat: "dir", q: "How clear are you about your target role?", o: [["No idea yet", 0], ["I'm considering a few options", 4], ["I know my field", 7], ["I know the exact role and target companies", 10]] },
+    { cat: "dir", q: "How connected are you with seniors and alumni?", o: [["I haven't talked to any", 0], ["I know a few seniors", 4], ["I'm in regular touch with seniors or alumni", 7], ["I have mentors or have received referrals", 10]] }
+  ],
+  levels: [[80, "Placement-ready", "A strong profile. Now it's about targeting the right roles and converting interviews."], [60, "On track", "A solid base, with a couple of clear gaps that are worth closing first."], [40, "Building up", "You have some pieces in place. Focus on the two weakest areas below."], [0, "Getting started", "Lots of room to grow, which is normal at this stage. Start with one gap at a time."]]
+};
+
+/* ============================================================
+   TEST 3 · Placement readiness (scored out of 100)
+   ============================================================ */
+const PLACEMENT = {
+  id: "placement", name: "Placement readiness", icon: "placement", mins: 3,
+  blurb: "How ready are you for placement season? Score your prep for tests, interviews, GDs and company research.",
+  cats: {
+    tests: { name: "Online tests", fix: "Aptitude tests" },
+    intv:  { name: "Interviews", fix: "Mock interview" },
+    gd:    { name: "GDs and cases", fix: "Group discussion" },
+    prep:  { name: "Targeting and research", fix: "Placement game plan" }
+  },
+  questions: [
+    { cat: "tests", q: "How much aptitude practice have you done?", o: [["Haven't started", 0], ["Now and then", 3], ["Regular topic-wise practice", 7], ["Regular timed mock tests", 10]] },
+    { cat: "intv", q: "Is your answer to \"Tell me about yourself\" ready?", o: [["Not really", 0], ["I have a rough idea", 3], ["Yes, I've prepared it", 7], ["Prepared and practised out loud", 10]] },
+    { cat: "intv", q: "How many mock interviews have you done?", o: [["None", 0], ["With friends", 4], ["One with a professional", 7], ["Several, with feedback", 10]] },
+    { cat: "intv", q: "Could you answer \"Why should we hire you?\" right now?", o: [["No", 0], ["Something vague", 3], ["A decent answer", 7], ["A crisp answer with examples", 10]] },
+    { cat: "gd", q: "How much group discussion practice have you had?", o: [["Never done one", 0], ["Once or twice", 4], ["A few times", 7], ["I practise regularly", 10]] },
+    { cat: "gd", q: "How comfortable are you with case or guesstimate questions?", o: [["Never tried one", 0], ["I've heard of them", 3], ["I've tried a few", 7], ["I practise them regularly", 10]] },
+    { cat: "prep", q: "Do you have a list of companies you're targeting?", o: [["No list", 0], ["A vague idea", 3], ["A list of companies", 7], ["A list, and I know each one's selection process", 10]] },
+    { cat: "prep", q: "Have you revised your core subjects or domain knowledge?", o: [["Not started", 0], ["A few topics", 4], ["Most core topics", 7], ["Revised, with practice questions", 10]] },
+    { cat: "prep", q: "Is your CV ready for applications?", o: [["Not yet", 0], ["A generic version", 4], ["Updated and polished", 7], ["Tailored for each company", 10]] },
+    { cat: "prep", q: "How do you research a company before an interview?", o: [["I don't, usually", 0], ["I skim their website", 3], ["I learn how their business works", 7], ["Business, recent news, and the role itself", 10]] }
+  ],
+  levels: [[80, "Ready to go", "You're well prepared. A full mock interview will sharpen the final edges."], [60, "Nearly there", "Good preparation with a couple of gaps. Fix those before your first company."], [40, "Halfway there", "You've started, but key rounds need work. Use the plan below."], [0, "Early days", "Plenty of time to prepare well if you start now. Begin with the weakest area."]]
+};
+
+/* ============================================================
+   TEST 2 · Stream selector
+   Pick a track, then rate statements on a 5-point scale.
+   Each statement gives weights to the streams it relates to.
+   Stream score = sum(answer × weight) ÷ sum(4 × weight) → %.
+   ============================================================ */
+const SCALE = ["Not me", "A little", "Somewhat", "Mostly", "Totally me"];
+const STREAM = {
+  id: "stream", name: "Stream selector", icon: "stream", mins: 3,
+  blurb: "Engineering, commerce or arts? Pick your track and get a match score for each stream within it.",
+  tracks: {
+    eng: {
+      name: "Engineering", icon: "eng", sub: "CS, AI & data, electronics, electrical, mechanical, civil",
+      streams: {
+        cs:   ["Computer Science & IT", "Software, apps, systems and the internet. Roles: software engineer, developer, product engineer."],
+        ai:   ["AI & Data Science", "Teaching computers to learn from data. Roles: data analyst, data scientist, ML engineer."],
+        ece:  ["Electronics & Communication", "Chips, devices and how they connect. Roles: embedded, VLSI, telecom, IoT engineer."],
+        eee:  ["Electrical", "Power, energy and electric machines. Roles: power systems, EV, renewables, automation engineer."],
+        mech: ["Mechanical", "Machines, motion and manufacturing. Roles: design, automotive, manufacturing, robotics engineer."],
+        civil:["Civil", "Buildings, roads and infrastructure. Roles: structural, construction, transport, urban planning engineer."]
+      },
+      q: [
+        ["I enjoy writing code or solving logic puzzles.", { cs: 3, ai: 2, ece: 1 }],
+        ["I like finding patterns in data and numbers.", { ai: 3, cs: 1 }],
+        ["I'm curious how phones, chips and circuits work.", { ece: 3, eee: 2 }],
+        ["I'm interested in power, energy and electric vehicles.", { eee: 3, mech: 1 }],
+        ["I like taking machines apart to see how they work.", { mech: 3, eee: 1 }],
+        ["I'd enjoy designing buildings, roads or bridges.", { civil: 3, mech: 1 }],
+        ["I'd rather work on a computer than on a site or shop floor.", { cs: 2, ai: 2 }],
+        ["I enjoy maths, especially statistics and probability.", { ai: 3, cs: 1, ece: 1 }],
+        ["I like hands-on work with physical things.", { mech: 2, civil: 2, eee: 1, ece: 1 }],
+        ["I'd like to work on robots, automation or smart devices.", { ece: 2, mech: 2, ai: 1, eee: 1 }]
+      ]
+    },
+    com: {
+      name: "Commerce", icon: "com", sub: "Finance, accounting, marketing, HR, analytics, operations",
+      streams: {
+        fin: ["Finance & Banking", "Money, markets and investment decisions. Roles: financial analyst, banking, investment research."],
+        acc: ["Accounting & Taxation", "Accurate books, tax and compliance. Paths: CA, CMA, CS, audit, tax consulting."],
+        mkt: ["Marketing", "Understanding customers and growing brands. Roles: brand, digital marketing, sales, market research."],
+        hr:  ["Human Resources", "Hiring, developing and supporting people. Roles: talent acquisition, HR business partner, L&D."],
+        ba:  ["Business Analytics", "Using data to make business decisions. Roles: business analyst, data analyst, consultant."],
+        ops: ["Operations & Supply Chain", "Making things flow on time and on budget. Roles: operations, logistics, procurement."]
+      },
+      q: [
+        ["I like tracking money: budgets, savings, investments.", { fin: 3, acc: 2 }],
+        ["I enjoy precise, rule-based work where details matter.", { acc: 3, ops: 1 }],
+        ["I'm interested in why people buy what they buy.", { mkt: 3, ba: 1 }],
+        ["I enjoy creating content, campaigns or pitches.", { mkt: 3 }],
+        ["I like understanding people and helping teams work well.", { hr: 3, mkt: 1 }],
+        ["I enjoy using spreadsheets and data to find answers.", { ba: 3, fin: 1, ops: 1 }],
+        ["I follow stock markets, the economy or business news.", { fin: 3, ba: 1 }],
+        ["I like planning how things move: stock, deliveries, processes.", { ops: 3, ba: 1 }],
+        ["I'd enjoy interviewing people or resolving conflicts.", { hr: 3 }],
+        ["I'm comfortable with tax rules, laws and compliance.", { acc: 3, fin: 1 }]
+      ]
+    },
+    arts: {
+      name: "Arts & Humanities", icon: "arts", sub: "Psychology, law, media, design, economics, public policy",
+      streams: {
+        psy:  ["Psychology", "How people think, feel and behave. Paths: counselling, clinical, organisational, research."],
+        law:  ["Law", "Rights, rules and arguments. Paths: corporate law, litigation, legal research, policy."],
+        jour: ["Journalism & Media", "Finding and telling stories. Roles: reporter, editor, content strategist, producer."],
+        des:  ["Design", "Solving problems visually. Roles: graphic, UX/UI, product, communication designer."],
+        eco:  ["Economics", "How markets, money and choices work. Roles: economist, analyst, research, finance."],
+        pol:  ["Public Policy & Civil Services", "How governments solve problems. Paths: civil services, policy research, development sector."]
+      },
+      q: [
+        ["I'm curious why people think and behave the way they do.", { psy: 3 }],
+        ["I enjoy debating and building strong arguments.", { law: 3, pol: 1 }],
+        ["I love writing, storytelling or reporting.", { jour: 3 }],
+        ["I sketch, design, or notice visual details others miss.", { des: 3 }],
+        ["I like understanding markets, prices and how economies work.", { eco: 3, pol: 1 }],
+        ["I care about social issues and how governments solve them.", { pol: 3, law: 1, jour: 1 }],
+        ["I enjoy reading detailed texts and spotting the fine print.", { law: 2, eco: 1 }],
+        ["I'd like to help people through counselling or support.", { psy: 3 }],
+        ["I'm comfortable with numbers and graphs.", { eco: 2, psy: 1, pol: 1 }],
+        ["I enjoy making videos, podcasts or social media content.", { jour: 2, des: 2 }]
+      ]
+    }
+  }
+};
+
+const TESTS = { profile: PROFILE, stream: STREAM, placement: PLACEMENT };
+const ORDER = ["profile", "stream", "placement"];
+
+/* ============================================================
+   App state + screens
+   ============================================================ */
+const $ = (id) => document.getElementById(id);
+let state = null; // { test, track, i, answers: [] }
+
+function show(screen) {
+  ["picker", "quiz", "result"].forEach(s => $("screen-" + s).hidden = s !== screen);
+  scrollTo(0, 0);
+}
+
+/* Start screen */
+const ACCENT = { profile: "Score out of 100", stream: "Match score per stream", placement: "Score out of 100" };
+$("picker").innerHTML = ORDER.map(id => {
+  const t = TESTS[id];
+  const n = id === "stream" ? 10 : t.questions.length;
+  return `<button class="tcard" data-test="${id}">
+    <span class="ic">${svg(t.icon)}</span>
+    <span class="mono">${n} questions · ~${t.mins} min · ${ACCENT[id]}</span>
+    <h2>${esc(t.name)}</h2>
+    <p>${esc(t.blurb)}</p>
+    <span class="go">Start the test <span class="arr">→</span></span>
+  </button>`;
+}).join("");
+$("picker").addEventListener("click", e => { const c = e.target.closest(".tcard"); if (c) location.hash = c.dataset.test; });
+
+function start(id) {
+  if (!TESTS[id]) { state = null; show("picker"); return; }
+  state = { test: id, track: null, i: 0, answers: [] };
+  show("quiz");
+  render();
+}
+
+/* Questions for the current test */
+const questionsOf = (s) => s.test === "stream" ? (s.track ? STREAM.tracks[s.track].q : []) : TESTS[s.test].questions;
+
+function render() {
+  const t = TESTS[state.test];
+  $("qLabel").innerHTML = `<b>${esc(t.name)}</b>`;
+  /* Stream selector: first pick a track */
+  if (state.test === "stream" && !state.track) {
+    $("qCount").textContent = "Step 1 of 2";
+    $("qBar").style.width = "4%";
+    $("qBody").innerHTML = `<div class="qanim">
+      <h2 class="qtitle">Which track are you choosing a stream in?</h2>
+      <p class="qhint">You'll then answer 10 quick questions and get a match score for each stream in that track.</p>
+      <div class="tracks">${Object.entries(STREAM.tracks).map(([k, tr]) => `
+        <button class="track" data-track="${k}"><span class="ic">${svg(tr.icon)}</span><b>${esc(tr.name)}</b><span>${esc(tr.sub)}</span></button>`).join("")}</div>
+    </div>`;
+    $("qBack").textContent = "← All tests";
+    $("qTip").textContent = "";
+    $("qBody").querySelectorAll(".track").forEach(b => b.addEventListener("click", () => { state.track = b.dataset.track; state.i = 0; state.answers = []; render(); }));
+    return;
+  }
+  const qs = questionsOf(state), q = qs[state.i], total = qs.length;
+  $("qCount").textContent = `Question ${state.i + 1} of ${total}`;
+  $("qBar").style.width = `${(state.i / total) * 100}%`;
+  $("qBack").textContent = state.i === 0 ? (state.test === "stream" ? "← Change track" : "← All tests") : "← Back";
+  const picked = state.answers[state.i];
+
+  if (state.test === "stream") {
+    $("qBody").innerHTML = `<div class="qanim">
+      <h2 class="qtitle">${esc(q[0])}</h2>
+      <p class="qhint">How much does this sound like you?</p>
+      <div class="opts scale" role="group" aria-label="Answer">${SCALE.map((s, k) => `<button class="opt" data-v="${k}" aria-pressed="${picked === k}"><span class="key">${k + 1}</span>${s}</button>`).join("")}</div>
+    </div>`;
+  } else {
+    $("qBody").innerHTML = `<div class="qanim">
+      <h2 class="qtitle">${esc(q.q)}</h2>
+      ${q.hint ? `<p class="qhint">${esc(q.hint)}</p>` : ""}
+      <div class="opts" role="group" aria-label="Answer">${q.o.map((o, k) => `<button class="opt" data-v="${k}" aria-pressed="${picked === k}"><span class="key">${k + 1}</span>${esc(o[0])}</button>`).join("")}</div>
+    </div>`;
+  }
+  $("qBody").querySelectorAll(".opt").forEach(b => b.addEventListener("click", () => answer(+b.dataset.v)));
+  $("qTip").textContent = `Tip: press 1–${$("qBody").querySelectorAll(".opt").length} to answer`;
+  const first = $("qBody").querySelector('.opt[aria-pressed="true"]') || $("qBody").querySelector(".opt");
+  if (document.activeElement && document.activeElement.classList.contains("opt")) first.focus({ preventScroll: true });
+}
+
+function answer(v) {
+  state.answers[state.i] = v;
+  $("qBody").querySelectorAll(".opt").forEach(b => b.setAttribute("aria-pressed", +b.dataset.v === v));
+  const total = questionsOf(state).length;
+  setTimeout(() => {
+    if (state.i < total - 1) { state.i++; render(); }
+    else { $("qBar").style.width = "100%"; result(); }
+  }, 220);
+}
+
+$("qBack").addEventListener("click", () => {
+  if (state.test === "stream" && state.track && state.i === 0) { state.track = null; state.answers = []; render(); return; }
+  if (state.i === 0 || (state.test === "stream" && !state.track)) { location.hash = ""; return; }
+  state.i--; render();
+});
+
+addEventListener("keydown", e => {
+  if ($("screen-quiz").hidden || !state) return;
+  const n = parseInt(e.key, 10);
+  const opts = $("qBody").querySelectorAll(".opt");
+  if (n >= 1 && n <= opts.length) { e.preventDefault(); answer(n - 1); }
+});
+
+/* ============================================================
+   Results
+   ============================================================ */
+function levelFor(levels, score) { return levels.find(l => score >= l[0]); }
+function recLink(name, why) {
+  return `<li><a href="${wa(`Hi Yash, I took a test on your website and I'd like to book a session: ${name}.`)}" target="_blank" rel="noopener"><span>${esc(name)}<small>${esc(why || SESSIONS[name] || "")}</small></span><span class="arr">↗</span></a></li>`;
+}
+function ring(pct, big, small) {
+  const C = 2 * Math.PI * 70;
+  return `<div class="ring"><svg viewBox="0 0 160 160"><circle class="track-c" cx="80" cy="80" r="70"/><circle class="val" cx="80" cy="80" r="70" stroke-dasharray="${C}" stroke-dashoffset="${C}" data-off="${C * (1 - pct / 100)}"/></svg><div class="num"><div><b>${big}</b><span>${small}</span></div></div></div>`;
+}
+function animateIn() {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll(".ring .val").forEach(c => c.style.strokeDashoffset = c.dataset.off);
+    document.querySelectorAll(".meter i").forEach(m => m.style.width = m.dataset.w + "%");
+  }));
+}
+const actions = (msg) => `<div class="ractions">
+  <a class="btn btn-blue" href="index.html#book">Book a free 15-min call</a>
+  <a class="btn btn-line" href="${wa(msg)}" target="_blank" rel="noopener">Send my result on WhatsApp</a>
+  <button class="btn btn-ghost" data-retake>Retake</button>
+  <a class="btn btn-ghost" href="tests.html#">Try another test</a>
+</div>`;
+
+function result() {
+  const t = TESTS[state.test];
+  let html;
+  if (state.test === "stream") {
+    const tr = STREAM.tracks[state.track];
+    const totals = {}, max = {};
+    Object.keys(tr.streams).forEach(k => { totals[k] = 0; max[k] = 0; });
+    tr.q.forEach((q, i) => Object.entries(q[1]).forEach(([k, w]) => { totals[k] += (state.answers[i] || 0) * w; max[k] += 4 * w; }));
+    const ranked = Object.keys(tr.streams).map(k => ({ k, name: tr.streams[k][0], desc: tr.streams[k][1], pct: Math.round(max[k] ? (totals[k] / max[k]) * 100 : 0) })).sort((a, b) => b.pct - a.pct);
+    const top = ranked[0], second = ranked[1];
+    const close = top.pct - second.pct <= 8;
+    html = `<div class="rgrid">
+      <div class="rcard rhead">
+        <span class="mono">Stream selector · ${esc(tr.name)}</span>
+        ${ring(top.pct, top.pct + "%", "match")}
+        <h2>Your best fit: ${esc(top.name)}</h2>
+        <p>${esc(top.desc)}${close ? ` ${esc(second.name)} is a close second, so it's worth exploring both.` : ""}</p>
+      </div>
+      <div class="stack">
+        <div class="rcard">
+          <h3>Your match score for every stream</h3>
+          <div class="bars">${ranked.map((r, i) => `<div class="bar-row ${i === 0 ? "top" : ""}"><span class="lbl">${esc(r.name)}</span><span class="pct">${r.pct}%</span><span class="meter"><i data-w="${r.pct}"></i></span></div>`).join("")}</div>
+        </div>
+        <div class="rcard">
+          <h3>Your next step</h3>
+          <ul class="recs">${recLink("Specialisation or branch choice", `Compare ${top.name} and ${second.name} on fit, skills and job outcomes.`)}${recLink("Career path mapping")}</ul>
+          <p class="disclaimer">This is a quick interest check, not a psychometric assessment. Use it to start a conversation, not to make the final decision.</p>
+        </div>
+      </div>
+    </div>${actions(`Hi Yash, I took the Stream selector (${tr.name}) on your website. My best fit was ${top.name} (${top.pct}%), then ${second.name} (${second.pct}%). I'd like to book a free call.`)}`;
+  } else {
+    /* Scored tests */
+    const cats = {};
+    Object.keys(t.cats).forEach(k => cats[k] = { got: 0, max: 0 });
+    let got = 0, maxAll = 0;
+    t.questions.forEach((q, i) => { const pts = q.o[state.answers[i] ?? 0][1]; const m = Math.max(...q.o.map(o => o[1])); cats[q.cat].got += pts; cats[q.cat].max += m; got += pts; maxAll += m; });
+    const score = Math.round((got / maxAll) * 100);
+    const lvl = levelFor(t.levels, score);
+    const rows = Object.entries(cats).map(([k, c]) => ({ k, name: t.cats[k].name, fix: t.cats[k].fix, pct: Math.round((c.got / c.max) * 100) }));
+    const weakest = [...rows].sort((a, b) => a.pct - b.pct).slice(0, 2);
+    const recs = [...new Set(weakest.map(w => w.fix))];
+    if (state.test === "profile" && weakest.some(w => w.k === "vis")) recs.push("LinkedIn review");
+    if (state.test === "placement" && weakest.some(w => w.k === "intv")) recs.push("HR interview");
+    if (state.test === "placement" && weakest.some(w => w.k === "gd")) recs.push("Cases and guesstimates");
+    html = `<div class="rgrid">
+      <div class="rcard rhead">
+        <span class="mono">${esc(t.name)}</span>
+        ${ring(score, score, "out of 100")}
+        <h2>${esc(lvl[1])}</h2>
+        <p>${esc(lvl[2])}</p>
+      </div>
+      <div class="stack">
+        <div class="rcard">
+          <h3>Your score by area</h3>
+          <div class="bars">${rows.map(r => `<div class="bar-row ${weakest.includes(r) ? "low" : ""}"><span class="lbl">${esc(r.name)}</span><span class="pct">${r.pct}%</span><span class="meter"><i data-w="${r.pct}"></i></span></div>`).join("")}</div>
+        </div>
+        <div class="rcard">
+          <h3>Fix these first: ${weakest.map(w => esc(w.name)).join(" and ")}</h3>
+          <ul class="recs">${recs.slice(0, 3).map(n => recLink(n)).join("")}</ul>
+          <p class="disclaimer">A quick self-check based on your answers, not a formal assessment.</p>
+        </div>
+      </div>
+    </div>${actions(`Hi Yash, I took the ${t.name} test on your website and scored ${score}/100 (${lvl[1]}). My weakest areas were ${weakest.map(w => w.name).join(" and ")}. I'd like to book a free call.`)}`;
+  }
+  $("rBody").innerHTML = html;
+  $("rBody").querySelector("[data-retake]").addEventListener("click", () => start(state.test));
+  show("result");
+  animateIn();
+}
+
+/* Routing: tests.html#profile, #stream, #placement */
+const route = () => { const id = location.hash.replace("#", ""); if (id) start(id); else { state = null; show("picker"); } };
+addEventListener("hashchange", route);
+route();
+
+/* Footer */
+document.querySelectorAll(".js-wa").forEach(a => { a.href = wa(a.dataset.msg || "Hi Yash!"); a.target = "_blank"; a.rel = "noopener"; });
+$("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
