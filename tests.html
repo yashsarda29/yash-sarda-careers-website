@@ -410,6 +410,7 @@ $("picker").innerHTML = ORDER.map(id => {
 $("picker").addEventListener("click", e => { const c = e.target.closest(".tcard"); if (c) location.hash = c.dataset.test; });
 
 function start(id) {
+  cancelAdvance();
   if (!TESTS[id]) { state = null; show("picker"); return; }
   state = { test: id, track: null, i: 0, answers: [] };
   show("quiz");
@@ -462,17 +463,24 @@ function render() {
   if (document.activeElement && document.activeElement.classList.contains("opt")) first.focus({ preventScroll: true });
 }
 
+/* Short pause so the picked answer shows before moving on.
+   While it's pending, further answers are ignored so a quick double press can't skip a question. */
+let advanceTimer = null;
 function answer(v) {
+  if (advanceTimer) return;
   state.answers[state.i] = v;
   $("qBody").querySelectorAll(".opt").forEach(b => b.setAttribute("aria-pressed", +b.dataset.v === v));
   const total = questionsOf(state).length;
-  setTimeout(() => {
+  advanceTimer = setTimeout(() => {
+    advanceTimer = null;
     if (state.i < total - 1) { state.i++; render(); }
     else { $("qBar").style.width = "100%"; result(); }
   }, 220);
 }
+function cancelAdvance() { clearTimeout(advanceTimer); advanceTimer = null; }
 
 $("qBack").addEventListener("click", () => {
+  cancelAdvance();
   if (state.test === "stream" && state.track && state.i === 0) { state.track = null; state.answers = []; render(); return; }
   if (state.i === 0 || (state.test === "stream" && !state.track)) { location.hash = ""; return; }
   state.i--; render();
@@ -480,6 +488,8 @@ $("qBack").addEventListener("click", () => {
 
 addEventListener("keydown", e => {
   if ($("screen-quiz").hidden || !state) return;
+  /* Leave browser shortcuts like Ctrl+1 (switch tab) alone */
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
   const n = parseInt(e.key, 10);
   const opts = $("qBody").querySelectorAll(".opt");
   if (n >= 1 && n <= opts.length) { e.preventDefault(); answer(n - 1); }
