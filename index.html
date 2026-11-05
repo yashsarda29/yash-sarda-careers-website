@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yash Sarda | 1:1 Career Guidance for College Students</title>
-<meta name="description" content="1:1 online career guidance from Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry). Choose your path, build your profile, get shortlisted and crack the interview. First 15 minutes free.">
-<meta property="og:title" content="Yash Sarda | Clarity for your next career move">
+<title>NextMove Careers | 1:1 Career Guidance for College Students</title>
+<meta name="description" content="NextMove Careers: 1:1 online career guidance with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry). Choose your path, build your profile, get shortlisted and crack the interview. First 15 minutes free.">
+<meta property="og:title" content="NextMove Careers | Clarity for your next career move">
 <meta property="og:description" content="1:1 online career guidance for college students. First 15 minutes free.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="NextMove Careers">
 <meta name="theme-color" content="#0A66C2">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <script>document.documentElement.classList.add("js");</script>
@@ -250,9 +251,6 @@
   .final .btn-ghostw:hover { background: rgba(255,255,255,.12); }
   @media (max-width: 900px) { .final { margin: 0 8px; border-radius: 28px; padding: 90px 0; } }
 
-  footer { padding: 40px 0 48px; font-size: .9rem; color: var(--ink-soft); }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  footer a:hover { color: var(--blue); }
 
   /* ---------- Testimonials ---------- */
   .voices { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
@@ -381,8 +379,14 @@
   /* About */
   .about-grid { gap: 48px; align-items: center; }
   .about-label { display: block; color: #6FA8E8; margin-bottom: 18px; }
-  .manifesto { font-size: clamp(1.9rem, min(3.4vw, 5.6vh), 3rem); }
+  .manifesto { font-size: clamp(1.9rem, min(3.4vw, 5.6vh), 3rem); font-weight: 400; }
   .about-copy { margin-top: 18px; font-size: 1.02rem; }
+  /* Three short points on how sessions work */
+  .about-points { list-style: none; display: grid; gap: 0; margin-top: 24px; max-width: 600px; border-top: 1px solid rgba(243,242,239,.14); }
+  .about-points li { display: grid; grid-template-columns: 22px 1fr; column-gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(243,242,239,.14); }
+  .about-points li::before { content: ""; grid-row: span 2; width: 10px; height: 10px; margin-top: 7px; background: var(--blue); border-radius: 2px; transform: rotate(45deg); }
+  .about-points b { color: var(--paper); font-weight: 600; }
+  .about-points span { color: rgba(243,242,239,.68); font-size: .96rem; }
   .id-card { padding: 16px; max-width: 320px; justify-self: end; }
   .photo { aspect-ratio: 5/4; }
   .id-card h4 { margin-top: 12px; font-size: 1.25rem; }
@@ -429,7 +433,6 @@
   /* Final CTA */
   .final { padding: clamp(60px, 10vh, 96px) 0; }
   .final h2 { font-size: clamp(2.6rem, min(7.4vw, 12vh), 6.2rem); margin: 16px 0 18px; }
-  footer { padding: 28px 0 32px; }
 
   /* Tablet */
   @media (max-width: 960px) {
@@ -499,7 +502,6 @@
     .mbar .book { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--blue); color: var(--white); border-radius: 999px; font-weight: 600; padding: 13px 16px; }
     .mbar .wa { width: 48px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.12); color: var(--white); }
     .mbar svg { width: 20px; height: 20px; }
-    footer { padding-bottom: 96px; }
   }
 
   /* 4 · Final CTA: calendar first, WhatsApp second */
@@ -616,6 +618,7 @@
     html { scroll-behavior: auto; }
   }
 </style>
+<link rel="stylesheet" href="site-footer.css">
 </head>
 <body>
 
@@ -632,7 +635,7 @@
 <a class="skip" href="#finder">Skip to content</a>
 <header id="hdr">
   <div class="wrap bar">
-    <a href="#top" class="mark" aria-label="Yash Sarda, home"><i></i>Yash Sarda</a>
+    <a href="#top" class="mark" aria-label="NextMove Careers, home"><i></i>NextMove Careers</a>
     <nav class="menu" aria-label="Main">
       <a href="#finder">Find your session</a>
       <a href="#route">The route</a>
@@ -755,17 +758,24 @@
     <div class="wrap">
       <div class="about-grid">
         <div class="rv">
-          <span class="mono about-label">Who you'll talk to</span>
-          <p class="manifesto">Not a coach who read about the industry. <span class="dim">Someone who</span> <em>works in it</em><span class="dim">, and tells you what actually gets people hired.</span></p>
-          <p class="about-copy">I'm Yash, a business solutions and career path consultant with an MBA from Great Lakes, Chennai and 5+ years in industry. I've seen what recruiters shortlist and where good students lose out. My sessions are short, practical and honest: you leave with a framework to decide and act, not a pile of generic advice.</p>
+          <span class="mono about-label">About your mentor</span>
+          <h2 class="manifesto">Career advice from <em>inside the industry,</em> <span class="dim">not from a textbook.</span></h2>
+          <p class="about-copy">I'm Yash Sarda. After an MBA from Great Lakes Institute of Management, Chennai, I've spent 5+ years working in industry as a business solutions consultant. Through NextMove Careers, I help college and school students make clear, practical decisions about what to study, how to build a profile, and how to get hired.</p>
+          <ul class="about-points" data-stagger>
+            <li><b>Practical, not generic.</b><span>Every session ends with a simple framework and your next three steps.</span></li>
+            <li><b>Honest about where you stand.</b><span>What recruiters look for, where your profile is strong, and what to fix first.</span></li>
+            <li><b>Only about you.</b><span>One-on-one, 30 minutes, built around your course, goals and timeline.</span></li>
+          </ul>
         </div>
         <div class="id-card rv">
           <div class="photo has-img"><img src="yash.png" alt="Yash Sarda" width="200" height="200" loading="lazy"></div>
           <h4>Yash Sarda</h4>
-          <div class="role">Business Solutions &amp; Career Path Consultant</div>
+          <div class="role">Career mentor · Business solutions consultant</div>
           <div class="id-meta">
             <div><b>MBA</b><span>Great Lakes, Chennai</span></div>
             <div><b>5+ years</b><span>in industry</span></div>
+            <div><b>Top 8</b><span>national team mentored</span></div>
+            <div><b>18</b><span>session topics</span></div>
           </div>
           <a class="li js-li" href="#" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
@@ -869,10 +879,57 @@
   </section>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <span>© <span id="yr"></span> Yash Sarda · Career guidance, 1:1</span>
-    <span><a class="js-wa" data-msg="Hi Yash!" href="#">WhatsApp</a><span class="js-li-wrap"> · <a class="js-li" href="#" target="_blank" rel="noopener">LinkedIn</a></span> · <a href="tests.html">Free tests</a> · <a href="blog/index.html">Blog</a> · <a href="#top">Back to top ↑</a></span>
+    <div class="sf-grid">
+      <div class="sf-brand">
+        <a href="index.html" class="sf-mark"><i></i>NextMove Careers</a>
+        <p>One-on-one online career guidance for college and school students. Choose your path, build your profile, get shortlisted and crack placements with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry).</p>
+        <a class="sf-cta" href="index.html#book">Book a free 15-min call <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <nav class="sf-col" aria-label="Career guidance sessions">
+        <h2>Sessions</h2>
+        <ul>
+          <li><a href="index.html#stage-clarity">Career clarity &amp; branch choice</a></li>
+          <li><a href="index.html#stage-profile">Profile building &amp; internships</a></li>
+          <li><a href="index.html#stage-shortlist">CV &amp; LinkedIn review</a></li>
+          <li><a href="index.html#stage-placements">Placement &amp; interview prep</a></li>
+          <li><a href="index.html#route">All 18 sessions</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Free career tests">
+        <h2>Free career tests</h2>
+        <ul>
+          <li><a href="tests.html#profile">Profile evaluation test</a></li>
+          <li><a href="tests.html#stream">Stream selector test</a></li>
+          <li><a href="tests.html#placement">Placement readiness test</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Career guides">
+        <h2>Career guides</h2>
+        <ul>
+          <li><a href="blog/stream-after-10th.html">Choosing a stream after 10th</a></li>
+          <li><a href="blog/choose-your-branch.html">CS or ECE: picking a branch</a></li>
+          <li><a href="blog/job-or-mba.html">Job now or MBA later?</a></li>
+          <li><a href="blog/cv-not-getting-shortlisted.html">Why your CV isn't shortlisted</a></li>
+          <li><a href="blog/tell-me-about-yourself.html">Answering "Tell me about yourself"</a></li>
+          <li><a href="blog/index.html">All career guides</a></li>
+        </ul>
+      </nav>
+      <div class="sf-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="https://wa.me/918850628288" target="_blank" rel="noopener">WhatsApp +91 88506 28288</a></li>
+          <li><a href="https://www.linkedin.com/in/yash-sarda-483963167/" target="_blank" rel="noopener">Yash Sarda on LinkedIn</a></li>
+          <li><a href="index.html#faq">Frequently asked questions</a></li>
+        </ul>
+        <p class="sf-note">All sessions are one-on-one video calls.</p>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <span>&copy; <span id="yr">2026</span> NextMove Careers. Career guidance by Yash Sarda.</span>
+      <a href="#">Back to top &uarr;</a>
+    </div>
   </div>
 </footer>
 

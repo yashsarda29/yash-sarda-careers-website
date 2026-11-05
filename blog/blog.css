@@ -131,9 +131,6 @@ header { position: sticky; top: 0; z-index: 50; background: rgba(243,242,239,.9)
 .more-grid h3 { font-size: 1.15rem; line-height: 1.25; letter-spacing: -0.02em; margin-top: 10px; }
 @media (max-width: 860px) { .more-grid { grid-template-columns: 1fr; } }
 
-footer { padding: 36px 0 44px; font-size: .9rem; color: var(--ink-soft); }
-footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-footer a:hover { color: var(--blue); }
 
 @media (max-width: 600px) {
   .wrap { padding: 0 20px; }

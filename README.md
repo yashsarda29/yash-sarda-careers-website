@@ -1,4 +1,4 @@
-# Yash Sarda: Career Guidance
+# NextMove Careers: career guidance with Yash Sarda
 
 Static website for 1:1 career guidance sessions: a home page plus a blog. No build step. Open `index.html` in a browser, or host it free on GitHub Pages.
 

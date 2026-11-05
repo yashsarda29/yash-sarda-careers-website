@@ -1,0 +1,41 @@
+/* Shared site footer, linked from every page.
+   Colours fall back to the site palette if a page doesn't define them. */
+.site-footer {
+  --sf-ink: var(--ink, #0B1B2B);
+  --sf-paper: var(--paper, #F3F2EF);
+  --sf-blue: var(--blue, #0A66C2);
+  background: var(--sf-ink);
+  color: rgba(243, 242, 239, .72);
+  font-size: .94rem;
+  line-height: 1.6;
+  margin-top: clamp(24px, 4vh, 40px);
+  padding: clamp(48px, 8vh, 72px) 0 28px;
+}
+.site-footer a { color: inherit; text-decoration: none; transition: color .2s; }
+.site-footer a:hover, .site-footer a:focus-visible { color: var(--sf-paper); }
+
+.sf-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 40px 32px; }
+
+.sf-mark { display: inline-flex; align-items: center; gap: 10px; color: var(--sf-paper) !important; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
+.sf-mark i { width: 12px; height: 12px; background: var(--sf-blue); border-radius: 3px; transform: rotate(45deg); }
+.sf-brand p { margin-top: 14px; max-width: 340px; }
+.sf-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 11px 18px; border-radius: 999px; background: var(--sf-blue); color: #fff !important; font-weight: 600; font-size: .9rem; transition: background .2s, transform .25s cubic-bezier(.2,.8,.2,1) !important; }
+.sf-cta:hover { background: #fff; color: var(--sf-blue) !important; transform: translateY(-2px); }
+
+.sf-col h2 { color: var(--sf-paper); font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
+.sf-col ul { list-style: none; display: grid; gap: 10px; }
+.sf-note { margin-top: 14px; font-size: .86rem; opacity: .75; }
+
+.sf-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; margin-top: clamp(36px, 6vh, 56px); padding-top: 22px; border-top: 1px solid rgba(243, 242, 239, .14); font-size: .86rem; }
+
+@media (max-width: 1000px) {
+  .sf-grid { grid-template-columns: repeat(2, 1fr); }
+  .sf-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) {
+  .sf-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+/* Home page on phones: leave room for the fixed booking bar */
+@media (max-width: 760px) {
+  body:has(.mbar) .site-footer { padding-bottom: 104px; }
+}

@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free career tests | Yash Sarda</title>
+<title>Free career tests | NextMove Careers</title>
 <meta name="description" content="Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.">
-<meta property="og:title" content="Free career tests | Yash Sarda">
+<meta property="og:title" content="Free career tests | NextMove Careers">
 <meta property="og:description" content="Find out where you stand in 3 minutes: profile score, best-fit stream, and placement readiness.">
+<meta property="og:site_name" content="NextMove Careers">
 <meta name="theme-color" content="#0A66C2">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -150,9 +151,6 @@
   .stack { display: grid; gap: 16px; }
   @media (max-width: 900px) { .rgrid { grid-template-columns: 1fr; } }
 
-  footer { padding: 28px 0 32px; font-size: .9rem; color: var(--ink-soft); }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  footer a:hover { color: var(--blue); }
 
   @media (max-width: 600px) {
     .wrap { padding: 0 20px; }
@@ -180,11 +178,12 @@
 
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
 </style>
+<link rel="stylesheet" href="site-footer.css">
 </head>
 <body>
 <header>
   <div class="wrap bar">
-    <a href="index.html" class="mark"><i></i>Yash Sarda</a>
+    <a href="index.html" class="mark"><i></i>NextMove Careers</a>
     <nav aria-label="Main"><a href="index.html#route">Sessions</a><a href="tests.html" class="on" aria-current="page">Free tests</a><a href="blog/index.html">Blog</a><a href="index.html#faq">FAQ</a></nav>
     <a class="btn btn-blue" href="index.html#book">Book a free call</a>
   </div>
@@ -223,7 +222,59 @@
   </section>
 </main>
 
-<footer><div class="wrap"><span>© <span id="yr"></span> Yash Sarda · Career guidance, 1:1</span><span><a href="index.html">Home</a> · <a href="blog/index.html">Blog</a> · <a class="js-wa" data-msg="Hi Yash!" href="#">WhatsApp</a></span></div></footer>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="sf-grid">
+      <div class="sf-brand">
+        <a href="index.html" class="sf-mark"><i></i>NextMove Careers</a>
+        <p>One-on-one online career guidance for college and school students. Choose your path, build your profile, get shortlisted and crack placements with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry).</p>
+        <a class="sf-cta" href="index.html#book">Book a free 15-min call <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <nav class="sf-col" aria-label="Career guidance sessions">
+        <h2>Sessions</h2>
+        <ul>
+          <li><a href="index.html#stage-clarity">Career clarity &amp; branch choice</a></li>
+          <li><a href="index.html#stage-profile">Profile building &amp; internships</a></li>
+          <li><a href="index.html#stage-shortlist">CV &amp; LinkedIn review</a></li>
+          <li><a href="index.html#stage-placements">Placement &amp; interview prep</a></li>
+          <li><a href="index.html#route">All 18 sessions</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Free career tests">
+        <h2>Free career tests</h2>
+        <ul>
+          <li><a href="tests.html#profile">Profile evaluation test</a></li>
+          <li><a href="tests.html#stream">Stream selector test</a></li>
+          <li><a href="tests.html#placement">Placement readiness test</a></li>
+        </ul>
+      </nav>
+      <nav class="sf-col" aria-label="Career guides">
+        <h2>Career guides</h2>
+        <ul>
+          <li><a href="blog/stream-after-10th.html">Choosing a stream after 10th</a></li>
+          <li><a href="blog/choose-your-branch.html">CS or ECE: picking a branch</a></li>
+          <li><a href="blog/job-or-mba.html">Job now or MBA later?</a></li>
+          <li><a href="blog/cv-not-getting-shortlisted.html">Why your CV isn't shortlisted</a></li>
+          <li><a href="blog/tell-me-about-yourself.html">Answering "Tell me about yourself"</a></li>
+          <li><a href="blog/index.html">All career guides</a></li>
+        </ul>
+      </nav>
+      <div class="sf-col">
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="https://wa.me/918850628288" target="_blank" rel="noopener">WhatsApp +91 88506 28288</a></li>
+          <li><a href="https://www.linkedin.com/in/yash-sarda-483963167/" target="_blank" rel="noopener">Yash Sarda on LinkedIn</a></li>
+          <li><a href="index.html#faq">Frequently asked questions</a></li>
+        </ul>
+        <p class="sf-note">All sessions are one-on-one video calls.</p>
+      </div>
+    </div>
+    <div class="sf-bottom">
+      <span>&copy; <span id="yr">2026</span> NextMove Careers. Career guidance by Yash Sarda.</span>
+      <a href="#">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
 
 <script>
 /* ============================================================
