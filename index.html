@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="NextMove Careers: 1:1 career guidance with Yash Sarda">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@type": "ProfessionalService", "@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "name": "NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/", "image": "https://yashsarda29.github.io/yash-sarda-careers-website/og-image.png", "logo": "https://yashsarda29.github.io/yash-sarda-careers-website/og-image.png", "description": "One-on-one online career guidance for college and school students.", "telephone": "+91-88506-28288", "priceRange": "₹99–₹799", "areaServed": "IN", "availableLanguage": ["English", "Hindi"], "founder": {"@type": "Person", "name": "Yash Sarda", "jobTitle": "Career mentor", "alumniOf": {"@type": "CollegeOrUniversity", "name": "Great Lakes Institute of Management, Chennai"}, "sameAs": ["https://www.linkedin.com/in/yash-sarda-483963167/"], "image": "https://yashsarda29.github.io/yash-sarda-careers-website/yash.png"}, "sameAs": ["https://www.linkedin.com/in/yash-sarda-483963167/"], "makesOffer": [{"@type": "Offer", "name": "Free 15-minute intro call", "price": "0", "priceCurrency": "INR"}, {"@type": "Offer", "name": "Single 30-minute session", "price": "99", "priceCurrency": "INR", "description": "Starting price; varies by topic."}, {"@type": "Offer", "name": "Bundle of any 8 sessions", "price": "799", "priceCurrency": "INR"}], "@context": "https://schema.org"}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the first call really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most."}}, {"@type": "Question", "name": "How much do sessions cost?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions start at ₹99 for 30 minutes, and any 8 different sessions cost ₹799 as a bundle. The first 15-minute call is free. You can pay by UPI or any other mode."}}, {"@type": "Question", "name": "How are sessions held?", "acceptedAnswer": {"@type": "Answer", "text": "Every session is a 30-minute one-on-one video call, in Hindi or English. A phone or laptop and a stable connection is all you need. Afterwards you get a written summary and 7 days of WhatsApp follow-up."}}, {"@type": "Question", "name": "What if I need to reschedule or cancel?", "acceptedAnswer": {"@type": "Answer", "text": "You can reschedule for free up to 12 hours before your session. If you cancel 24 hours or more before, you get a full refund."}}, {"@type": "Question", "name": "Can I mix or book several sessions?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so the ₹799 bundle of 8 is usually the better deal."}}, {"@type": "Question", "name": "I'm still in school. Can you help?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. I help with stream choice after 10th and course choice after 12th."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the first call really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most."}}, {"@type": "Question", "name": "How much do sessions cost?", "acceptedAnswer": {"@type": "Answer", "text": "Sessions start at ₹99 for 30 minutes, and any 8 different sessions cost ₹799 as a bundle. The first 15-minute call is free. You can pay by UPI or any other mode."}}, {"@type": "Question", "name": "How are sessions held?", "acceptedAnswer": {"@type": "Answer", "text": "Every session is a 30-minute one-on-one video call, in Hindi or English. A phone or laptop and a stable connection is all you need. Afterwards you get a written summary and 7 days of WhatsApp follow-up."}}, {"@type": "Question", "name": "What if I need to reschedule or cancel?", "acceptedAnswer": {"@type": "Answer", "text": "You can reschedule for free up to 12 hours before your session. If you cancel 24 hours or more before, you get a full refund."}}, {"@type": "Question", "name": "Can I mix or book several sessions?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so the ₹799 bundle of 8 is usually the better deal."}}, {"@type": "Question", "name": "I'm still in school. Can you help?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. I help with stream choice after 10th and course choice after 12th."}}, {"@type": "Question", "name": "Can parents join the session?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After 10th and 12th the decision is a family one, so parents are welcome to join. You also get a written summary to discuss at home, and sessions can be in Hindi or English."}}]}</script>
 <!-- /seo -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <script>document.documentElement.classList.add("js");</script>
@@ -614,6 +614,51 @@
   #route .row .book .go { width: 32px; height: 32px; }
   @media (max-width: 640px) { #route .rows { grid-template-columns: 1fr; } }
 
+  /* ===== Declutter pass ===== */
+  /* Route: stage cards that open */
+  #route details.stage { display: block; padding: 0; gap: 0; border-top: 1.5px solid var(--ink); }
+  #route details.stage:last-child { border-bottom: 1.5px solid var(--ink); }
+  #route .stage-head { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto 40px; gap: 24px; align-items: center; padding: 22px 0; }
+  #route .stage-head::-webkit-details-marker { display: none; }
+  #route .stage-head .stage-num { font-size: clamp(2.4rem, 4.5vw, 3.4rem); line-height: .9; transform: none; }
+  #route details[open] .stage-num, #route .stage-head:hover .stage-num { color: var(--blue); -webkit-text-stroke-color: var(--blue); }
+  #route .stage-title { display: block; }
+  #route .stage-title .stage-label { display: block; margin: 0 0 4px; }
+  #route .stage-title b { display: block; font-size: clamp(1.2rem, 2vw, 1.45rem); letter-spacing: -0.03em; line-height: 1.15; }
+  #route .stage-title b .serif { color: var(--blue); }
+  #route .stage-intro { display: block; margin-top: 4px; color: var(--ink-soft); font-size: .95rem; }
+  #route .stage-count { padding: 6px 12px; border-radius: 999px; background: var(--paper); color: var(--ink-soft); font-size: .85rem; font-weight: 600; white-space: nowrap; }
+  #route .stage-chev { position: relative; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--ink); transition: background .2s, border-color .2s; }
+  #route .stage-chev::before, #route .stage-chev::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); transition: transform .25s; }
+  #route .stage-chev::after { transform: translate(-50%, -50%) rotate(90deg); }
+  #route details[open] .stage-chev { background: var(--blue); border-color: var(--blue); color: var(--white); }
+  #route details[open] .stage-chev::after { transform: translate(-50%, -50%) rotate(0deg); }
+  #route details.stage .rows { padding: 0 0 26px; }
+  #route.band-white .row { background: var(--paper); }
+  #route.band-white .row:hover { background: var(--white); }
+  @media (max-width: 640px) {
+    #route .stage-head { grid-template-columns: auto minmax(0, 1fr) 36px; gap: 14px; }
+    #route .stage-count { display: none; }
+    #route .stage-chev { width: 36px; height: 36px; }
+  }
+
+  /* Career Check: finder on top, tests below */
+  #tests .finder-grid { margin-bottom: clamp(32px, 5vh, 48px); }
+  #tests .pain { background: var(--white); }
+  .tests-sub { font-size: 1.2rem; letter-spacing: -0.02em; margin: 0 0 16px; }
+
+  /* Pricing: what's included, in one line */
+  .promise-line { margin-top: 18px; text-align: center; color: var(--ink-soft); font-size: .92rem; line-height: 1.9; }
+  .promise-line i { display: inline-block; width: 6px; height: 6px; margin: 0 10px; vertical-align: middle; background: var(--blue); border-radius: 2px; transform: rotate(45deg); }
+
+  /* Blog: 3 cards */
+  #notes .notes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #notes.band-white .note { background: var(--paper); }
+  @media (max-width: 860px) and (min-width: 601px) { #notes .notes { grid-template-columns: 1fr; } }
+
+  /* Testimonials: sample badge */
+  .voice .sample { position: absolute; top: 16px; right: 16px; padding: 4px 9px; border-radius: 6px; background: var(--paper); color: var(--ink); font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
   /* ---------- Photo in the booking card ---------- */
   .cal::before, .cal::after { display: none; }  /* the photo replaces the decorative rings */
   .cal-img { display: block; width: calc(100% + 2 * clamp(26px, 4vw, 44px)); height: auto; max-width: none; margin: calc(-1 * clamp(26px, 4vw, 44px)) calc(-1 * clamp(26px, 4vw, 44px)) 22px; aspect-ratio: 900 / 360; object-fit: cover; }
@@ -780,12 +825,11 @@
   const CALENDLY_SESSION_URL = "https://calendly.com/yashsarda290220/30min";     // Full 30-min career guidance session
 </script>
 
-<a class="skip" href="#finder">Skip to content</a>
+<a class="skip" href="#route">Skip to content</a>
 <header id="hdr">
   <div class="wrap bar">
     <a href="#top" class="mark" aria-label="NextMove Careers, home"><i></i>NextMove Careers</a>
     <nav class="menu" aria-label="Main">
-      <a href="#finder">Find your session</a>
       <a href="#route">The route</a>
       <a href="#tests" class="new-link">Career Check</a>
       <a href="#pricing">Pricing</a>
@@ -798,9 +842,7 @@
     </div>
   </div>
   <nav class="sheet" id="sheet" aria-label="Mobile">
-    <a href="#finder">Find your session <span aria-hidden="true">→</span></a>
     <a href="#route">The route <span aria-hidden="true">→</span></a>
-    <a href="#parents">For parents <span aria-hidden="true">→</span></a>
     <a href="#tests">Career Check <span class="mono">Free</span></a>
     <a href="#pricing">Pricing <span aria-hidden="true">→</span></a>
     <a href="#stories">Stories <span aria-hidden="true">→</span></a>
@@ -828,7 +870,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
             Pick a free slot
           </a>
-          <a class="btn btn-line" href="#finder">Where am I stuck? <span class="arr">↘</span></a>
+          <a class="btn btn-line" href="#tests">Where am I stuck? <span class="arr">↘</span></a>
         </div>
         <p class="free-note"><img class="mini-av" src="yash.png" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b><span class="proof"><b>50+ students guided</b> · MBA, Great Lakes Chennai · 5+ years in industry</span></span></p>
       </div>
@@ -853,29 +895,8 @@
     </div>
   </section>
 
-  <!-- ================= FINDER ================= -->
-  <section class="block band band-white finder" id="finder">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono">Find your session</span>
-        <div>
-          <h2>Where are you <span class="serif">stuck</span> right now?</h2>
-          <p>Pick what sounds most like you. I'll point you to the sessions that fix it.</p>
-        </div>
-      </div>
-      <div class="finder-grid">
-        <div class="pains rv" id="pains" data-stagger role="group" aria-label="Pick what sounds like you"></div>
-        <div class="answer rv" aria-live="polite">
-          <span class="mono" id="ansLabel">Start here</span>
-          <h3 id="ansTitle"></h3>
-          <ul class="recs" id="ansList"></ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= ROUTE / ALL SESSIONS ================= -->
-  <section class="block band" id="route">
+  <section class="block band band-white" id="route">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">The route</span>
@@ -888,35 +909,25 @@
     </div>
   </section>
 
-  <!-- ================= FOR PARENTS ================= -->
-  <section class="block band band-white" id="parents" aria-labelledby="parentsTitle">
-    <div class="wrap">
-      <div class="parents rv">
-        <img class="parents-img" src="images/parents.webp" alt="Parents sitting together with their daughter, smiling" width="900" height="700" loading="lazy">
-        <div class="parents-head">
-          <span class="mono">For parents</span>
-          <h2 id="parentsTitle">Choosing a stream or course <span class="serif">together.</span></h2>
-          <p>After 10th and 12th, the decision is a family one. You're welcome to join your child's session.</p>
-        </div>
-        <ul class="parents-points" data-stagger>
-          <li><b>Options explained plainly</b><span>What each stream or course leads to, and the skills it needs, without jargon.</span></li>
-          <li><b>A summary to discuss at home</b><span>The written summary after the call means nothing is forgotten.</span></li>
-          <li><b>In Hindi or English</b><span>Whichever is easier for your family. The first 15 minutes are free.</span></li>
-        </ul>
-        <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'm a parent and would like guidance on my child's stream / course choice." href="#">Talk to Yash as a parent <span class="arr">↗</span></a>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= CAREER CHECK: free tests (full section) ================= -->
   <section class="block band" id="tests">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Free Career Check</span>
         <div>
-          <h2>Not sure where you stand? <span class="serif">Answer 10 questions.</span></h2>
+          <h2>Where are you <span class="serif">stuck</span> right now?</h2>
+          <p>Pick what sounds like you, or take a free 3-minute test.</p>
         </div>
       </div>
+      <div class="finder-grid">
+        <div class="pains rv" id="pains" data-stagger role="group" aria-label="Pick what sounds like you"></div>
+        <div class="answer rv" aria-live="polite">
+          <span class="mono" id="ansLabel">Start here</span>
+          <h3 id="ansTitle"></h3>
+          <ul class="recs" id="ansList"></ul>
+        </div>
+      </div>
+      <h3 class="tests-sub">Or take a free 3-minute test</h3>
       <div class="test-cards" data-stagger>
         <a class="test-card" href="tests.html#stream">
           <span class="tc-img"><img src="images/test-stream.webp" alt="Two school students studying at their desks" width="800" height="500" loading="lazy"></span>
@@ -998,13 +1009,8 @@
           <a class="btn btn-white js-wa" data-msg="Hi Yash, I'd like the ₹799 bundle of 8 sessions." href="#">Get the bundle</a>
         </article>
       </div>
-      <!-- What every paid session includes, and the booking promise -->
-      <ul class="promises" data-stagger aria-label="Included with every paid session">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg><span><b>Written summary</b>Your framework and next steps, sent after the call</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.2-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg><span><b>7 days of WhatsApp follow-up</b>Ask questions as you put the plan into action</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg><span><b>Free reschedule</b>Up to 12 hours before. Full refund if you cancel 24+ hours before</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg><span><b>Hindi or English</b>Online video calls, pay by UPI or any mode</span></li>
-      </ul>
+      <!-- What every paid session includes, in one line -->
+      <p class="promise-line">Written summary <i></i> 7-day WhatsApp follow-up <i></i> Free reschedule up to 12h before <i></i> Full refund 24h+ before <i></i> Hindi or English <i></i> Parents welcome on school sessions</p>
     </div>
   </section>
 
@@ -1056,13 +1062,48 @@
     </div>
   </section>
 
+  <!-- ================= BLOG ================= -->
+  <section class="block band band-white" id="notes">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">Blog</span>
+        <div>
+          <h2>Notes from the <span class="serif">other side of the table.</span></h2>
+          <p>Short, practical reads on the decisions students get stuck on most.</p>
+        </div>
+      </div>
+      <div class="notes" id="notesGrid"></div>
+      <p class="swipe-hint mono" aria-hidden="true">Swipe for more →</p>
+      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All 12 posts <span class="arr">↗</span></a></div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="block band" id="faq">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">Questions</span>
+        <div><h2>Before you <span class="serif">message.</span></h2></div>
+      </div>
+      <div class="faq rv" data-stagger>
+        <details><summary><span class="mono">01</span>Is the first call really free?<span class="pm"></span></summary><p>Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most.</p></details>
+        <details><summary><span class="mono">02</span>How much do sessions cost?<span class="pm"></span></summary><p>Sessions start at ₹99 for 30 minutes, and any 8 different sessions cost ₹799 as a bundle. The first 15-minute call is free. You can pay by UPI or any other mode.</p></details>
+        <details><summary><span class="mono">03</span>How are sessions held?<span class="pm"></span></summary><p>Every session is a 30-minute one-on-one video call, in Hindi or English. A phone or laptop and a stable connection is all you need. Afterwards you get a written summary and 7 days of WhatsApp follow-up.</p></details>
+        <details><summary><span class="mono">04</span>What if I need to reschedule or cancel?<span class="pm"></span></summary><p>You can reschedule for free up to 12 hours before your session. If you cancel 24 hours or more before, you get a full refund.</p></details>
+        <details><summary><span class="mono">05</span>Can I mix or book several sessions?<span class="pm"></span></summary><p>Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so the ₹799 bundle of 8 is usually the better deal.</p></details>
+        <details><summary><span class="mono">06</span>I'm still in school. Can you help?<span class="pm"></span></summary><p>Yes. I help with stream choice after 10th and course choice after 12th.</p></details>
+        <details><summary><span class="mono">07</span>Can parents join the session?<span class="pm"></span></summary><p>Yes. After 10th and 12th the decision is a family one, so parents are welcome to join. You also get a written summary to discuss at home, and sessions can be in Hindi or English.</p></details>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= BOOK (CALENDLY) + HOW IT WORKS ================= -->
   <section class="block band band-white" id="book">
     <div class="wrap">
       <div class="book-wrap">
         <div class="rv">
-          <span class="mono book-label">How it works</span>
-          <h2 class="book-h">Pick a time. <span class="serif">The first 15 minutes are free.</span></h2>
+          <span class="mono book-label">Your next move</span>
+          <h2 class="book-h">Book your free <span class="serif">15-minute call.</span></h2>
           <ul class="book-points" data-stagger>
             <li><span class="mono">01</span><div><b>Pick a slot</b><span>Choose any open time, or ask me which session fits on the free call.</span></div></li>
             <li><span class="mono">02</span><div><b>Tell me what's on your mind</b><span>A line or two on where you're stuck helps me prepare.</span></div></li>
@@ -1096,59 +1137,6 @@
     </div>
   </section>
 
-  <!-- ================= BLOG ================= -->
-  <section class="block band" id="notes">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono">Blog</span>
-        <div>
-          <h2>Notes from the <span class="serif">other side of the table.</span></h2>
-          <p>Short, practical reads on the decisions students get stuck on most.</p>
-        </div>
-      </div>
-      <div class="notes" id="notesGrid"></div>
-      <p class="swipe-hint mono" aria-hidden="true">Swipe for more →</p>
-      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All 12 posts <span class="arr">↗</span></a><a class="btn btn-blue" href="downloads/cv-checklist.pdf" download>Free CV checklist (PDF) <span class="arr">↓</span></a></div>
-    </div>
-  </section>
-
-  <!-- ================= FAQ ================= -->
-  <section class="block band band-white" id="faq">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="mono">Questions</span>
-        <div><h2>Before you <span class="serif">message.</span></h2></div>
-      </div>
-      <div class="faq rv" data-stagger>
-        <details><summary><span class="mono">01</span>Is the first call really free?<span class="pm"></span></summary><p>Yes. The first 15 minutes are free. We use them to understand where you are and which session will help most.</p></details>
-        <details><summary><span class="mono">02</span>How much do sessions cost?<span class="pm"></span></summary><p>Sessions start at ₹99 for 30 minutes, and any 8 different sessions cost ₹799 as a bundle. The first 15-minute call is free. You can pay by UPI or any other mode.</p></details>
-        <details><summary><span class="mono">03</span>How are sessions held?<span class="pm"></span></summary><p>Every session is a 30-minute one-on-one video call, in Hindi or English. A phone or laptop and a stable connection is all you need. Afterwards you get a written summary and 7 days of WhatsApp follow-up.</p></details>
-        <details><summary><span class="mono">04</span>What if I need to reschedule or cancel?<span class="pm"></span></summary><p>You can reschedule for free up to 12 hours before your session. If you cancel 24 hours or more before, you get a full refund.</p></details>
-        <details><summary><span class="mono">05</span>Can I mix or book several sessions?<span class="pm"></span></summary><p>Yes. Start anywhere: a CV review today, a mock interview next week. Practice-heavy topics like interviews, GDs and cases work best over a few sessions, so the ₹799 bundle of 8 is usually the better deal.</p></details>
-        <details><summary><span class="mono">06</span>I'm still in school. Can you help?<span class="pm"></span></summary><p>Yes. I help with stream choice after 10th and course choice after 12th.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FINAL ================= -->
-  <section class="final">
-    <div class="rings" aria-hidden="true"><i style="width:420px;height:420px"></i><i style="width:720px;height:720px"></i><i style="width:1020px;height:1020px"></i><i style="width:1320px;height:1320px"></i></div>
-    <div class="wrap">
-      <span class="mono">Your next move</span>
-      <h2>Fifteen minutes. <span class="serif">Free.</span></h2>
-      <p>Tell me where you're stuck. Leave knowing what to do next.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-white" href="#book">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          Pick a time on the calendar
-        </a>
-        <a class="btn btn-ghostw js-wa" data-msg="Hi Yash, I'd like to book my free 15-min call." href="#">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.44-9.43 2.52 0 4.89.98 6.67 2.77a9.37 9.37 0 0 1 2.76 6.67c0 5.2-4.24 9.43-9.44 9.43m8.03-17.46A11.27 11.27 0 0 0 12.05.71C5.79.71.7 5.8.7 12.06c0 2 .52 3.95 1.52 5.67L.6 23.65l6.05-1.59a11.3 11.3 0 0 0 5.4 1.38h.01c6.25 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.33-8.03"/></svg>
-          WhatsApp 88506 28288
-        </a>
-      </div>
-    </div>
-  </section>
 </main>
 
 <footer class="site-footer">
@@ -1195,7 +1183,6 @@
         <ul>
           <li><a href="https://wa.me/918850628288" target="_blank" rel="noopener">WhatsApp +91 88506 28288</a></li>
           <li><a href="https://www.linkedin.com/in/yash-sarda-483963167/" target="_blank" rel="noopener">Yash Sarda on LinkedIn</a></li>
-          <li><a href="index.html#parents">For parents</a></li>
           <li><a href="index.html#faq">Frequently asked questions</a></li>
         </ul>
         <p class="sf-note">All sessions are one-on-one video calls, in Hindi or English.</p>
@@ -1277,9 +1264,15 @@ const PAINS = [
    EDIT HERE: testimonials (real students only, with permission)
    The first one is shown large. To add one, copy a line:
    { quote: "…", name: "Name", detail: "Course, year", outcome: "Short result or session" },
+   Entries with sample: true show a "Sample" badge. REPLACE them with real
+   quotes (with the student's permission) before treating them as real.
    ============================================================ */
 const TESTIMONIALS = [
-  { quote: "Our team qualified for the semi-finals after the first offline round, and we were ranked among the top 8 national finalists. Your guidance and PPT points really helped us a lot with preparation and idea formulation.", name: "Team JATAYU", detail: "National competition finalists", outcome: "Top 8 nationally" }
+  { quote: "Our team qualified for the semi-finals after the first offline round, and we were ranked among the top 8 national finalists. Your guidance and PPT points really helped us a lot with preparation and idea formulation.", name: "Team JATAYU", detail: "National competition finalists", outcome: "Top 8 nationally" },
+  { quote: "Sample quote: what changed after the CV review, in the student's own words.", name: "Student name", detail: "Course, college", outcome: "CV review", sample: true },
+  { quote: "Sample quote: how the mock interview helped before a real interview.", name: "Student name", detail: "Course, college", outcome: "Mock interview", sample: true },
+  { quote: "Sample quote: how the stream session helped the student and their parents decide.", name: "Student name", detail: "Class 10, school", outcome: "Stream choice", sample: true },
+  { quote: "Sample quote: what the student did differently after the internship strategy session.", name: "Student name", detail: "Course, college", outcome: "Internship strategy", sample: true }
 ];
 
 /* ============================================================
@@ -1289,8 +1282,7 @@ const TESTIMONIALS = [
 const POSTS = [
   { slug: "tell-me-about-yourself", tag: "Placements", icon: "mic", title: "\"Tell me about yourself\": a 60-second answer that works", blurb: "The first question in almost every interview, and how to stop reading out your CV.", mins: 4 },
   { slug: "linkedin-profile-guide", tag: "Getting shortlisted", icon: "user", title: "Your LinkedIn profile in 30 minutes: what recruiters actually read", blurb: "Recruiters read four things in a few seconds. Get those right first.", mins: 3 },
-  { slug: "internship-with-no-experience", tag: "Profile building", icon: "target", title: "How to land an internship with no experience: a weekly plan", blurb: "Break the \"need experience to get experience\" loop in a few focused weeks.", mins: 3 },
-  { slug: "guesstimates-made-simple", tag: "Placements", icon: "calc", title: "Guesstimates made simple: a 4-step method with a worked example", blurb: "Nobody expects the exact answer. They want to see how you think.", mins: 3 }
+  { slug: "internship-with-no-experience", tag: "Profile building", icon: "target", title: "How to land an internship with no experience: a weekly plan", blurb: "Break the \"need experience to get experience\" loop in a few focused weeks.", mins: 3 }
 ];
 
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
@@ -1299,15 +1291,15 @@ const bookMsg = (name) => `Hi Yash, I'd like to book a session: ${name}.`;
 const esc = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const findSession = (name) => { for (const s of STAGES) { const x = s.sessions.find(r => r[0] === name); if (x) return { stage: s, row: x }; } };
 
-/* Stages: all four stacked, scrolled through in order; each session is a card */
-document.getElementById("stages").innerHTML = STAGES.map(s => `
-  <div class="stage" id="stage-${s.id}">
-    <div class="stage-side rv">
-      <div class="stage-num">${s.num}</div>
-      <span class="mono stage-label">Stage ${Number(s.num)} · ${esc(s.name)}</span>
-      <h3>${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></h3>
-      <p>${esc(s.intro)}</p>
-    </div>
+/* Stages: four cards; tap one to open its sessions (the first starts open) */
+document.getElementById("stages").innerHTML = STAGES.map((s, si) => `
+  <details class="stage" id="stage-${s.id}"${si === 0 ? " open" : ""}>
+    <summary class="stage-head">
+      <span class="stage-num">${s.num}</span>
+      <span class="stage-title"><span class="mono stage-label">Stage ${Number(s.num)} · ${esc(s.name)}</span><b>${esc(s.title[0])} <span class="serif">${esc(s.title[1])}</span></b><span class="stage-intro">${esc(s.intro)}</span></span>
+      <span class="stage-count">${s.sessions.length} sessions</span>
+      <span class="stage-chev" aria-hidden="true"></span>
+    </summary>
     <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
         <li><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
@@ -1315,7 +1307,7 @@ document.getElementById("stages").innerHTML = STAGES.map(s => `
           <span class="book"><span>Book</span><span class="go">${ARROW}</span></span>
         </a></li>`).join("")}
     </ol>
-  </div>`).join("");
+  </details>`).join("");
 
 /* Finder */
 const painsEl = document.getElementById("pains");
@@ -1349,8 +1341,11 @@ painsEl.addEventListener("click", e => {
 idle();
 
 /* Testimonials */
-document.getElementById("voices").innerHTML = TESTIMONIALS.map((t, i) => `
+/* Sample entries stay hidden on the live site; set SHOW_SAMPLES = true to preview them */
+const SHOW_SAMPLES = false;
+document.getElementById("voices").innerHTML = TESTIMONIALS.filter(t => SHOW_SAMPLES || !t.sample).map((t, i) => `
   <figure class="voice rv ${i === 0 ? "big" : i === 3 ? "dark" : ""}">
+    ${t.sample ? '<span class="sample">Sample</span>' : ""}
     <div>${t.outcome ? `<span class="outcome">${esc(t.outcome)}</span>` : ""}<q>${esc(t.quote)}</q></div>
     <figcaption class="who"><span class="av">${esc(t.name.split(" ").map(w => w[0]).join("").slice(0, 2))}</span><span><b>${esc(t.name)}</b><span>${esc(t.detail)}</span></span></figcaption>
   </figure>`).join("");
@@ -1398,7 +1393,7 @@ if (CALENDLY_URL) {
 
 /* Route map stops scroll down to their stage (mouse, touch and keyboard) */
 document.querySelectorAll(".route .st").forEach(g => {
-  const go = () => document.getElementById(g.dataset.go)?.scrollIntoView({ block: "start" });
+  const go = () => { const st = document.getElementById(g.dataset.go); if (!st) return; st.open = true; st.scrollIntoView({ block: "start" }); };
   g.addEventListener("click", go);
   g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
 });
@@ -1427,7 +1422,7 @@ document.getElementById("yr").textContent = new Date().getFullYear();
 /* Header, floating button (desktop) and booking bar (phones) */
 const hdr = document.getElementById("hdr"), fl = document.getElementById("float"), mbar = document.getElementById("mbar");
 /* Both hide near the bottom (final section has its own buttons) and inside the Book section */
-const finalEl = document.querySelector(".final"), bookEl = document.getElementById("book");
+const bookEl = document.getElementById("book"), finalEl = bookEl;  /* the booking section is now the last one */
 const onScroll = () => {
   hdr.classList.toggle("solid", scrollY > 20);
   const nearEnd = finalEl.getBoundingClientRect().top < innerHeight * .85;
@@ -1445,7 +1440,7 @@ if ("IntersectionObserver" in window) {
     if (!e.isIntersecting) return;
     links.forEach(a => { const on = a.getAttribute("href") === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
   }), { rootMargin: "-45% 0px -50% 0px" });
-  ["finder", "route", "tests", "pricing", "stories", "book", "notes", "faq"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  ["route", "tests", "pricing", "stories", "notes", "faq", "book"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
 }
 
 /* Reveal + active stage */
@@ -1459,11 +1454,6 @@ if ("IntersectionObserver" in window && !reduce) {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12, rootMargin: "0px 0px -40px 0px" });
   document.querySelectorAll(".rv, [data-stagger]").forEach(el => io.observe(el));
 } else document.querySelectorAll(".rv, [data-stagger]").forEach(el => el.classList.add("in"));
-/* The stage crossing the middle of the screen lights up as you scroll */
-if ("IntersectionObserver" in window) {
-  const so = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("active", e.isIntersecting)), { rootMargin: "-45% 0px -45% 0px" });
-  document.querySelectorAll(".stage").forEach(el => so.observe(el));
-}
 </script>
 <script src="lead-gate.js"></script>
 </body>

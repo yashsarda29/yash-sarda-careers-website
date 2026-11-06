@@ -7,7 +7,6 @@ All photos are from [Unsplash](https://unsplash.com) and used under the [Unsplas
 | test-profile.webp | Abhishek Rai | https://unsplash.com/photos/IDBYGWNTyB8 |
 | test-stream.webp | Swastik Arora | https://unsplash.com/photos/TcKmus54ij0 |
 | test-placement.webp | Cytonn Photography | https://unsplash.com/photos/n95VMLxqM2I |
-| parents.webp | Anil Sharma | https://unsplash.com/photos/qK5b779Xdrc |
 | book-call.webp | Vitaly Gariev | https://unsplash.com/photos/DHrmBvaey5g |
 
 ## Blog post photos (`images/blog/`)
