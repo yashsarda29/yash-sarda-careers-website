@@ -600,12 +600,16 @@
   /* ---------- Route sessions as cards ---------- */
   #route .rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-content: start; }
   #route .rows li, #route .rows li + li { border: 0; }
-  #route .row { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; height: 100%; margin: 0; padding: 18px 20px; border-radius: 18px; background: var(--white); box-shadow: inset 0 0 0 1px var(--hair); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+  #route .row { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; height: 100%; margin: 0; padding: 18px 20px; border-radius: 18px; background: var(--white); box-shadow: inset 0 0 0 1px var(--hair); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
   #route .row:hover { background: var(--white); transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px var(--blue), 0 18px 30px -24px rgba(11,27,43,.45); }
-  #route .row .idx { padding: 0; font-weight: 700; color: var(--blue); }
+  #route .row .idx { display: inline; padding: 0; margin-right: 4px; font-family: inherit; font-size: inherit; font-weight: 700; color: var(--blue); letter-spacing: 0; }
   #route .row h4 { font-size: 1.08rem; }
   #route .row p { margin-top: 4px; font-size: .92rem; }
-  #route .row .book { margin-top: auto; padding-top: 6px; opacity: 1; transform: none; align-self: stretch; justify-content: space-between; }
+  /* "Book" appears only when the card is hovered or focused; the whole card is the link */
+  #route .row h4 { padding-right: 76px; }
+  #route .row .book { position: absolute; top: 14px; right: 14px; margin: 0; padding: 0; opacity: 0; transform: translateY(-4px); transition: opacity .2s, transform .2s; pointer-events: none; }
+  #route .row:hover .book, #route .row:focus-visible .book { opacity: 1; transform: none; }
+  @media (hover: none) { #route .row .book { display: none; } #route .row h4 { padding-right: 0; } }
   #route .row .book span:first-child { display: inline; }
   #route .row .book .go { width: 32px; height: 32px; }
   @media (max-width: 640px) { #route .rows { grid-template-columns: 1fr; } }
@@ -897,7 +901,7 @@
         <ul class="parents-points" data-stagger>
           <li><b>Options explained plainly</b><span>What each stream or course leads to, and the skills it needs, without jargon.</span></li>
           <li><b>A summary to discuss at home</b><span>The written summary after the call means nothing is forgotten.</span></li>
-          <li><b>₹99, in Hindi or English</b><span>Stream or course choice is a single ₹99 session. The first 15 minutes are free.</span></li>
+          <li><b>In Hindi or English</b><span>Whichever is easier for your family. The first 15 minutes are free.</span></li>
         </ul>
         <a class="btn btn-blue js-wa" data-msg="Hi Yash, I'm a parent and would like guidance on my child's stream / course choice." href="#">Talk to Yash as a parent <span class="arr">↗</span></a>
       </div>
@@ -911,7 +915,6 @@
         <span class="mono">Free Career Check</span>
         <div>
           <h2>Not sure where you stand? <span class="serif">Answer 10 questions.</span></h2>
-          <p>Three free tests, 3 minutes each, no sign-up. Get a score, see your strongest and weakest areas, and download your report as a PDF.</p>
         </div>
       </div>
       <div class="test-cards" data-stagger>
@@ -1308,8 +1311,7 @@ document.getElementById("stages").innerHTML = STAGES.map(s => `
     <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
         <li><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
-          <span class="idx">${Number(s.num)}.${i + 1}</span>
-          <div><h4>${esc(r[0])}</h4><p>${esc(r[1])}</p></div>
+          <div><h4><span class="idx">${Number(s.num)}.${i + 1}</span> ${esc(r[0])}</h4><p>${esc(r[1])}</p></div>
           <span class="book"><span>Book</span><span class="go">${ARROW}</span></span>
         </a></li>`).join("")}
     </ol>
