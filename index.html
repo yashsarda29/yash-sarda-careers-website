@@ -659,6 +659,43 @@
   /* Testimonials: sample badge */
   .voice .sample { position: absolute; top: 16px; right: 16px; padding: 4px 9px; border-radius: 6px; background: var(--paper); color: var(--ink); font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 
+  /* ===== Responsive fixes (audit) ===== */
+  /* Promise line: whole items wrap, with a small diamond between them */
+  .promise-line { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; line-height: 1.5; }
+  .promise-line span { position: relative; white-space: nowrap; }
+  .promise-line span + span::before { content: ""; position: absolute; left: -14px; top: 50%; width: 6px; height: 6px; background: var(--blue); border-radius: 2px; transform: translateY(-50%) rotate(45deg); }
+
+  /* Hero: on tablets the route card sits beside the text; on phones it is hidden (the route section follows right after) */
+  @media (min-width: 700px) and (max-width: 960px) {
+    .hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 28px; align-items: center; }
+    .hero h1 { font-size: clamp(2.6rem, 6.4vw, 3.6rem); }
+    .route { max-width: none; padding: 16px 16px 12px; }
+    .route .st-label { font-size: 17px; }
+  }
+  @media (max-width: 699px) { .hero .route { display: none; } .hero { padding-bottom: 32px; } }
+
+  /* Career Check test cards: one per row with the photo on the left on tablets */
+  @media (min-width: 641px) and (max-width: 1000px) {
+    .test-cards { grid-template-columns: 1fr; }
+    .test-card { flex-direction: row; }
+    .test-card .tc-img { width: 38%; height: auto; min-height: 210px; flex: none; }
+  }
+
+  /* Pricing: three plans side by side down to 720px; below that one centred column */
+  @media (min-width: 720px) and (max-width: 900px) {
+    #pricing .plans { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; gap: 10px; }
+    .plan { padding: 18px; }
+    .plan .price b { font-size: 2.2rem; }
+  }
+  @media (max-width: 719px) { #pricing .plans { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; } }
+
+  /* Bigger tap targets on phones */
+  @media (max-width: 760px) {
+    .mark { padding: 8px 0; }
+    .book-alt a { display: inline-block; padding: 8px 0; }
+    .route-foot .tap { padding: 10px 16px; }
+  }
+
   /* ---------- Photo in the booking card ---------- */
   .cal::before, .cal::after { display: none; }  /* the photo replaces the decorative rings */
   .cal-img { display: block; width: calc(100% + 2 * clamp(26px, 4vw, 44px)); height: auto; max-width: none; margin: calc(-1 * clamp(26px, 4vw, 44px)) calc(-1 * clamp(26px, 4vw, 44px)) 22px; aspect-ratio: 900 / 360; object-fit: cover; }
@@ -1010,7 +1047,7 @@
         </article>
       </div>
       <!-- What every paid session includes, in one line -->
-      <p class="promise-line">Written summary <i></i> 7-day WhatsApp follow-up <i></i> Free reschedule up to 12h before <i></i> Full refund 24h+ before <i></i> Hindi or English <i></i> Parents welcome on school sessions</p>
+      <p class="promise-line"><span>Written summary</span><span>7-day WhatsApp follow-up</span><span>Free reschedule up to 12h before</span><span>Full refund 24h+ before</span><span>Hindi or English</span><span>Parents welcome on school sessions</span></p>
     </div>
   </section>
 

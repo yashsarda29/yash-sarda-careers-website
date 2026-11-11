@@ -220,3 +220,5 @@ img.av { object-fit: cover; object-position: 50% 20%; }
   .post-list .thumb { grid-column: 1 / -1; width: 100%; aspect-ratio: 2 / 1; }
   .post-cover { border-radius: 18px; margin-top: 22px; }
 }
+/* phones: bigger logo tap target */
+@media (max-width: 760px) { .mark { padding: 8px 0; } }
