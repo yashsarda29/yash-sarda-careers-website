@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Career Check: free career tests | NextMove Careers</title>
-<meta name="description" content="Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.">
+<meta name="description" content="Free career checks for students: CV score check, profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.">
 <meta property="og:title" content="Career Check: free career tests | NextMove Careers">
 <meta property="og:description" content="Find out where you stand in 3 minutes: profile score, best-fit stream, and placement readiness.">
 <meta property="og:site_name" content="NextMove Careers">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="NextMove Careers: 1:1 career guidance with Yash Sarda">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Career Check: free career tests | NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/tests.html", "description": "Free 3-minute career tests for students: profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.", "publisher": {"@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "@type": "Organization", "name": "NextMove Careers"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Career Check: free career tests | NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/tests.html", "description": "Free career checks for students: CV score check, profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.", "publisher": {"@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "@type": "Organization", "name": "NextMove Careers"}}</script>
 <!-- /seo -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A66C2'/%3E%3Crect x='10' y='10' width='12' height='12' rx='2' fill='%23fff' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,12 +197,30 @@
 
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
 
+  /* CV score check */
+  .cv-form .qtitle { margin-top: 10px; }
+  .cv-label { display: block; margin-top: 20px; font-weight: 600; font-size: .95rem; }
+  .cv-label span { font-weight: 400; color: var(--ink-soft); font-size: .88rem; }
+  .cv-form textarea { display: block; width: 100%; margin-top: 8px; padding: 14px 16px; border-radius: 16px; border: 1.5px solid var(--hair); background: var(--white); font: inherit; font-size: .95rem; line-height: 1.5; color: var(--ink); resize: vertical; }
+  .cv-form textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(10,102,194,.15); }
+  .cv-err { color: #B42318; font-size: .9rem; margin-top: 10px; min-height: 1.2em; }
+  .cv-form .qnav { margin-top: 10px; }
+  .cv-fixes { list-style: none; display: grid; gap: 10px; margin-bottom: 14px; }
+  .cv-fixes li { padding: 12px 14px; border-radius: 14px; background: var(--paper); font-size: .92rem; color: var(--ink-soft); }
+  .cv-fixes b { display: block; color: var(--ink); margin-bottom: 2px; }
+  .kw { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 4px 0 14px; }
+  .kw .mono { width: 100%; color: var(--blue); }
+  .kw span:not(.mono) { padding: 4px 10px; border-radius: 999px; background: var(--paper); font-size: .85rem; }
+  /* Four test cards */
+  @media (min-width: 1101px) { .picker { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 701px) and (max-width: 1100px) { .picker { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
   /* Downloaded report (print / Save as PDF): just the result, on a clean page */
   .print-only { display: none; }
   @media print {
     @page { margin: 14mm; }
     body { background: #fff; }
-    header, footer, .site-footer, .ractions, #screen-picker, #screen-quiz { display: none !important; }
+    header, footer, .site-footer, .ractions, #screen-picker, #screen-quiz, #screen-cv { display: none !important; }
     .print-only { display: block; }
     .print-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 10px; margin-bottom: 18px; border-bottom: 2px solid var(--blue); }
     .print-head b { font-size: 1.2rem; color: var(--blue); }
@@ -261,6 +279,26 @@
           <span class="tip" id="qTip"></span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- CV score check: paste CV (+ optional job description) -->
+  <section id="screen-cv" class="quiz" hidden>
+    <div class="wrap">
+      <form class="qbox cv-form" id="cvForm" novalidate>
+        <div class="qtop"><span class="mono"><b>CV score check</b></span><span class="mono">Free · ~2 minutes</span></div>
+        <h2 class="qtitle">Paste your CV to see what the first screen sees.</h2>
+        <p class="qhint">Copy the text from your CV (Word, Google Docs or PDF) and paste it below. Your CV stays in your browser; it is not uploaded or saved.</p>
+        <label class="cv-label" for="cvText">Your CV <span>(required)</span></label>
+        <textarea id="cvText" rows="12" placeholder="Paste the full text of your CV here…" required></textarea>
+        <label class="cv-label" for="jdText">Job description <span>(optional, for a keyword match)</span></label>
+        <textarea id="jdText" rows="6" placeholder="Paste the job description you are applying for…"></textarea>
+        <p class="cv-err" id="cvErr" role="alert"></p>
+        <div class="qnav">
+          <a class="btn btn-ghost" href="tests.html#">← All tests</a>
+          <button class="btn btn-blue" type="submit">Check my CV <span class="arr">→</span></button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -341,7 +379,8 @@ const ICON = {
   placement: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
   eng: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
   com: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/>',
-  arts: '<path d="M12 19c-4 0-7-2-7-5 0-4 4-9 7-9s7 5 7 9c0 3-3 5-7 5Z"/><circle cx="9" cy="11" r="1"/><circle cx="15" cy="11" r="1"/><path d="M10 15h4"/>'
+  arts: '<path d="M12 19c-4 0-7-2-7-5 0-4 4-9 7-9s7 5 7 9c0 3-3 5-7 5Z"/><circle cx="9" cy="11" r="1"/><circle cx="15" cy="11" r="1"/><path d="M10 15h4"/>',
+  cv: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v5h6"/><path d="m9 15 2 2 4-4"/>'
 };
 const svg = (k, w = 2) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[k]}</svg>`;
 
@@ -502,8 +541,101 @@ const STREAM = {
   }
 };
 
-const TESTS = { profile: PROFILE, stream: STREAM, placement: PLACEMENT };
-const ORDER = ["profile", "stream", "placement"];
+/* ============================================================
+   TEST 4 · CV score check (runs entirely in the browser)
+   Scores the pasted CV on what software screens and recruiters
+   look at first. A quick self-check, not any company's ATS.
+   ============================================================ */
+const CV = { id: "cv", name: "CV score check", icon: "cv", mins: 2,
+  blurb: "Paste your CV and a job description. See what the first screen sees, and what to fix." };
+const ACTION_VERBS = ["achieved","analysed","analyzed","automated","built","coordinated","created","delivered","designed","developed","drove","grew","implemented","improved","increased","launched","led","managed","optimised","optimized","organised","organized","planned","presented","produced","raised","reduced","researched","resolved","saved","solved","streamlined","trained","won","wrote","conducted","generated","mentored","negotiated","prepared","secured","tested","handled","ran","initiated","spearheaded","collaborated","executed","established"];
+const CLICHES = ["hardworking","hard-working","team player","go-getter","seeking a challenging","to obtain a challenging","responsible for","results-driven","detail-oriented","self-motivated","career objective","objective:"];
+const STOP = new Set("about above after again against also among an and any are as at be because been before being below between both but by can could did do does doing down during each etc few for from further had has have having he her here hers him his how i if in into is it its just like make may more most must my no nor not now of off on once only or other our out over own per same she should so some such than that the their them then there these they this those through to too under until up upon us very via was we were what when where which while who whom why will with within without would you your yours role roles candidate candidates team teams work working ability able experience years year looking join company job required requirements preferred plus strong good excellent skills skill knowledge understanding including include using use new well across within hiring hire hired fresher freshers graduate graduates build write writing should will able day days opportunity responsibilities responsibility qualification qualifications apply applicants position based help helping ensure support".split(" "));
+const inCV = (lower, w) => lower.includes(w) || (w.length > 4 && lower.includes(w.replace(/(ies|es|s|ing|ed)$/, "")));
+
+function analyseCV(cv, jd) {
+  const text = cv.replace(/\r/g, ""), lower = text.toLowerCase();
+  const words = (lower.match(/[a-z][a-z+#.\-]*/g) || []);
+  const lines = text.split("\n").map(s => s.trim()).filter(Boolean);
+  const areas = [];
+  const add = (key, name, pct, tip, weight) => areas.push({ key, name, pct: Math.max(0, Math.min(100, Math.round(pct))), tip, weight });
+
+  // 1. Contact details
+  const hasEmail = /[^\s@]+@[^\s@]+\.[a-z]{2,}/i.test(text), hasPhone = /(\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}/.test(text), hasLinkedIn = /linkedin\.com\/in\//i.test(text);
+  add("contact", "Contact details", (hasEmail ? 45 : 0) + (hasPhone ? 35 : 0) + (hasLinkedIn ? 20 : 0),
+    !hasEmail || !hasPhone ? "Put your email and mobile number at the top." : !hasLinkedIn ? "Add your LinkedIn profile link so recruiters can check your claims." : "", 10);
+
+  // 2. Standard sections
+  const sec = { Education: /\beducation|academic/, "Experience or internships": /\bexperience|internship|work history|employment/, Projects: /\bprojects?\b/, Skills: /\bskills|technical skills|tools/ };
+  const missing = Object.entries(sec).filter(([n, re]) => !re.test(lower)).map(([n]) => n);
+  add("sections", "Standard sections", (4 - missing.length) * 25,
+    missing.length ? "Add clear headings for: " + missing.join(", ") + ". Software looks for standard headings." : "", 20);
+
+  // 3. Proof with numbers
+  const numberLines = lines.filter(l => l.length > 25 && /\d/.test(l) && !/@|\+91|\b(19|20)\d\d\b.*\b(19|20)\d\d\b/.test(l) && /(\d+\s?%|₹|rs\.?\s?\d|\b\d{2,}\b|\b\d+\s?(x|k|lakh|crore|users|people|students|members|hours|days|weeks)\b)/i.test(l)).length;
+  add("numbers", "Results with numbers", Math.min(numberLines / 5, 1) * 100,
+    numberLines < 5 ? `Only ${numberLines} line${numberLines === 1 ? "" : "s"} show a result with a number. Aim for 5+: "grew followers from 800 to 3,200", "cut report time by 40%".` : "", 20);
+
+  // 4. Strong action words at the start of bullets
+  const verbLines = lines.filter(l => { const w = l.replace(/^[•\-–*·▪●◦\d.)\s]+/, "").split(/\s+/)[0]; return w && ACTION_VERBS.includes(w.toLowerCase()); }).length;
+  add("verbs", "Strong action words", Math.min(verbLines / 6, 1) * 100,
+    verbLines < 6 ? "Start bullets with an action word (Built, Led, Analysed, Improved) instead of \"Responsible for\"." : "", 15);
+
+  // 5. Length
+  const n = words.length;
+  const lenPct = n < 150 ? 30 : n < 250 ? 70 : n <= 750 ? 100 : n <= 950 ? 70 : 40;
+  add("length", "Length", lenPct,
+    n < 250 ? `About ${n} words. It reads thin; add projects, results and skills.` : n > 750 ? `About ${n} words. For a fresher, one page (roughly 300–700 words) is usually enough.` : "", 15);
+
+  // 6. Clichés and objective statements
+  const found = CLICHES.filter(c => lower.includes(c));
+  add("cliches", "No filler phrases", Math.max(0, 100 - found.length * 30),
+    found.length ? "Replace filler like \"" + found.slice(0, 3).join("\", \"") + "\" with proof of what you did." : "", 10);
+
+  // 7. Job description match (only when one is pasted)
+  let missingKw = [];
+  if (jd && jd.trim().length > 80) {
+    const freq = {};
+    (jd.toLowerCase().match(/[a-z][a-z+#.\-]{2,}/g) || []).forEach(w => { w = w.replace(/[.\-]+$/, ""); if (w.length > 2 && !STOP.has(w)) freq[w] = (freq[w] || 0) + 1; });
+    const top = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 20).map(([w]) => w);
+    const have = top.filter(w => inCV(lower, w));
+    missingKw = top.filter(w => !inCV(lower, w)).slice(0, 10);
+    add("jd", "Job description match", top.length ? have.length / top.length * 100 : 0,
+      missingKw.length ? "Words from the job description missing in your CV: " + missingKw.slice(0, 6).join(", ") + ". Add the ones you genuinely have." : "", 15);
+  }
+  const totalW = areas.reduce((s, a) => s + a.weight, 0);
+  const score = Math.round(areas.reduce((s, a) => s + a.pct * a.weight, 0) / totalW);
+  return { score, areas, missingKw, words: n };
+}
+
+function cvResultHTML(r) {
+  const lvl = levelFor([[80, "Ready to send", "Strong basics. Tailor it to each job description before you apply."], [60, "Almost there", "A solid CV with a few clear fixes, listed below."], [40, "Needs work", "The first screen may skip it. Start with the fixes below."], [0, "Start here", "Rebuild the basics first: sections, results and contact details."]], r.score);
+  const weakest = [...r.areas].sort((a, b) => a.pct - b.pct).filter(a => a.tip).slice(0, 4);
+  return `<div class="rgrid">
+      <div class="rcard rhead">
+        <span class="mono">CV score check</span>
+        ${ring(r.score, r.score, "out of 100")}
+        <h2>${esc(lvl[1])}</h2>
+        <p>${esc(lvl[2])}</p>
+      </div>
+      <div class="stack">
+        <div class="rcard">
+          <h3>Your score by area</h3>
+          <div class="bars">${r.areas.map(a => `<div class="bar-row ${a.pct < 60 ? "low" : ""}"><span class="lbl">${esc(a.name)}</span><span class="pct">${a.pct}%</span><span class="meter"><i data-w="${a.pct}"></i></span></div>`).join("")}</div>
+        </div>
+        <div class="rcard">
+          <h3>${weakest.length ? "Fix these first" : "Nice work"}</h3>
+          ${weakest.length ? `<ul class="cv-fixes">${weakest.map(a => `<li><b>${esc(a.name)}</b>${esc(a.tip)}</li>`).join("")}</ul>` : "<p>No big gaps found. Tailor your CV to each role you apply for.</p>"}
+          ${r.missingKw.length ? `<div class="kw"><span class="mono">Missing keywords</span>${r.missingKw.map(w => `<span>${esc(w)}</span>`).join("")}</div>` : ""}
+          <ul class="recs">${recLink("CV review")}${r.missingKw.length ? recLink("Decoding job descriptions", "Read a JD like a recruiter, and tailor your CV to what it really asks for.") : recLink("LinkedIn review")}</ul>
+          <p class="disclaimer">A quick self-check of common first-screen rules, not any company's actual screening software.</p>
+        </div>
+      </div>
+    </div>${actions(`Hi Yash, I ran the CV score check on your website and scored ${r.score}/100 (${lvl[1]}). I'd like a CV review.`)}`;
+}
+
+const TESTS = { profile: PROFILE, stream: STREAM, placement: PLACEMENT, cv: CV };
+const ORDER = ["cv", "profile", "stream", "placement"];
 
 /* ============================================================
    App state + screens
@@ -512,22 +644,22 @@ const $ = (id) => document.getElementById(id);
 let state = null; // { test, track, i, answers: [] }
 
 function show(screen) {
-  ["picker", "quiz", "result"].forEach(s => $("screen-" + s).hidden = s !== screen);
+  ["picker", "quiz", "cv", "result"].forEach(s => $("screen-" + s).hidden = s !== screen);
   scrollTo(0, 0);
 }
 
 /* Start screen */
-const ACCENT = { profile: "Score out of 100", stream: "Match score per stream", placement: "Score out of 100" };
+const ACCENT = { profile: "Score out of 100", stream: "Match score per stream", placement: "Score out of 100", cv: "Score out of 100" };
 $("picker").innerHTML = ORDER.map(id => {
   const t = TESTS[id];
-  const n = id === "stream" ? 10 : t.questions.length;
+  const n = id === "stream" ? 10 : id === "cv" ? 0 : t.questions.length;
   return `<button class="tcard" data-test="${id}">
     <span class="tc-photo"><img src="images/test-${id}.webp" alt="" width="800" height="500" ${id === "profile" ? "" : 'loading="lazy"'}></span>
     <span class="ic">${svg(t.icon)}</span>
-    <span class="mono">${n} questions · ~${t.mins} min · ${ACCENT[id]}</span>
+    <span class="mono">${id === "cv" ? "New · Paste your CV" : n + " questions"} · ~${t.mins} min · ${ACCENT[id]}</span>
     <h2>${esc(t.name)}</h2>
     <p>${esc(t.blurb)}</p>
-    <span class="go">Start the test <span class="arr">→</span></span>
+    <span class="go">${id === "cv" ? "Check my CV" : "Start the test"} <span class="arr">→</span></span>
   </button>`;
 }).join("");
 $("picker").addEventListener("click", e => { const c = e.target.closest(".tcard"); if (c) location.hash = c.dataset.test; });
@@ -538,10 +670,11 @@ function start(id) {
   /* Name + email (or Google) before the test begins; closing the box goes back to the test list */
   LeadGate.require("Test: " + TESTS[id].name, () => {
     state = { test: id, track: null, i: 0, answers: [] };
+    if (id === "cv") { show("cv"); $("cvText").focus({ preventScroll: true }); return; }
     show("quiz");
     render();
   }, {
-    title: "Before you start the " + TESTS[id].name.toLowerCase() + " test",
+    title: id === "cv" ? "Before you check your CV" : "Before you start the " + TESTS[id].name.toLowerCase() + " test",
     cancel: () => { state = null; history.replaceState(null, "", location.pathname); show("picker"); }
   });
   return;
@@ -653,7 +786,9 @@ const actions = (msg) => `<div class="ractions">
 function result() {
   const t = TESTS[state.test];
   let html;
-  if (state.test === "stream") {
+  if (state.test === "cv") {
+    html = cvResultHTML(state.cv);
+  } else if (state.test === "stream") {
     const tr = STREAM.tracks[state.track];
     const totals = {}, max = {};
     Object.keys(tr.streams).forEach(k => { totals[k] = 0; max[k] = 0; });
@@ -732,7 +867,17 @@ function result() {
   animateIn();
 }
 
-/* Routing: tests.html#profile, #stream, #placement */
+/* CV form */
+$("cvForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const cv = $("cvText").value, jd = $("jdText").value;
+  if (cv.trim().split(/\s+/).length < 60) { $("cvErr").textContent = "Please paste your full CV (at least a few lines of text)."; $("cvText").focus(); return; }
+  $("cvErr").textContent = "";
+  state = { test: "cv", cv: analyseCV(cv, jd) };
+  result();
+});
+
+/* Routing: tests.html#cv, #profile, #stream, #placement */
 const route = () => { const id = location.hash.replace("#", ""); if (id) start(id); else { state = null; show("picker"); } };
 addEventListener("hashchange", route);
 route();

@@ -696,6 +696,28 @@
     .route-foot .tap { padding: 10px 16px; }
   }
 
+  /* ===== Getting ready for 2027 ===== */
+  .trend-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .trend { display: flex; flex-direction: column; gap: 8px; padding: 22px; border-radius: 22px; background: var(--paper); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+  .trend:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px var(--blue); }
+  .trend b { font-size: clamp(2.2rem, 3.6vw, 2.8rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--blue); }
+  .trend span { font-size: .95rem; flex: 1; }
+  .trend small { font-size: .78rem; color: var(--ink-soft); }
+  .trend-do { margin-top: 18px; padding: clamp(20px, 3vw, 30px); border-radius: 22px; background: var(--ink); color: var(--paper); display: grid; grid-template-columns: minmax(0, 1.3fr) auto; gap: 14px 32px; align-items: center; }
+  .trend-do h3 { grid-column: 1 / -1; font-size: 1.25rem; letter-spacing: -0.02em; }
+  .trend-do ul { list-style: none; display: grid; gap: 10px; }
+  .trend-do li { position: relative; padding-left: 20px; color: rgba(255,255,255,.75); font-size: .96rem; }
+  .trend-do li::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; background: var(--blue); border-radius: 2px; transform: rotate(45deg); }
+  .trend-do li b { color: var(--white); }
+  .trend-ctas { display: flex; flex-direction: column; gap: 10px; }
+  .trend-do .btn-line { border-color: rgba(255,255,255,.5); color: var(--white); }
+  .trend-do .btn-line:hover { background: var(--white); color: var(--ink); }
+  @media (max-width: 1000px) { .trend-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .trend-do { grid-template-columns: 1fr; } .trend-ctas { flex-direction: row; flex-wrap: wrap; } }
+  @media (max-width: 480px) { .trend-ctas .btn { flex: 1 1 100%; justify-content: center; } }
+
+  /* Career Check: four cards in a row on wide screens */
+  @media (min-width: 1001px) { .test-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); } .tc-img { height: clamp(150px, 13vw, 190px); } }
+
   /* ---------- Photo in the booking card ---------- */
   .cal::before, .cal::after { display: none; }  /* the photo replaces the decorative rings */
   .cal-img { display: block; width: calc(100% + 2 * clamp(26px, 4vw, 44px)); height: auto; max-width: none; margin: calc(-1 * clamp(26px, 4vw, 44px)) calc(-1 * clamp(26px, 4vw, 44px)) 22px; aspect-ratio: 900 / 360; object-fit: cover; }
@@ -964,7 +986,7 @@
           <ul class="recs" id="ansList"></ul>
         </div>
       </div>
-      <h3 class="tests-sub">Or take a free 3-minute test</h3>
+      <h3 class="tests-sub">Or take a free 3-minute check</h3>
       <div class="test-cards" data-stagger>
         <a class="test-card" href="tests.html#stream">
           <span class="tc-img"><img src="images/test-stream.webp" alt="Two school students studying at their desks" width="800" height="500" loading="lazy"></span>
@@ -983,6 +1005,15 @@
             <b>Profile evaluation</b>
             <span class="tc-text">How strong is your profile? Scored across academics, experience, proof of skills, visibility and direction.</span>
             <span class="tc-go">Score my profile <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+        <a class="test-card" href="tests.html#cv">
+          <span class="tc-img"><img src="images/test-cv.webp" alt="A recruiter reading a CV" width="800" height="500" loading="lazy"></span>
+          <span class="tc-body">
+            <span class="mono">New · Score out of 100</span>
+            <b>CV score check</b>
+            <span class="tc-text">Paste your CV, and a job description if you have one. See what the first screen sees and what to fix.</span>
+            <span class="tc-go">Check my CV <span aria-hidden="true">→</span></span>
           </span>
         </a>
         <a class="test-card" href="tests.html#placement">
@@ -1099,8 +1130,47 @@
     </div>
   </section>
 
+  <!-- ================= GETTING READY FOR 2027 (hiring trends, each fact linked to its report) ================= -->
+  <section class="block band band-white" id="trends">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="mono">Hiring in 2027</span>
+        <div>
+          <h2>Getting ready for <span class="serif">2027 placements.</span></h2>
+          <p>Employers now hire on skills and proof of work, not just degrees. Here is what the latest reports say, and what to do about it.</p>
+        </div>
+      </div>
+      <div class="trend-stats" data-stagger>
+        <a class="trend" href="https://news.careers360.com/ai-data-digital-skills-fresher-hiring-degree-screening-proof-of-work-adaptability-teamlease-edtech-report-india" target="_blank" rel="noopener">
+          <b>73%</b><span>of employers planned to hire freshers in early 2026, and they screen for skills and proof of work, not just degrees.</span><small>TeamLease EdTech Career Outlook, H1 2026 ↗</small>
+        </a>
+        <a class="trend" href="https://www.theweek.in/news/education/2026/10/16/how-ai-is-creating-new-entry-level-roles-and-hiring-process.html" target="_blank" rel="noopener">
+          <b>85%</b><span>of Indian companies say AI is changing how they hire graduates.</span><small>Deloitte Campus Workforce Trends 2026 ↗</small>
+        </a>
+        <a class="trend" href="https://www.naukri.com/blog/naukri-jobspeak-white-collar-hiring-grows-14-in-aug-fresher-hiring-ai-roles-lead/" target="_blank" rel="noopener">
+          <b>+31%</b><span>more AI and machine-learning jobs than a year earlier.</span><small>Naukri JobSpeak, August 2026 ↗</small>
+        </a>
+        <a class="trend" href="https://www.naukri.com/blog/naukri-jobspeak-white-collar-hiring-grows-14-in-aug-fresher-hiring-ai-roles-lead/" target="_blank" rel="noopener">
+          <b>+15%</b><span>more fresher hiring than a year earlier.</span><small>Naukri JobSpeak, August 2026 ↗</small>
+        </a>
+      </div>
+      <div class="trend-do rv">
+        <h3>What to do before 2027 placements</h3>
+        <ul>
+          <li><b>Build proof of work.</b> One finished project, internship or competition beats a list of courses.</li>
+          <li><b>Get comfortable with AI tools.</b> Use them to research, draft and practise, and say how you used them.</li>
+          <li><b>Pass the first screen.</b> Most companies use software to sort CVs before a person reads them.</li>
+        </ul>
+        <div class="trend-ctas">
+          <a class="btn btn-blue" href="tests.html#cv">Check my CV score, free <span class="arr">→</span></a>
+          <a class="btn btn-line" href="blog/skills-over-degrees-2027.html">Read: skills over degrees</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= BLOG ================= -->
-  <section class="block band band-white" id="notes">
+  <section class="block band" id="notes">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Blog</span>
@@ -1111,12 +1181,12 @@
       </div>
       <div class="notes" id="notesGrid"></div>
       <p class="swipe-hint mono" aria-hidden="true">Swipe for more →</p>
-      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All 12 posts <span class="arr">↗</span></a></div>
+      <div class="notes-foot rv"><a class="btn btn-line" href="blog/index.html">All 13 posts <span class="arr">↗</span></a></div>
     </div>
   </section>
 
   <!-- ================= FAQ ================= -->
-  <section class="block band" id="faq">
+  <section class="block band band-white" id="faq">
     <div class="wrap">
       <div class="sec-head rv">
         <span class="mono">Questions</span>
@@ -1135,7 +1205,7 @@
   </section>
 
   <!-- ================= BOOK (CALENDLY) + HOW IT WORKS ================= -->
-  <section class="block band band-white" id="book">
+  <section class="block band" id="book">
     <div class="wrap">
       <div class="book-wrap">
         <div class="rv">
@@ -1317,9 +1387,9 @@ const TESTIMONIALS = [
    Each one has its own page in the /blog folder.
    ============================================================ */
 const POSTS = [
+  { slug: "skills-over-degrees-2027", tag: "Placements", icon: "target", title: "Skills over degrees: what employers want from freshers in 2027", blurb: "The latest hiring reports, and five things to do before placement season.", mins: 4 },
   { slug: "tell-me-about-yourself", tag: "Placements", icon: "mic", title: "\"Tell me about yourself\": a 60-second answer that works", blurb: "The first question in almost every interview, and how to stop reading out your CV.", mins: 4 },
-  { slug: "linkedin-profile-guide", tag: "Getting shortlisted", icon: "user", title: "Your LinkedIn profile in 30 minutes: what recruiters actually read", blurb: "Recruiters read four things in a few seconds. Get those right first.", mins: 3 },
-  { slug: "internship-with-no-experience", tag: "Profile building", icon: "target", title: "How to land an internship with no experience: a weekly plan", blurb: "Break the \"need experience to get experience\" loop in a few focused weeks.", mins: 3 }
+  { slug: "linkedin-profile-guide", tag: "Getting shortlisted", icon: "user", title: "Your LinkedIn profile in 30 minutes: what recruiters actually read", blurb: "Recruiters read four things in a few seconds. Get those right first.", mins: 3 }
 ];
 
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
@@ -1477,7 +1547,7 @@ if ("IntersectionObserver" in window) {
     if (!e.isIntersecting) return;
     links.forEach(a => { const on = a.getAttribute("href") === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
   }), { rootMargin: "-45% 0px -50% 0px" });
-  ["route", "tests", "pricing", "stories", "notes", "faq", "book"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  ["route", "tests", "pricing", "stories", "trends", "notes", "faq", "book"].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
 }
 
 /* Reveal + active stage */

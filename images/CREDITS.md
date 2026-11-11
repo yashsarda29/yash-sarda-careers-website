@@ -25,3 +25,5 @@ All photos are from [Unsplash](https://unsplash.com) and used under the [Unsplas
 | job-or-mba.webp | MD Duran | https://unsplash.com/photos/1VqHRwxcCCw |
 | choose-your-branch.webp | Sahand Babali | https://unsplash.com/photos/owjrvbyXYyc |
 | crack-group-discussion.webp | Jud Mackrill | https://unsplash.com/photos/Of_m3hMsoAA |
+| test-cv.webp | Resume Genius | https://unsplash.com/photos/9si2noVCVH8 |
+| blog/skills-over-degrees-2027.webp (+ share jpg) | Hitesh Choudhary | https://unsplash.com/photos/ee4g8naRkPk |
