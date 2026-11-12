@@ -34,7 +34,8 @@ html { scroll-behavior: smooth; }
 header { position: sticky; top: 0; z-index: 50; background: rgba(244,246,248,.9); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--hair); }
 .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
 .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.05rem; }
-.mark i { width: 12px; height: 12px; background: var(--blue); border-radius: 3px; transform: rotate(45deg); }
+.mark img { display: block; height: 40px; width: auto; }
+@media (max-width: 480px) { .mark img { height: 34px; } }
 .bar nav { display: flex; gap: 28px; font-size: .92rem; font-weight: 500; }
 .bar nav a:hover { color: var(--blue); }
 .bar .btn { padding: 10px 18px; font-size: .88rem; }

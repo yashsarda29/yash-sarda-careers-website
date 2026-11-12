@@ -17,7 +17,7 @@
 .sf-grid { display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 40px 32px; }
 
 .sf-mark { display: inline-flex; align-items: center; gap: 10px; color: var(--sf-paper) !important; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
-.sf-mark i { width: 12px; height: 12px; background: var(--sf-blue); border-radius: 3px; transform: rotate(45deg); }
+.sf-mark img { display: block; height: 44px; width: auto; }
 .sf-brand p { margin-top: 14px; max-width: 340px; }
 .sf-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 11px 18px; border-radius: 999px; background: var(--sf-blue); color: #fff !important; font-weight: 600; font-size: .9rem; transition: background .2s, transform .25s cubic-bezier(.2,.8,.2,1) !important; }
 .sf-cta:hover { background: #fff; color: var(--sf-blue) !important; transform: translateY(-2px); }
