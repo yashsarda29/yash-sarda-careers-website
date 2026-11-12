@@ -26,12 +26,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  /* Backup font sized to match Inter Tight, so text doesn't jump when the web font arrives */
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"), local("Roboto"); size-adjust: 96%; font-weight: 100 650; }
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial Bold"), local("Arial"), local("Liberation Sans Bold"), local("Liberation Sans"), local("Helvetica Bold"), local("Roboto Bold"), local("Roboto"); size-adjust: 86%; font-weight: 651 1000; }
   :root {
     --blue: #0A66C2; --blue-deep: #004182; --blue-wash: #E8F1FB;
     --ink: #0B1B2B; --ink-soft: #4A5868; --paper: #F3F2EF; --white: #FFFFFF;
     --hair: rgba(11,27,43,.12);
     --serif: "Instrument Serif", Georgia, serif;
-    --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sans: "Inter Tight", "Inter Tight Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { overflow-x: clip; scroll-behavior: smooth; }
@@ -242,7 +245,7 @@
 <body>
 <header>
   <div class="wrap bar">
-    <a href="index.html" class="mark" aria-label="NextMove Careers, home"><img src="images/logo.png" alt="NextMove Careers" width="414" height="96"></a>
+    <a href="index.html" class="mark" aria-label="NextMove Careers, home"><img src="images/logo.webp" alt="NextMove Careers" width="414" height="96"></a>
     <nav aria-label="Main"><a href="index.html#route">Sessions</a><a href="tests.html">Career Check</a><a href="blog/index.html">Blog</a><a href="index.html#faq">FAQ</a></nav>
     <a class="btn btn-blue" href="index.html#book">Book a free call</a>
   </div>
@@ -295,7 +298,7 @@
   <div class="wrap">
     <div class="sf-grid">
       <div class="sf-brand">
-        <a href="index.html" class="sf-mark" aria-label="NextMove Careers, home"><img src="images/logo-light.png" alt="NextMove Careers" width="414" height="96"></a>
+        <a href="index.html" class="sf-mark" aria-label="NextMove Careers, home"><img src="images/logo-light.webp" alt="NextMove Careers" width="414" height="96"></a>
         <p>One-on-one online career guidance for college and school students. Choose your path, build your profile, get shortlisted and crack placements with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry).</p>
         <a class="sf-cta" href="index.html#book">Book a free 15-min call <span aria-hidden="true">&rarr;</span></a>
       </div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Career Check: free career tests | NextMove Careers</title>
-<meta name="description" content="Free career checks for students: CV score check, profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.">
+<meta name="description" content="Free career checks for students: CV score, profile evaluation, stream selector and placement readiness. Get a score and clear next steps.">
 <meta property="og:title" content="Career Check: free career tests | NextMove Careers">
 <meta property="og:description" content="Find out where you stand in 3 minutes: profile score, best-fit stream, and placement readiness.">
 <meta property="og:site_name" content="NextMove Careers">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="NextMove Careers: 1:1 career guidance with Yash Sarda">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Career Check: free career tests | NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/tests.html", "description": "Free career checks for students: CV score check, profile evaluation, stream selector for engineering, commerce and arts, and placement readiness. Get a score and next steps.", "publisher": {"@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "@type": "Organization", "name": "NextMove Careers"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Career Check: free career tests | NextMove Careers", "url": "https://yashsarda29.github.io/yash-sarda-careers-website/tests.html", "description": "Free career checks for students: CV score, profile evaluation, stream selector and placement readiness. Get a score and clear next steps.", "publisher": {"@id": "https://yashsarda29.github.io/yash-sarda-careers-website/#business", "@type": "Organization", "name": "NextMove Careers"}}</script>
 <!-- /seo -->
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -26,12 +26,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  /* Backup font sized to match Inter Tight, so text doesn't jump when the web font arrives */
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"), local("Roboto"); size-adjust: 96%; font-weight: 100 650; }
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial Bold"), local("Arial"), local("Liberation Sans Bold"), local("Liberation Sans"), local("Helvetica Bold"), local("Roboto Bold"), local("Roboto"); size-adjust: 86%; font-weight: 651 1000; }
   :root {
     --blue: #0A66C2; --blue-deep: #004182; --blue-wash: #E8F1FB;
     --ink: #0B1B2B; --ink-soft: #4A5868; --paper: #F3F2EF; --white: #FFFFFF;
     --hair: rgba(11,27,43,.12);
     --serif: "Instrument Serif", Georgia, serif;
-    --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sans: "Inter Tight", "Inter Tight Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { overflow-x: clip; scroll-behavior: smooth; }
@@ -251,7 +254,7 @@
 <body>
 <header>
   <div class="wrap bar">
-    <a href="index.html" class="mark" aria-label="NextMove Careers, home"><img src="images/logo.png" alt="NextMove Careers" width="414" height="96"></a>
+    <a href="index.html" class="mark" aria-label="NextMove Careers, home"><img src="images/logo.webp" alt="NextMove Careers" width="414" height="96"></a>
     <nav aria-label="Main"><a href="index.html#route">Sessions</a><a href="tests.html" class="on" aria-current="page">Career Check</a><a href="blog/index.html">Blog</a><a href="index.html#faq">FAQ</a></nav>
     <a class="btn btn-blue" href="index.html#book">Book a free call</a>
   </div>
@@ -266,7 +269,36 @@
       <p>Pick a test, answer honestly, and get a score with clear next steps. No sign-up needed.</p>
       <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your answers stay in your browser. We only save your name, email and number.</span>
     </div>
-    <div class="wrap picker" id="picker"></div>
+    <!-- Cards are also in the HTML so slow phones don't see the page jump; the script below re-renders the same markup from TESTS. -->
+    <div class="wrap picker" id="picker"><button class="tcard" data-test="cv">
+    <span class="tc-photo"><img src="images/test-cv.webp" alt="" width="800" height="500" ></span>
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v5h6"></path><path d="m9 15 2 2 4-4"></path></svg></span>
+    <span class="mono">New · Paste your CV · ~2 min · Score out of 100</span>
+    <h2>CV score check</h2>
+    <p>Paste your CV and a job description. See what the first screen sees, and what to fix.</p>
+    <span class="go">Check my CV <span class="arr">→</span></span>
+  </button><button class="tcard" data-test="profile">
+    <span class="tc-photo"><img src="images/test-profile.webp" alt="" width="800" height="500" loading="lazy"></span>
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path><path d="m16 11 2 2 4-4"></path></svg></span>
+    <span class="mono">10 questions · ~3 min · Score out of 100</span>
+    <h2>Profile evaluation</h2>
+    <p>Score your profile out of 100 across academics, experience, proof of skills, visibility and direction.</p>
+    <span class="go">Start the test <span class="arr">→</span></span>
+  </button><button class="tcard" data-test="stream">
+    <span class="tc-photo"><img src="images/test-stream.webp" alt="" width="800" height="500" loading="lazy"></span>
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"></path><path d="M8 3H3v5"></path><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"></path><path d="m15 9 6-6"></path></svg></span>
+    <span class="mono">10 questions · ~3 min · Match score per stream</span>
+    <h2>Stream selector</h2>
+    <p>Engineering, commerce or arts? Pick your track and get a match score for each stream within it.</p>
+    <span class="go">Start the test <span class="arr">→</span></span>
+  </button><button class="tcard" data-test="placement">
+    <span class="tc-photo"><img src="images/test-placement.webp" alt="" width="800" height="500" loading="lazy"></span>
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
+    <span class="mono">10 questions · ~3 min · Score out of 100</span>
+    <h2>Placement readiness</h2>
+    <p>How ready are you for placement season? Score your prep for tests, interviews, GDs and company research.</p>
+    <span class="go">Start the test <span class="arr">→</span></span>
+  </button></div>
   </section>
 
   <!-- Quiz -->
@@ -314,7 +346,7 @@
   <div class="wrap">
     <div class="sf-grid">
       <div class="sf-brand">
-        <a href="index.html" class="sf-mark" aria-label="NextMove Careers, home"><img src="images/logo-light.png" alt="NextMove Careers" width="414" height="96"></a>
+        <a href="index.html" class="sf-mark" aria-label="NextMove Careers, home"><img src="images/logo-light.webp" alt="NextMove Careers" width="414" height="96"></a>
         <p>One-on-one online career guidance for college and school students. Choose your path, build your profile, get shortlisted and crack placements with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry).</p>
         <a class="sf-cta" href="index.html#book">Book a free 15-min call <span aria-hidden="true">&rarr;</span></a>
       </div>
@@ -656,7 +688,7 @@ $("picker").innerHTML = ORDER.map(id => {
   const t = TESTS[id];
   const n = id === "stream" ? 10 : id === "cv" ? 0 : t.questions.length;
   return `<button class="tcard" data-test="${id}">
-    <span class="tc-photo"><img src="images/test-${id}.webp" alt="" width="800" height="500" ${id === "profile" ? "" : 'loading="lazy"'}></span>
+    <span class="tc-photo"><img src="images/test-${id}.webp" alt="" width="800" height="500" ${id === ORDER[0] ? "" : 'loading="lazy"'}></span>
     <span class="ic">${svg(t.icon)}</span>
     <span class="mono">${id === "cv" ? "New · Paste your CV" : n + " questions"} · ~${t.mins} min · ${ACCENT[id]}</span>
     <h2>${esc(t.name)}</h2>

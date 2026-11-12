@@ -13,10 +13,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Backup font sized to match Inter Tight, so text doesn't jump when the web font arrives */
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"), local("Roboto"); size-adjust: 96%; font-weight: 100 650; }
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial Bold"), local("Arial"), local("Liberation Sans Bold"), local("Liberation Sans"), local("Helvetica Bold"), local("Roboto Bold"), local("Roboto"); size-adjust: 86%; font-weight: 651 1000; }
   :root { --blue: #0A66C2; --blue-deep: #004182; --ink: #0B1B2B; --ink-soft: #4A5868; --paper: #F4F6F8; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Inter Tight", system-ui, sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; display: grid; place-items: center; padding: 24px; text-align: center; }
-  .mono { font-family: "Inter Tight", system-ui, sans-serif; font-weight: 600; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+  body { font-family: "Inter Tight", "Inter Tight Fallback", system-ui, sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; display: grid; place-items: center; padding: 24px; text-align: center; }
+  .mono { font-family: "Inter Tight", "Inter Tight Fallback", system-ui, sans-serif; font-weight: 600; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
   h1 { font-size: clamp(2.6rem, 8vw, 5rem); line-height: .95; letter-spacing: -0.045em; margin: 18px 0 16px; }
   h1 em { font-style: normal; color: var(--blue); }
   p { color: var(--ink-soft); font-size: 1.1rem; max-width: 440px; margin: 0 auto 30px; }

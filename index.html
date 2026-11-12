@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NextMove Careers | 1:1 Career Guidance for College Students</title>
-<meta name="description" content="NextMove Careers: 1:1 online career guidance with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry). Choose your path, build your profile, get shortlisted and crack the interview. First 15 minutes free.">
+<meta name="description" content="1:1 online career guidance with Yash Sarda (MBA, Great Lakes). Choose your path, build your profile, get shortlisted and crack interviews. First 15 min free.">
 <meta property="og:title" content="NextMove Careers | Clarity for your next career move">
 <meta property="og:description" content="1:1 online career guidance for college students. First 15 minutes free.">
 <meta property="og:type" content="website">
@@ -28,6 +28,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  /* Backup font sized to match Inter Tight, so text doesn't jump when the web font arrives */
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"), local("Roboto"); size-adjust: 96%; font-weight: 100 650; }
+  @font-face { font-family: "Inter Tight Fallback"; src: local("Arial Bold"), local("Arial"), local("Liberation Sans Bold"), local("Liberation Sans"), local("Helvetica Bold"), local("Roboto Bold"), local("Roboto"); size-adjust: 86%; font-weight: 651 1000; }
   /* Palette: LinkedIn blue + ink + paper. Nothing else. */
   :root {
     --blue: #0A66C2;
@@ -39,7 +42,7 @@
     --white: #FFFFFF;
     --hair: rgba(11,27,43,.12);
     --serif: "Instrument Serif", Georgia, serif;
-    --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sans: "Inter Tight", "Inter Tight Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: clip; }
@@ -192,7 +195,7 @@
   .row { display: grid; grid-template-columns: 70px 1fr auto; gap: 20px; align-items: center; padding: 26px 16px; margin: 0 -16px; border-radius: 18px; transition: background .25s; }
   .row:hover { background: var(--white); }
   .row .idx { font-family: var(--sans); font-size: .8rem; color: var(--ink-soft); }
-  .row h4 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; transition: color .25s; }
+  .row h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; transition: color .25s; }
   .row p { color: var(--ink-soft); font-size: .98rem; margin-top: 4px; max-width: 520px; }
   .row .book { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: .9rem; color: var(--blue); opacity: .0; transform: translateX(-8px); transition: all .25s; white-space: nowrap; }
   .row .book .go { width: 40px; height: 40px; border-radius: 50%; background: var(--blue); color: var(--white); display: grid; place-items: center; }
@@ -224,7 +227,7 @@
   .photo { aspect-ratio: 1; border-radius: 16px; background: var(--blue); display: grid; place-items: center; overflow: hidden; position: relative; }
   .photo img { width: 100%; height: 100%; object-fit: cover; }
   .photo::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,.07) 18px 19px); }
-  .id-card h4 { font-size: 1.4rem; margin-top: 18px; letter-spacing: -0.02em; }
+  .id-card h3 { font-size: 1.4rem; margin-top: 18px; letter-spacing: -0.02em; }
   .id-card .role { color: var(--ink-soft); font-size: .92rem; }
   .id-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hair); border-radius: 12px; overflow: hidden; margin-top: 16px; }
   .id-meta div { background: var(--paper); padding: 12px 14px; }
@@ -397,7 +400,7 @@
 
   /* Session rows */
   .row { padding: 15px 14px; margin: 0 -14px; grid-template-columns: 56px 1fr auto; }
-  .row h4 { font-size: 1.14rem; }
+  .row h3 { font-size: 1.14rem; }
   .row p { font-size: .94rem; margin-top: 2px; }
   .row .book .go { width: 36px; height: 36px; }
 
@@ -414,7 +417,7 @@
   .about-points span { color: rgba(244,246,248,.68); font-size: .96rem; }
   .id-card { padding: 16px; max-width: 320px; justify-self: end; }
   .photo { aspect-ratio: 5/4; }
-  .id-card h4 { margin-top: 12px; font-size: 1.25rem; }
+  .id-card h3 { margin-top: 12px; font-size: 1.25rem; }
   .id-meta { margin-top: 12px; }
   .id-meta div { padding: 9px 12px; }
 
@@ -496,7 +499,7 @@
      ===================================================================== */
   /* 1 · Session rows: compact */
   .row { padding: 11px 14px; }
-  .row h4 { font-size: 1.08rem; }
+  .row h3 { font-size: 1.08rem; }
   #route .sec-head p { margin-top: 8px; }
   /* Wide screens: sessions sit in two columns */
   @media (min-width: 1100px) {
@@ -605,13 +608,13 @@
   #route .row { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; height: 100%; margin: 0; padding: 18px 20px; border-radius: 18px; background: var(--white); box-shadow: inset 0 0 0 1px var(--hair); transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
   #route .row:hover { background: var(--white); transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px var(--blue), 0 18px 30px -24px rgba(11,27,43,.45); }
   #route .row .idx { display: inline; padding: 0; margin-right: 4px; font-family: inherit; font-size: inherit; font-weight: 700; color: var(--blue); letter-spacing: 0; }
-  #route .row h4 { font-size: 1.08rem; }
+  #route .row h3 { font-size: 1.08rem; }
   #route .row p { margin-top: 4px; font-size: .92rem; }
   /* "Book" appears only when the card is hovered or focused; the whole card is the link */
-  #route .row h4 { padding-right: 76px; }
+  #route .row h3 { padding-right: 76px; }
   #route .row .book { position: absolute; top: 14px; right: 14px; margin: 0; padding: 0; opacity: 0; transform: translateY(-4px); transition: opacity .2s, transform .2s; pointer-events: none; }
   #route .row:hover .book, #route .row:focus-visible .book { opacity: 1; transform: none; }
-  @media (hover: none) { #route .row .book { display: none; } #route .row h4 { padding-right: 0; } }
+  @media (hover: none) { #route .row .book { display: none; } #route .row h3 { padding-right: 0; } }
   #route .row .book span:first-child { display: inline; }
   #route .row .book .go { width: 32px; height: 32px; }
   @media (max-width: 640px) { #route .rows { grid-template-columns: 1fr; } }
@@ -739,7 +742,7 @@
   .plan li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; background: var(--blue); border-radius: 2px; transform: rotate(45deg); }
   .plan .btn { margin-top: 22px; justify-content: center; }
   .plan-best { background: var(--blue); color: var(--white); }
-  .plan-best > .mono, .plan-best .price small, .plan-best .price span { color: rgba(255,255,255,.78); }
+  .plan-best > .mono, .plan-best .price small, .plan-best .price span { color: rgba(255,255,255,.94); }
   .plan-best ul { border-top-color: rgba(255,255,255,.22); }
   .plan-best li::before { background: var(--white); }
   .plan-best .btn-white { background: var(--white); color: var(--blue); }
@@ -889,7 +892,7 @@
 <a class="skip" href="#route">Skip to content</a>
 <header id="hdr">
   <div class="wrap bar">
-    <a href="#top" class="mark" aria-label="NextMove Careers, home"><img src="images/logo.png" alt="NextMove Careers" width="414" height="96"></a>
+    <a href="#top" class="mark" aria-label="NextMove Careers, home"><img src="images/logo.webp" alt="NextMove Careers" width="414" height="96"></a>
     <nav class="menu" aria-label="Main">
       <a href="#route">The route</a>
       <a href="#tests" class="new-link">Career Check</a>
@@ -933,7 +936,7 @@
           </a>
           <a class="btn btn-line" href="#tests">Where am I stuck? <span class="arr">↘</span></a>
         </div>
-        <p class="free-note"><img class="mini-av" src="yash.png" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b><span class="proof"><b>50+ students guided</b> · MBA, Great Lakes Chennai · 5+ years in industry</span></span></p>
+        <p class="free-note"><img class="mini-av" src="yash.webp" alt="" width="40" height="40"><span><b>The first 15 minutes are on me.</b><span class="proof"><b>50+ students guided</b> · MBA, Great Lakes Chennai · 5+ years in industry</span></span></p>
       </div>
 
       <!-- Route map -->
@@ -1099,8 +1102,8 @@
           </ul>
         </div>
         <div class="id-card rv">
-          <div class="photo has-img"><img src="yash.png" alt="Yash Sarda" width="200" height="200" loading="lazy"></div>
-          <h4>Yash Sarda</h4>
+          <div class="photo has-img"><img src="yash.webp" alt="Yash Sarda" width="200" height="200" loading="lazy"></div>
+          <h3>Yash Sarda</h3>
           <div class="role">Career mentor · Business solutions consultant</div>
           <div class="id-meta">
             <div><b>MBA</b><span>Great Lakes, Chennai</span></div>
@@ -1252,7 +1255,7 @@
   <div class="wrap">
     <div class="sf-grid">
       <div class="sf-brand">
-        <a href="index.html" class="sf-mark" aria-label="NextMove Careers, home"><img src="images/logo-light.png" alt="NextMove Careers" width="414" height="96"></a>
+        <a href="index.html" class="sf-mark" aria-label="NextMove Careers, home"><img src="images/logo-light.webp" alt="NextMove Careers" width="414" height="96"></a>
         <p>One-on-one online career guidance for college and school students. Choose your path, build your profile, get shortlisted and crack placements with Yash Sarda (MBA, Great Lakes Chennai, 5+ years in industry).</p>
         <a class="sf-cta" href="index.html#book">Book a free 15-min call <span aria-hidden="true">&rarr;</span></a>
       </div>
@@ -1412,7 +1415,7 @@ document.getElementById("stages").innerHTML = STAGES.map((s, si) => `
     <ol class="rows" data-stagger>
       ${s.sessions.map((r, i) => `
         <li><a class="row" target="_blank" rel="noopener" href="${wa(bookMsg(r[0]))}">
-          <div><h4><span class="idx">${Number(s.num)}.${i + 1}</span> ${esc(r[0])}</h4><p>${esc(r[1])}</p></div>
+          <div><h3><span class="idx">${Number(s.num)}.${i + 1}</span> ${esc(r[0])}</h3><p>${esc(r[1])}</p></div>
           <span class="book"><span>Book</span><span class="go">${ARROW}</span></span>
         </a></li>`).join("")}
     </ol>

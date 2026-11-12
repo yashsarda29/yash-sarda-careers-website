@@ -1,3 +1,7 @@
+/* Backup font sized to match Inter Tight, so text doesn't jump when the web font arrives */
+@font-face { font-family: "Inter Tight Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"), local("Roboto"); size-adjust: 96%; font-weight: 100 650; }
+@font-face { font-family: "Inter Tight Fallback"; src: local("Arial Bold"), local("Arial"), local("Liberation Sans Bold"), local("Liberation Sans"), local("Helvetica Bold"), local("Roboto Bold"), local("Roboto"); size-adjust: 86%; font-weight: 651 1000; }
+
 /* Shared styles for the blog. Same palette as the home page: LinkedIn blue + ink + paper. */
 :root {
   --blue: #0A66C2;
@@ -9,7 +13,7 @@
   --white: #FFFFFF;
   --hair: rgba(11,27,43,.12);
   --serif: "Instrument Serif", Georgia, serif;
-  --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sans: "Inter Tight", "Inter Tight Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { overflow-x: clip; }
