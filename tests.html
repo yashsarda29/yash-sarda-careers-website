@@ -24,7 +24,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap"></noscript>
 <style>
   /* Backup font sized to match Inter Tight, so text doesn't jump when the web font arrives */
   @font-face { font-family: "Inter Tight Fallback"; src: local("Arial"), local("Liberation Sans"), local("Helvetica"), local("Roboto"); size-adjust: 96%; font-weight: 100 650; }
@@ -590,7 +591,8 @@ const inCV = (lower, w) => lower.includes(w) || (w.length > 4 && lower.includes(
 function analyseCV(cv, jd) {
   const text = cv.replace(/\r/g, ""), lower = text.toLowerCase();
   const words = (lower.match(/[a-z][a-z+#.\-]*/g) || []);
-  const lines = text.split("\n").map(s => s.trim()).filter(Boolean);
+  // Split on line breaks, bullet characters and sentence ends, so a CV pasted as one long line (common from PDFs) still works
+  const lines = text.split(/\n|[•●▪◦·]|;\s|\s[–-]\s(?=[A-Z])|(?<=[a-z0-9%)])\.\s+(?=[A-Z])/).map(s => s.trim()).filter(Boolean);
   const areas = [];
   const add = (key, name, pct, tip, weight) => areas.push({ key, name, pct: Math.max(0, Math.min(100, Math.round(pct))), tip, weight });
 
