@@ -265,10 +265,10 @@
   <!-- Picker (start screen) -->
   <section id="screen-picker">
     <div class="wrap intro">
-      <span class="mono" style="color:var(--blue)">Free Career Check · 3 minutes each</span>
-      <h1>Find out where you stand, <span class="serif">in three minutes.</span></h1>
-      <p>Pick a test, answer honestly, and get a score with clear next steps. No sign-up needed.</p>
-      <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Your answers stay in your browser. We only save your name, email and number.</span>
+      <span class="mono" style="color:var(--blue)">Free Career Check · 2–3 minutes each</span>
+      <h1>Find out where you stand, <span class="serif">in a few minutes.</span></h1>
+      <p>Pick a check, answer honestly, and get a score with clear next steps. It's free.</p>
+      <span class="privacy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>You add your name, email and number once. Your answers stay in your browser.</span>
     </div>
     <!-- Cards are also in the HTML so slow phones don't see the page jump; the script below re-renders the same markup from TESTS. -->
     <div class="wrap picker" id="picker"><button class="tcard" data-test="cv">
@@ -284,21 +284,21 @@
     <span class="mono">10 questions · ~3 min · Score out of 100</span>
     <h2>Profile evaluation</h2>
     <p>Score your profile out of 100 across academics, experience, proof of skills, visibility and direction.</p>
-    <span class="go">Start the test <span class="arr">→</span></span>
+    <span class="go">Start the check <span class="arr">→</span></span>
   </button><button class="tcard" data-test="stream">
     <span class="tc-photo"><img src="images/test-stream.webp" alt="" width="800" height="500" loading="lazy"></span>
     <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"></path><path d="M8 3H3v5"></path><path d="M12 22v-8.3a4 4 0 0 0-1.17-2.83L3 3"></path><path d="m15 9 6-6"></path></svg></span>
     <span class="mono">10 questions · ~3 min · Match score per stream</span>
     <h2>Stream selector</h2>
-    <p>Engineering, commerce or arts? Pick your track and get a match score for each stream within it.</p>
-    <span class="go">Start the test <span class="arr">→</span></span>
+    <p>Engineering, Commerce or Arts? Pick your track and get a match score for each stream within it.</p>
+    <span class="go">Start the check <span class="arr">→</span></span>
   </button><button class="tcard" data-test="placement">
     <span class="tc-photo"><img src="images/test-placement.webp" alt="" width="800" height="500" loading="lazy"></span>
     <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
     <span class="mono">10 questions · ~3 min · Score out of 100</span>
     <h2>Placement readiness</h2>
     <p>How ready are you for placement season? Score your prep for tests, interviews, GDs and company research.</p>
-    <span class="go">Start the test <span class="arr">→</span></span>
+    <span class="go">Start the check <span class="arr">→</span></span>
   </button></div>
   </section>
 
@@ -365,6 +365,7 @@
       <nav class="sf-col" aria-label="Career Check: free tests">
         <h2>Free Career Check</h2>
         <ul>
+          <li><a href="tests.html#cv">CV score check</a></li>
           <li><a href="tests.html#profile">Profile evaluation test</a></li>
           <li><a href="tests.html#stream">Stream selector test</a></li>
           <li><a href="tests.html#placement">Placement readiness test</a></li>
@@ -502,7 +503,7 @@ const PLACEMENT = {
 const SCALE = ["Not me", "A little", "Somewhat", "Mostly", "Totally me"];
 const STREAM = {
   id: "stream", name: "Stream selector", icon: "stream", mins: 3,
-  blurb: "Engineering, commerce or arts? Pick your track and get a match score for each stream within it.",
+  blurb: "Engineering, Commerce or Arts? Pick your track and get a match score for each stream within it.",
   tracks: {
     eng: {
       name: "Engineering", icon: "eng", sub: "CS, AI & data, electronics, electrical, mechanical, civil",
@@ -695,7 +696,7 @@ $("picker").innerHTML = ORDER.map(id => {
     <span class="mono">${id === "cv" ? "New · Paste your CV" : n + " questions"} · ~${t.mins} min · ${ACCENT[id]}</span>
     <h2>${esc(t.name)}</h2>
     <p>${esc(t.blurb)}</p>
-    <span class="go">${id === "cv" ? "Check my CV" : "Start the test"} <span class="arr">→</span></span>
+    <span class="go">${id === "cv" ? "Check my CV" : "Start the check"} <span class="arr">→</span></span>
   </button>`;
 }).join("");
 $("picker").addEventListener("click", e => { const c = e.target.closest(".tcard"); if (c) location.hash = c.dataset.test; });
@@ -710,7 +711,7 @@ function start(id) {
     show("quiz");
     render();
   }, {
-    title: id === "cv" ? "Before you check your CV" : "Before you start the " + TESTS[id].name.toLowerCase() + " test",
+    title: id === "cv" ? "Before you check your CV" : "Before you start the " + TESTS[id].name.toLowerCase() + " check",
     cancel: () => { state = null; history.replaceState(null, "", location.pathname); show("picker"); }
   });
   return;
